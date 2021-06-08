@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Game from "./game";
+import Week from "./week.js";
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+ReactDOM.render(<Week />, document.getElementById("root"));
