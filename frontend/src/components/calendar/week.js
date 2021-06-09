@@ -10,27 +10,60 @@ class Week extends React.Component {
   }
   renderLabels(hours) {
     let labelsLst = [];
-    for (let x = 0; x < hours; x++) {
-      labelsLst.push(<div className='label'>{x}:00</div>);
+    const timeStyle = {
+      color: "#989898",
+      fontFamily: "Arial",
+      fontSize: "1em",
+      textAlign: "center",
+    };
+    labelsLst.push(
+      <div style={timeStyle} className="label">
+        {12 + " AM"}
+      </div>
+    );
+    for (let x = 1; x < hours; x++) {
+      labelsLst.push(
+        <div style={timeStyle} className="label">
+          {x + " AM"}
+        </div>
+      );
     }
     console.log(labelsLst);
     return labelsLst;
   }
   render() {
+    const weekStyle = {
+      marginLeft: "0.5em",
+    };
+    const labelsStyle = {
+      marginTop: "5.5em",
+      justifyContent: "space-between",
+    };
+    const timeStyle = {
+      color: "#989898",
+      fontFamily: "Arial",
+      fontSize: "1em",
+      textAlign: "center",
+    };
+    const weekContainerStyle = {
+      margin: "0 auto",
+    };
     return (
-      <div className='week-container'>
-        <div className='labels-container'>
-          <div className='label-tag'>Time</div>
+      <div style={weekContainerStyle} className="week-container">
+        <div style={labelsStyle} className="labels-container">
+          <div style={timeStyle} className="label-tag">
+            ALL DAY
+          </div>
           {this.renderLabels(12)}
         </div>
-        <div className='week'>
-          <Day value='Monday' hours={12}></Day>
-          <Day value='Tuesday' hours={12}></Day>
-          <Day value='Wednesday' hours={12}></Day>
-          <Day value='Thursday' hours={12}></Day>
-          <Day value='Friday' hours={12}></Day>
-          <Day value='Saturday' hours={12}></Day>
-          <Day value='Sunday' hours={12}></Day>
+        <div style={weekStyle} className="week">
+          <Day value="Mon" hours={12}></Day>
+          <Day value="Tues" hours={12}></Day>
+          <Day value="Wed" hours={12}></Day>
+          <Day value="Thurs" hours={12}></Day>
+          <Day value="Fri" hours={12}></Day>
+          <Day value="Sat" hours={12}></Day>
+          <Day value="Sun" hours={12}></Day>
         </div>
       </div>
     );

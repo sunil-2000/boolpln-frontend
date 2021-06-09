@@ -41,10 +41,37 @@ class Day extends React.Component {
     return timeLst;
   }
   render() {
+    const dayTagStyle = {
+      border: "1px solid #C4C4C4",
+      borderRight: "none",
+      height: "4em",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "flex-end",
+      fontSize: "2em",
+      fontFamily: "Arial",
+      color: "#989898",
+    };
+    const dayTagSunStyle = {
+      border: "1px solid #C4C4C4",
+      height: "4em",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "flex-end",
+      fontSize: "2em",
+      fontFamily: "Arial",
+      color: "#989898",
+    };
+    function handleBorderOverlap(day) {
+      if (day === "Sun") return dayTagSunStyle;
+      else return dayTagStyle;
+    }
     return (
-      <div className='day-container'>
-        <div className='day-tag'>{this.props.value}</div>
-        <div className='day-column'>
+      <div className="day-container">
+        <div style={handleBorderOverlap(this.props.value)} className="day-tag">
+          {this.props.value}
+        </div>
+        <div className="day-column">
           {this.renderDay(this.props.hours)}
           {/* allow switch for am/pm, and eventually allow arg for renderDay to be derived from props*/}
         </div>
