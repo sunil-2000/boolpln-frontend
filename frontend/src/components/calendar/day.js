@@ -48,7 +48,7 @@ class Day extends React.Component {
       height: "4em",
       display: "flex",
       justifyContent: "space-around",
-      alignItems: "flex-end",
+      alignItems: "center",
       fontSize: "2em",
       fontFamily: "Arial",
       color: "#989898",
@@ -59,7 +59,7 @@ class Day extends React.Component {
       height: "4em",
       display: "flex",
       justifyContent: "space-around",
-      alignItems: "flex-end",
+      alignItems: "center",
       fontSize: "2em",
       fontFamily: "Arial",
       color: "#989898",
@@ -72,7 +72,8 @@ class Day extends React.Component {
     return (
       <div className='day-container'>
         <div style={handleBorderOverlap(this.props.end)} className='day-tag'>
-          {this.props.value}
+          <div className='date-num'>{this.props.date}</div>
+          <div>{this.props.value}</div>
         </div>
         <div className='day-column'>
           {this.renderDay(this.props.hours)}

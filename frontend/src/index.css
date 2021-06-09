@@ -42,7 +42,8 @@ ul {
 }
 
 .day-tag {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .square:focus {
@@ -62,4 +63,9 @@ ul {
 .labels-container {
   display: flex;
   flex-direction: column;
+}
+
+.date-num {
+  color: black;
+  font-weight: bold;
 }
