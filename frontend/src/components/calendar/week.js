@@ -43,7 +43,7 @@ class Week extends React.Component {
       }
 
       labelsLst.push(
-        <div style={timeStyle} className='timeslot-label'>
+        <div style={timeStyle} className="timeslot-label">
           {dispHour}
         </div>
       );
@@ -94,6 +94,8 @@ class Week extends React.Component {
       justifyContent: "space-between",
       border: "1px solid #C4C4C4",
       borderRight: "none",
+      display: "flex",
+      rowGap: "1px",
     };
     const timeStyle = {
       borderBottom: "1px solid #C4C4C4",
@@ -112,10 +114,10 @@ class Week extends React.Component {
     };
 
     return (
-      <div style={weekContainerStyle} className='week-container'>
-        <div style={weekStyle} className='week'>
-          <div style={labelsStyle} className='labels-container'>
-            <div style={timeStyle} className='label-tag'>
+      <div style={weekContainerStyle} className="week-container">
+        <div style={weekStyle} className="week">
+          <div style={labelsStyle} className="labels-container">
+            <div style={timeStyle} className="label-tag">
               ALLDAY
             </div>
             {this.renderLabels(12)}
