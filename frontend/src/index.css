@@ -33,9 +33,12 @@ ul {
   fill: black;
 }
 
-.timeslot-labels {
+.timeslot-label {
   display: flex;
   flex-direction: row;
+  height: 34px;
+  text-align: left;
+  padding-left: 2px;
 }
 
 .day-tag {
@@ -59,5 +62,4 @@ ul {
 .labels-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
