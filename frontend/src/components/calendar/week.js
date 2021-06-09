@@ -38,16 +38,17 @@ class Week extends React.Component {
     };
     const labelsStyle = {
       marginTop: "10em",
-      justifyContent: "space-between",
       border: "1px solid #C4C4C4",
       borderRight: "none",
+      display: "flex",
+      rowGap: "1px",
     };
     const timeStyle = {
       color: "#989898",
       fontFamily: "Arial",
       fontSize: "1em",
       textAlign: "center",
-      marginTop: "6em",
+      marginTop: "5em",
     };
     const weekContainerStyle = {
       float: "right",
