@@ -51,6 +51,7 @@ class Day extends React.Component {
       fontSize: "2em",
       fontFamily: "Arial",
       color: "#989898",
+      paddingBottom: "0.5em",
     };
     const dayTagSunStyle = {
       border: "1px solid #C4C4C4",
@@ -61,6 +62,7 @@ class Day extends React.Component {
       fontSize: "2em",
       fontFamily: "Arial",
       color: "#989898",
+      paddingBottom: "0.5em",
     };
     function handleBorderOverlap(day) {
       if (day === "Sun") return dayTagSunStyle;

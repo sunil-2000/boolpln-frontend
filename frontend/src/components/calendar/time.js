@@ -5,8 +5,8 @@ class Time extends React.Component {
     const timeSlotStyle = {
       border: "1px dotted #616060",
       backgroundColor: this.props.fillColor,
-      height: "1.5em",
-      width: "4em",
+      height: "1.75em",
+      width: "6em",
     };
     return (
       <button
