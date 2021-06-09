@@ -7,6 +7,7 @@ class Day extends React.Component {
     this.state = {
       days: Array(13).fill(""),
       value: this.props.value,
+      end: false,
     };
   }
 
@@ -64,16 +65,16 @@ class Day extends React.Component {
       color: "#989898",
       paddingBottom: "0.5em",
     };
-    function handleBorderOverlap(day) {
-      if (day === "Sun") return dayTagSunStyle;
+    function handleBorderOverlap(end) {
+      if (end) return dayTagSunStyle;
       else return dayTagStyle;
     }
     return (
-      <div className="day-container">
-        <div style={handleBorderOverlap(this.props.value)} className="day-tag">
+      <div className='day-container'>
+        <div style={handleBorderOverlap(this.props.end)} className='day-tag'>
           {this.props.value}
         </div>
-        <div className="day-column">
+        <div className='day-column'>
           {this.renderDay(this.props.hours)}
           {/* allow switch for am/pm, and eventually allow arg for renderDay to be derived from props*/}
         </div>
