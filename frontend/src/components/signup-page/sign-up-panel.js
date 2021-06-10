@@ -1,5 +1,11 @@
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { slideInUp } from "react-animations";
+import styled, { keyframes } from "styled-components";
+
+const Tada = styled.div`
+  animation: 2s ${keyframes`${slideInUp}`};
+`;
 
 const Panel = () => {
   const panelStyle = {
@@ -85,47 +91,49 @@ const Panel = () => {
     event.preventDefault();
   }
   return (
-    <div style={panelStyle}>
-      <h1 style={titleStyle}>Sign Up</h1>
-      <div style={columnStyle}>
-        <form
-          style={{ display: "flex", flexDirection: "column" }}
-          onSubmit={handleSubmit}
-        >
-          <label style={formLabelStyle}>
-            Email
-            <input
-              style={formInputStyle}
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </label>
-          <label style={formLabelStyle}>
-            Username
-            <input
-              style={formInputStyle}
-              type="text"
-              value={username}
-              onChange={handleUsernameChange}
-            />
-          </label>
-          <label style={formLabelStyle}>
-            Password
-            <input
-              style={formInputStyle}
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          </label>
-          <input style={submitStyle} type="submit" value="Sign Up" />
-        </form>
-        <button style={goBackStyle} onClick={() => goBack("start")}>
-          Go Back
-        </button>
+    <Tada>
+      <div style={panelStyle}>
+        <h1 style={titleStyle}>Sign Up</h1>
+        <div style={columnStyle}>
+          <form
+            style={{ display: "flex", flexDirection: "column" }}
+            onSubmit={handleSubmit}
+          >
+            <label style={formLabelStyle}>
+              Email
+              <input
+                style={formInputStyle}
+                type='email'
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </label>
+            <label style={formLabelStyle}>
+              Username
+              <input
+                style={formInputStyle}
+                type='text'
+                value={username}
+                onChange={handleUsernameChange}
+              />
+            </label>
+            <label style={formLabelStyle}>
+              Password
+              <input
+                style={formInputStyle}
+                type='password'
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </label>
+            <input style={submitStyle} type='submit' value='Sign Up' />
+          </form>
+          <button style={goBackStyle} onClick={() => goBack("start")}>
+            Go Back
+          </button>
+        </div>
       </div>
-    </div>
+    </Tada>
   );
 };
 

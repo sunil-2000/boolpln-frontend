@@ -1,4 +1,9 @@
 import { useHistory } from "react-router-dom";
+import { tada } from "react-animations";
+import styled, { keyframes } from "styled-components";
+const Tada = styled.div`
+  animation: 2s ${keyframes`${tada}`};
+`;
 
 const Panel = () => {
   const panelStyle = {
@@ -47,17 +52,19 @@ const Panel = () => {
     history.push(path);
   }
   return (
-    <div style={panelStyle}>
-      <h1 style={titleStyle}>Scheduler</h1>
-      <div style={columnStyle}>
-        <button style={signUpStyle} onClick={() => changePage("signup")}>
-          Sign Up
-        </button>
-        <button style={logInStyle} onClick={() => changePage("login")}>
-          Log In
-        </button>
+    <Tada>
+      <div style={panelStyle}>
+        <h1 style={titleStyle}>Scheduler</h1>
+        <div style={columnStyle}>
+          <button style={signUpStyle} onClick={() => changePage("signup")}>
+            Sign Up
+          </button>
+          <button style={logInStyle} onClick={() => changePage("login")}>
+            Log In
+          </button>
+        </div>
       </div>
-    </div>
+    </Tada>
   );
 };
 
