@@ -10,10 +10,11 @@ class Time extends React.Component {
     };
     return (
       <button
-        className="time"
+        className='time'
         onClick={this.props.onClick}
         style={timeSlotStyle}
         key={null}
+        selected={false}
       ></button>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import Day from "./day.js";
+import TimeslotLabel from "./timeslotLabel.js";
 
 const dateMap = {
   0: "Sun",
@@ -11,6 +12,8 @@ const dateMap = {
   6: "Sat",
 };
 const today = new Date();
+const month = today.getMonth();
+const year = today.getFullYear();
 
 class Week extends React.Component {
   constructor(props) {
@@ -21,12 +24,6 @@ class Week extends React.Component {
   }
   renderLabels(hours) {
     let labelsLst = [];
-    const timeStyle = {
-      color: "#989898",
-      fontFamily: "Arial",
-      fontSize: "1em",
-      textAlign: "center",
-    };
 
     let curHour = today.getHours();
     for (let x = 0; x <= hours; x++) {
@@ -43,9 +40,11 @@ class Week extends React.Component {
       }
 
       labelsLst.push(
-        <div style={timeStyle} className="timeslot-label">
-          {dispHour}
-        </div>
+        <TimeslotLabel
+          curHour={curHour}
+          dispHour={dispHour}
+          key={curHour}
+        ></TimeslotLabel>
       );
       curHour = (curHour + 1) % 24;
     }
@@ -55,6 +54,8 @@ class Week extends React.Component {
   renderDaysWeek(days) {
     let today = new Date();
     let curDate = today.getDate();
+    let curHour = today.getHours();
+    console.log(curHour);
     let curDay = today.getDay();
     let dayLst = [];
     for (let x = 0; x < days; x++) {
@@ -65,6 +66,10 @@ class Week extends React.Component {
             hours={13}
             end={true}
             date={curDate}
+            hour={curHour}
+            month={month}
+            year={year}
+            key={curDate}
           ></Day>
         );
       } else {
@@ -74,6 +79,10 @@ class Week extends React.Component {
             hours={13}
             end={false}
             date={curDate}
+            hour={curHour}
+            month={month}
+            year={year}
+            key={curDate}
           ></Day>
         );
       }
@@ -114,10 +123,10 @@ class Week extends React.Component {
     };
 
     return (
-      <div style={weekContainerStyle} className="week-container">
-        <div style={weekStyle} className="week">
-          <div style={labelsStyle} className="labels-container">
-            <div style={timeStyle} className="label-tag">
+      <div style={weekContainerStyle} className='week-container'>
+        <div style={weekStyle} className='week'>
+          <div style={labelsStyle} className='labels-container'>
+            <div style={timeStyle} className='label-tag'>
               ALLDAY
             </div>
             {this.renderLabels(12)}

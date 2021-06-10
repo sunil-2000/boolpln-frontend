@@ -12,11 +12,23 @@ class Day extends React.Component {
   }
 
   renderTimeSlot(i, y) {
+    let on = this.state.days[i] !== "" ? true : false;
     return (
       <Time
         fillColor={this.state.days[i]}
+        selected={on}
         onClick={() => this.handleClick(i)}
-        key={i.toString() + y}
+        key={
+          this.props.month +
+          "/" +
+          this.props.date +
+          "/" +
+          this.props.year +
+          ", " +
+          ((i + this.props.hour) % 24) +
+          ", " +
+          on
+        }
       />
     );
   }
@@ -31,13 +43,12 @@ class Day extends React.Component {
     }
 
     this.setState({ days: timeSlots });
-    console.log(this.state.days);
   }
   // renderDay returns a column with hoursNo number of time slots
   renderDay(hoursNo) {
     let timeLst = [];
     for (let x = 0; x < hoursNo; x++) {
-      timeLst.push(this.renderTimeSlot(x, this.props.value));
+      timeLst.push(this.renderTimeSlot(x, this.props.hour));
     }
     return timeLst;
   }
