@@ -12,6 +12,9 @@ class Start extends Component {
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Panel />

@@ -6,10 +6,6 @@ const Panel = () => {
     backgroundColor: "#C4C4C4",
     height: "50em",
     width: "30em",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)",
     borderRadius: "2em",
   };
   const titleStyle = {
@@ -100,7 +96,7 @@ const Panel = () => {
             Email
             <input
               style={formInputStyle}
-              type="text"
+              type="email"
               value={email}
               onChange={handleEmailChange}
             />
@@ -118,12 +114,12 @@ const Panel = () => {
             Password
             <input
               style={formInputStyle}
-              type="text"
+              type="password"
               value={password}
               onChange={handlePasswordChange}
             />
           </label>
-          <input style={submitStyle} type="submit" value="Submit" />
+          <input style={submitStyle} type="submit" value="Sign Up" />
         </form>
         <button style={goBackStyle} onClick={() => goBack("start")}>
           Go Back

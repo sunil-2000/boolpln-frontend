@@ -5,17 +5,13 @@ const Panel = () => {
     backgroundColor: "#C4C4C4",
     height: "30em",
     width: "30em",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)",
     borderRadius: "2em",
   };
   const titleStyle = {
     color: "white",
     fontSize: "4em",
     textAlign: "center",
-    marginTop: "1.5em",
+    marginTop: "1em",
   };
   const signUpStyle = {
     backgroundColor: "#717171",
