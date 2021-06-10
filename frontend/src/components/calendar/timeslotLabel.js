@@ -7,9 +7,10 @@ class TimeslotLabel extends React.Component {
       fontFamily: "Arial",
       fontSize: "1em",
       textAlign: "center",
+      height: "2.43em",
     };
     return (
-      <div style={timeStyle} className='timeslot'>
+      <div style={timeStyle} className="timeslot">
         {this.props.dispHour}
       </div>
     );

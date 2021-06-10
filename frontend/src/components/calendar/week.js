@@ -98,6 +98,7 @@ class Week extends React.Component {
       borderRight: "none",
       height: "4em",
       display: "flex",
+      flexShrink: "0",
       justifyContent: "space-around",
       alignItems: "center",
       fontSize: "2em",
@@ -113,12 +114,12 @@ class Week extends React.Component {
     };
 
     return (
-      <div style={weekContainerStyle} className='week-container'>
-        <div className='labels-container'>
-          <div style={timeStyle} className='label-tag'>
+      <div style={weekContainerStyle} className="week-container">
+        <div className="labels-container">
+          <div style={timeStyle} className="label-tag">
             <div>ALLDAY</div>
           </div>
-          <div className='labels-column'>{this.renderLabels(12)}</div>
+          <div className="labels-column">{this.renderLabels(12)}</div>
         </div>
         {this.renderDaysWeek(7)}
       </div>
