@@ -24,9 +24,8 @@ class Week extends React.Component {
   }
   renderLabels(hours) {
     let labelsLst = [];
-
-    let curHour = today.getHours();
-    for (let x = 0; x <= hours; x++) {
+    let curHour = 0;
+    for (let x = 0; x < 24; x++) {
       // start at current hour dervived from date-time object (builtin)
       let dispHour;
       if (curHour <= 11 && curHour > 0) {
@@ -94,45 +93,34 @@ class Week extends React.Component {
   }
 
   render() {
-    const weekStyle = {
-      marginTop: "10em",
-      marginLeft: "0",
-    };
-    const labelsStyle = {
-      // marginTop: "10em",
-      justifyContent: "space-between",
+    const timeStyle = {
       border: "1px solid #C4C4C4",
       borderRight: "none",
-      display: "flex",
-      rowGap: "1px",
-    };
-    const timeStyle = {
-      borderBottom: "1px solid #C4C4C4",
       height: "4em",
       display: "flex",
       justifyContent: "space-around",
-      alignItems: "flex-end",
+      alignItems: "center",
       fontSize: "2em",
       fontFamily: "Arial",
-      color: "white",
+      color: "#989898",
       paddingBottom: "0.5em",
     };
+
     const weekContainerStyle = {
       margin: "auto",
       float: "right",
+      marginBottom: "10px",
     };
 
     return (
       <div style={weekContainerStyle} className='week-container'>
-        <div style={weekStyle} className='week'>
-          <div style={labelsStyle} className='labels-container'>
-            <div style={timeStyle} className='label-tag'>
-              ALLDAY
-            </div>
-            {this.renderLabels(12)}
+        <div className='labels-container'>
+          <div style={timeStyle} className='label-tag'>
+            <div>ALLDAY</div>
           </div>
-          {this.renderDaysWeek(7)}
+          <div className='labels-column'>{this.renderLabels(12)}</div>
         </div>
+        {this.renderDaysWeek(7)}
       </div>
     );
   }

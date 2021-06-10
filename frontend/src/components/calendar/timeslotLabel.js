@@ -9,7 +9,7 @@ class TimeslotLabel extends React.Component {
       textAlign: "center",
     };
     return (
-      <div style={timeStyle} className='timeslot-label'>
+      <div style={timeStyle} className='timeslot'>
         {this.props.dispHour}
       </div>
     );

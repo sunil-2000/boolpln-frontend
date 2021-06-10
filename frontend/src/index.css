@@ -13,10 +13,6 @@ ul {
   flex-direction: column;
 }
 
-.status {
-  margin-bottom: 10px;
-}
-
 .time {
   background: #fff;
   border: 1px solid #999;
@@ -33,31 +29,21 @@ ul {
   fill: black;
 }
 
-.timeslot-label {
-  display: flex;
-  flex-direction: row;
-  height: 34px;
-  text-align: left;
-  padding-left: 2px;
-}
-
 .day-tag {
   display: flex;
   flex-direction: column;
 }
 
-.square:focus {
-  outline: none;
-}
-
 .week {
   display: flex;
   flex-direction: row;
-  margin-left: 50px;
 }
 .week-container {
   display: flex;
   flex-direction: row;
+  margin-left: 50px;
+  overflow: scroll;
+  height: 600px;
 }
 
 .labels-container {
@@ -68,4 +54,15 @@ ul {
 .date-num {
   color: black;
   font-weight: bold;
+}
+
+.timeslot {
+  line-height: 34px;
+  height: 1.75em;
+  justify-content: space-between;
+  border: 1px solid #c4c4c4;
+  border-right: none;
+  display: flex;
+  row-gap: 1px;
+  padding-bottom: 5px;
 }

@@ -25,7 +25,7 @@ class Day extends React.Component {
           "/" +
           this.props.year +
           ", " +
-          ((i + this.props.hour) % 24) +
+          i +
           ", " +
           on
         }
@@ -47,7 +47,7 @@ class Day extends React.Component {
   // renderDay returns a column with hoursNo number of time slots
   renderDay(hoursNo) {
     let timeLst = [];
-    for (let x = 0; x < hoursNo; x++) {
+    for (let x = 0; x < 24; x++) {
       timeLst.push(this.renderTimeSlot(x, this.props.hour));
     }
     return timeLst;
