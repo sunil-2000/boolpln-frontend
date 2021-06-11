@@ -87,38 +87,36 @@ const Panel = () => {
     event.preventDefault();
   }
   return (
-    <Tada>
-      <div style={panelStyle}>
-        <h1 style={titleStyle}>Log In</h1>
-        <div style={columnStyle}>
-          <form
-            style={{ display: "flex", flexDirection: "column" }}
-            onSubmit={handleSubmit}
-          >
-            <label style={formLabelStyle}>
-              Username
-              <input
-                style={formInputStyle}
-                type='text'
-                value={username}
-                onChange={handleUsernameChange}
-              />
-            </label>
-            <label style={formLabelStyle}>
-              Password
-              <input
-                style={formInputStyle}
-                type='password'
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </label>
-            <input style={submitStyle} type='submit' value='Log In' />
-          </form>
-          <button style={goBackStyle} onClick={() => goBack("start")}>
-            Go Back
-          </button>
-        </div>
+    <Tada style={panelStyle}>
+      <h1 style={titleStyle}>Log In</h1>
+      <div style={columnStyle}>
+        <form
+          style={{ display: "flex", flexDirection: "column" }}
+          onSubmit={handleSubmit}
+        >
+          <label style={formLabelStyle}>
+            Username
+            <input
+              style={formInputStyle}
+              type="text"
+              value={username}
+              onChange={handleUsernameChange}
+            />
+          </label>
+          <label style={formLabelStyle}>
+            Password
+            <input
+              style={formInputStyle}
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </label>
+          <input style={submitStyle} type="submit" value="Log In" />
+        </form>
+        <button style={goBackStyle} onClick={() => goBack("start")}>
+          Go Back
+        </button>
       </div>
     </Tada>
   );

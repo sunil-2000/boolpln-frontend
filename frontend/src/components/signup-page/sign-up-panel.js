@@ -91,59 +91,58 @@ const Panel = () => {
     console.log("password: " + password);
     event.preventDefault();
     axios({
-      method: 'post',
-      url: '/api/users/',
+      method: "post",
+      url: "/api/users/",
       data: {
         username: username,
         email: email,
-        password: password
-      }
+        password: password,
+      },
     });
   }
   return (
-    <Tada>
-      <div style={panelStyle}>
-        <h1 style={titleStyle}>Sign Up</h1>
-        <div style={columnStyle}>
-          <form
-            style={{ display: "flex", flexDirection: "column" }}
-            onSubmit={handleSubmit}>
-            <label style={formLabelStyle}>
-              Email
-              <input
-                style={formInputStyle}
-                type='email'
-                value={email}
-                onChange={handleEmailChange}
-                required='required'
-              />
-            </label>
-            <label style={formLabelStyle}>
-              Username
-              <input
-                style={formInputStyle}
-                type='text'
-                value={username}
-                onChange={handleUsernameChange}
-                required='required'
-              />
-            </label>
-            <label style={formLabelStyle}>
-              Password
-              <input
-                style={formInputStyle}
-                type='password'
-                value={password}
-                onChange={handlePasswordChange}
-                required='required'
-              />
-            </label>
-            <input style={submitStyle} type='submit' value='Sign Up' />
-          </form>
-          <button style={goBackStyle} onClick={() => goBack("start")}>
-            Go Back
-          </button>
-        </div>
+    <Tada style={panelStyle}>
+      <h1 style={titleStyle}>Sign Up</h1>
+      <div style={columnStyle}>
+        <form
+          style={{ display: "flex", flexDirection: "column" }}
+          onSubmit={handleSubmit}
+        >
+          <label style={formLabelStyle}>
+            Email
+            <input
+              style={formInputStyle}
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              required="required"
+            />
+          </label>
+          <label style={formLabelStyle}>
+            Username
+            <input
+              style={formInputStyle}
+              type="text"
+              value={username}
+              onChange={handleUsernameChange}
+              required="required"
+            />
+          </label>
+          <label style={formLabelStyle}>
+            Password
+            <input
+              style={formInputStyle}
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required="required"
+            />
+          </label>
+          <input style={submitStyle} type="submit" value="Sign Up" />
+        </form>
+        <button style={goBackStyle} onClick={() => goBack("start")}>
+          Go Back
+        </button>
       </div>
     </Tada>
   );

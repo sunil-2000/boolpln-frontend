@@ -52,17 +52,15 @@ const Panel = () => {
     history.push(path);
   }
   return (
-    <Tada>
-      <div style={panelStyle}>
-        <h1 style={titleStyle}>Scheduler</h1>
-        <div style={columnStyle}>
-          <button style={signUpStyle} onClick={() => changePage("signup")}>
-            Sign Up
-          </button>
-          <button style={logInStyle} onClick={() => changePage("login")}>
-            Log In
-          </button>
-        </div>
+    <Tada style={panelStyle}>
+      <h1 style={titleStyle}>Scheduler</h1>
+      <div style={columnStyle}>
+        <button style={signUpStyle} onClick={() => changePage("signup")}>
+          Sign Up
+        </button>
+        <button style={logInStyle} onClick={() => changePage("login")}>
+          Log In
+        </button>
       </div>
     </Tada>
   );
