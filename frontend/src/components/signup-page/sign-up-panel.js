@@ -98,6 +98,7 @@ const Panel = () => {
           <form
             style={{ display: "flex", flexDirection: "column" }}
             onSubmit={handleSubmit}
+            method='POST'
           >
             <label style={formLabelStyle}>
               Email
@@ -106,6 +107,7 @@ const Panel = () => {
                 type='email'
                 value={email}
                 onChange={handleEmailChange}
+                required='required'
               />
             </label>
             <label style={formLabelStyle}>
@@ -115,6 +117,7 @@ const Panel = () => {
                 type='text'
                 value={username}
                 onChange={handleUsernameChange}
+                required='required'
               />
             </label>
             <label style={formLabelStyle}>
@@ -124,6 +127,7 @@ const Panel = () => {
                 type='password'
                 value={password}
                 onChange={handlePasswordChange}
+                required='required'
               />
             </label>
             <input style={submitStyle} type='submit' value='Sign Up' />
