@@ -98,8 +98,12 @@ const Panel = () => {
         email: email,
         password: password,
       },
-    });
+    }).catch(handleSignupError);
   }
+  function handleSignupError(error) {
+    console.log(error.response.status)
+  }
+
   return (
     <Tada style={panelStyle}>
       <h1 style={titleStyle}>Sign Up</h1>
