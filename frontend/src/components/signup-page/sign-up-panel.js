@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInUp } from "react-animations";
 import styled, { keyframes } from "styled-components";
+import axios from "axios";
 
 const Tada = styled.div`
   animation: 2s ${keyframes`${slideInUp}`};
@@ -89,6 +90,15 @@ const Panel = () => {
     console.log("username: " + username);
     console.log("password: " + password);
     event.preventDefault();
+    axios({
+      method: 'post',
+      url: '/api/users/',
+      data: {
+        username: username,
+        email: email,
+        password: password
+      }
+    });
   }
   return (
     <Tada>
@@ -97,9 +107,7 @@ const Panel = () => {
         <div style={columnStyle}>
           <form
             style={{ display: "flex", flexDirection: "column" }}
-            onSubmit={handleSubmit}
-            method='POST'
-          >
+            onSubmit={handleSubmit}>
             <label style={formLabelStyle}>
               Email
               <input
