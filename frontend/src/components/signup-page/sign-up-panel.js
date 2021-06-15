@@ -11,7 +11,7 @@ const Tada = styled.div`
 const Panel = () => {
   const panelStyle = {
     backgroundColor: "#C4C4C4",
-    height: "43em",
+    height: "44em",
     width: "55em",
     borderRadius: "2em",
   };
@@ -72,6 +72,7 @@ const Panel = () => {
     fontFamily: "'Open Sans', sans-serif",
     textAlign: "center",
     fontSize: "0.5em",
+    marginTop: "0.25em",
   };
   const rowStyle = {
     display: "flex",
