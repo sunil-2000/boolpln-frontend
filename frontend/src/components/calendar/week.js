@@ -107,21 +107,60 @@ class Week extends React.Component {
       paddingBottom: "0.5em",
     };
 
+    function displayMonth() {
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      return monthNames[month];
+    }
+    const monthBarStyle = {};
+
     const weekContainerStyle = {
       margin: "auto",
       float: "right",
       marginBottom: "10px",
     };
 
+    const calendarStyle = {
+      margin: "auto",
+      float: "right",
+      marginBottom: "10px",
+      backgroundColor: "#EEEEEE",
+    };
+
+    const monthNameStyle = {
+      marginLeft: "0.5em",
+      marginBottom: "0.25em",
+      marginTop: "0",
+      fontSize: "5em",
+      fontFamily: "'Open Sans', sans-serif",
+    };
+
     return (
-      <div style={weekContainerStyle} className='week-container'>
-        <div className='labels-container'>
-          <div style={timeStyle} className='label-tag'>
-            <div>ALLDAY</div>
-          </div>
-          <div className='labels-column'>{this.renderLabels(12)}</div>
+      <div style={calendarStyle}>
+        <div style={monthBarStyle}>
+          <h1 style={monthNameStyle}>{displayMonth() + " " + year}</h1>
         </div>
-        {this.renderDaysWeek(7)}
+        <div style={weekContainerStyle} className="week-container">
+          <div className="labels-container">
+            <div style={timeStyle} className="label-tag">
+              <div>ALLDAY</div>
+            </div>
+            <div className="labels-column">{this.renderLabels(12)}</div>
+          </div>
+          {this.renderDaysWeek(7)}
+        </div>
       </div>
     );
   }
