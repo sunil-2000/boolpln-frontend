@@ -29,6 +29,7 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
+    fontWeight: "700",
   };
   const logInStyle = {
     backgroundColor: "#9A9A9A",
@@ -41,6 +42,7 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
+    fontWeight: "700",
   };
   const columnStyle = {
     display: "flex",

@@ -32,6 +32,7 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
+    fontWeight: "700",
     width: "40%",
   };
   const submitStyle = {
@@ -46,6 +47,7 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
+    fontWeight: "700",
     width: "40%",
   };
   const columnStyle = {

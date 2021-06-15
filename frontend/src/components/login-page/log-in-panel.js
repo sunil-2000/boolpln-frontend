@@ -31,11 +31,13 @@ const Panel = () => {
     marginLeft: "2.5em",
     marginRight: "2.5em",
     borderRadius: "0.5em",
+    fontWeight: "700",
     fontFamily: "'Open Sans', sans-serif",
   };
   const submitStyle = {
     backgroundColor: "#717171",
     border: "none",
+    fontWeight: "700",
     color: "white",
     fontSize: "2.5em",
     paddingTop: "0.25em",
