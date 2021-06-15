@@ -11,7 +11,7 @@ const Tada = styled.div`
 const Panel = () => {
   const panelStyle = {
     backgroundColor: "#C4C4C4",
-    height: "45em",
+    height: "43em",
     width: "55em",
     borderRadius: "2em",
   };
@@ -32,7 +32,7 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
-    width: "30%",
+    width: "40%",
   };
   const submitStyle = {
     backgroundColor: "#717171",
@@ -46,12 +46,14 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
-    width: "30%",
+    width: "40%",
   };
   const columnStyle = {
     display: "flex",
     flexDirection: "column",
     gap: "0.5em",
+    paddingLeft: "2.5em",
+    paddingRight: "2.5em",
   };
   const formLabelStyle = {
     display: "inline-block",
@@ -59,6 +61,7 @@ const Panel = () => {
     color: "white",
     fontSize: "2em",
     marginBottom: "0.25em",
+    width: "50%",
   };
   const formInputStyle = {
     height: "3em",
