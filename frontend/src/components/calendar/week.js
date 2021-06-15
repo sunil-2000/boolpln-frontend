@@ -130,6 +130,7 @@ class Week extends React.Component {
       margin: "auto",
       float: "right",
       marginBottom: "10px",
+      height: "100%",
     };
 
     const calendarStyle = {
@@ -142,9 +143,10 @@ class Week extends React.Component {
     const monthNameStyle = {
       marginLeft: "0.5em",
       marginBottom: "0.25em",
-      marginTop: "0",
+      marginTop: "0.25em",
       fontSize: "5em",
       fontFamily: "'Open Sans', sans-serif",
+      color: "#5E5E5E",
     };
 
     return (

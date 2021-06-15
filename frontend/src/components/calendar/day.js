@@ -91,8 +91,19 @@ class Day extends React.Component {
     return (
       <div className="day-container">
         <div style={handleBorderOverlap(this.props.end)} className="day-tag">
-          <div className="date-num">{this.props.date}</div>
-          <div>{this.props.value}</div>
+          <div
+            className="date-num"
+            style={{
+              fontSize: "1.5em",
+              fontFamily: "'Open Sans', sans-serif",
+              color: "#5E5E5E",
+            }}
+          >
+            {this.props.date}
+          </div>
+          <div style={{ fontSize: "1.2em", color: "#989898" }}>
+            {this.props.value}
+          </div>
         </div>
         <div className="day-column">
           {this.renderDay(this.props.hours)}
