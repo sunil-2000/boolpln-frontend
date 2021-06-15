@@ -11,8 +11,8 @@ const Tada = styled.div`
 const Panel = () => {
   const panelStyle = {
     backgroundColor: "#C4C4C4",
-    height: "58em",
-    width: "30em",
+    height: "45em",
+    width: "55em",
     borderRadius: "2em",
   };
   const titleStyle = {
@@ -32,6 +32,7 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
+    width: "30%",
   };
   const submitStyle = {
     backgroundColor: "#717171",
@@ -45,6 +46,7 @@ const Panel = () => {
     marginRight: "2.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
+    width: "30%",
   };
   const columnStyle = {
     display: "flex",
@@ -52,22 +54,27 @@ const Panel = () => {
     gap: "0.5em",
   };
   const formLabelStyle = {
+    display: "inline-block",
     textAlign: "center",
     color: "white",
     fontSize: "2em",
     marginBottom: "0.25em",
   };
   const formInputStyle = {
-    marginLeft: "1em",
-    marginTop: "0.5em",
-    width: "85%",
     height: "3em",
+    width: "100%",
     borderRadius: "2em",
     border: "none",
     outline: "none",
     fontFamily: "'Open Sans', sans-serif",
     textAlign: "center",
     fontSize: "0.5em",
+  };
+  const rowStyle = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: "2em",
   };
   const history = useHistory();
   function goBack(path) {
@@ -111,7 +118,7 @@ const Panel = () => {
     }).catch(handleSignupError);
   }
   function handleSignupError(error) {
-    console.log(error.response.status)
+    console.log(error.response.status);
   }
 
   return (
@@ -122,61 +129,71 @@ const Panel = () => {
           style={{ display: "flex", flexDirection: "column" }}
           onSubmit={handleSubmit}
         >
-          <label style={formLabelStyle}>
-            First Name
-            <input
-              style={formInputStyle}
-              type="text"
-              value={firstName}
-              onChange={firstNameChange}
-              required="required"
-            />
-          </label>
-          <label style={formLabelStyle}>
-            Last Name
-            <input
-              style={formInputStyle}
-              type="text"
-              value={lastName}
-              onChange={lastNameChange}
-              required="required"
-            />
-          </label>
-          <label style={formLabelStyle}>
-            Email
-            <input
-              style={formInputStyle}
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              required="required"
-            />
-          </label>
-          <label style={formLabelStyle}>
-            Username
-            <input
-              style={formInputStyle}
-              type="text"
-              value={username}
-              onChange={handleUsernameChange}
-              required="required"
-            />
-          </label>
-          <label style={formLabelStyle}>
-            Password
-            <input
-              style={formInputStyle}
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required="required"
-            />
-          </label>
-          <input style={submitStyle} type="submit" value="Sign Up" />
+          <div style={rowStyle}>
+            <label style={formLabelStyle}>
+              First Name
+              <input
+                style={formInputStyle}
+                type="text"
+                value={firstName}
+                onChange={firstNameChange}
+                required="required"
+              />
+            </label>
+            <label style={formLabelStyle}>
+              Last Name
+              <input
+                style={formInputStyle}
+                type="text"
+                value={lastName}
+                onChange={lastNameChange}
+                required="required"
+              />
+            </label>
+          </div>
+          <div style={rowStyle}>
+            <label style={formLabelStyle}>
+              Email
+              <input
+                style={formInputStyle}
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                required="required"
+              />
+            </label>
+            <label style={formLabelStyle}>
+              Username
+              <input
+                style={formInputStyle}
+                type="text"
+                value={username}
+                onChange={handleUsernameChange}
+                required="required"
+              />
+            </label>
+          </div>
+          <div style={rowStyle}>
+            <label style={formLabelStyle}>
+              Password
+              <input
+                style={formInputStyle}
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required="required"
+              />
+            </label>
+          </div>
+          <div style={rowStyle}>
+            <input style={submitStyle} type="submit" value="Sign Up" />
+          </div>
         </form>
-        <button style={goBackStyle} onClick={() => goBack("start")}>
-          Back
-        </button>
+        <div style={rowStyle}>
+          <button style={goBackStyle} onClick={() => goBack("start")}>
+            Back
+          </button>
+        </div>
       </div>
     </Tada>
   );
