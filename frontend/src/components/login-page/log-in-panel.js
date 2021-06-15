@@ -10,7 +10,7 @@ const Tada = styled.div`
 const Panel = () => {
   const panelStyle = {
     backgroundColor: "#C4C4C4",
-    height: "45em",
+    height: "42em",
     width: "30em",
     borderRadius: "2em",
   };
@@ -42,6 +42,7 @@ const Panel = () => {
     paddingBottom: "0.25em",
     marginLeft: "2.5em",
     marginRight: "2.5em",
+    marginTop: "0.5em",
     borderRadius: "0.5em",
     fontFamily: "'Open Sans', sans-serif",
   };
@@ -54,7 +55,7 @@ const Panel = () => {
     textAlign: "center",
     color: "white",
     fontSize: "2em",
-    marginBottom: "1em",
+    marginBottom: "0.5em",
   };
   const formInputStyle = {
     marginLeft: "1em",
@@ -115,7 +116,7 @@ const Panel = () => {
           <input style={submitStyle} type="submit" value="Log In" />
         </form>
         <button style={goBackStyle} onClick={() => goBack("start")}>
-          Go Back
+          Back
         </button>
       </div>
     </Tada>

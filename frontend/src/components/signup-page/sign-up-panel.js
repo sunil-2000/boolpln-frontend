@@ -11,7 +11,7 @@ const Tada = styled.div`
 const Panel = () => {
   const panelStyle = {
     backgroundColor: "#C4C4C4",
-    height: "50em",
+    height: "58em",
     width: "30em",
     borderRadius: "2em",
   };
@@ -19,7 +19,6 @@ const Panel = () => {
     color: "white",
     fontSize: "4em",
     textAlign: "center",
-    marginTop: "1em",
     marginBottom: "0.5em",
   };
   const goBackStyle = {
@@ -41,6 +40,7 @@ const Panel = () => {
     fontSize: "2.5em",
     paddingTop: "0.25em",
     paddingBottom: "0.25em",
+    marginTop: "0.5em",
     marginLeft: "2.5em",
     marginRight: "2.5em",
     borderRadius: "0.5em",
@@ -49,13 +49,13 @@ const Panel = () => {
   const columnStyle = {
     display: "flex",
     flexDirection: "column",
-    gap: "1em",
+    gap: "0.5em",
   };
   const formLabelStyle = {
     textAlign: "center",
     color: "white",
     fontSize: "2em",
-    marginBottom: "1em",
+    marginBottom: "0.25em",
   };
   const formInputStyle = {
     marginLeft: "1em",
@@ -73,9 +73,17 @@ const Panel = () => {
   function goBack(path) {
     history.push(path);
   }
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  function firstNameChange(event) {
+    setFirstName(event.target.value);
+  }
+  function lastNameChange(event) {
+    setLastName(event.target.value);
+  }
   function handleEmailChange(event) {
     setEmail(event.target.value);
   }
@@ -86,6 +94,8 @@ const Panel = () => {
     setPassword(event.target.value);
   }
   function handleSubmit(event) {
+    console.log("first name: " + firstName);
+    console.log("last name: " + lastName);
     console.log("email: " + email);
     console.log("username: " + username);
     console.log("password: " + password);
@@ -108,6 +118,26 @@ const Panel = () => {
           style={{ display: "flex", flexDirection: "column" }}
           onSubmit={handleSubmit}
         >
+          <label style={formLabelStyle}>
+            First Name
+            <input
+              style={formInputStyle}
+              type="text"
+              value={firstName}
+              onChange={firstNameChange}
+              required="required"
+            />
+          </label>
+          <label style={formLabelStyle}>
+            Last Name
+            <input
+              style={formInputStyle}
+              type="text"
+              value={lastName}
+              onChange={lastNameChange}
+              required="required"
+            />
+          </label>
           <label style={formLabelStyle}>
             Email
             <input
@@ -141,7 +171,7 @@ const Panel = () => {
           <input style={submitStyle} type="submit" value="Sign Up" />
         </form>
         <button style={goBackStyle} onClick={() => goBack("start")}>
-          Go Back
+          Back
         </button>
       </div>
     </Tada>
