@@ -107,11 +107,6 @@ const Panel = () => {
     setPassword(event.target.value);
   }
   function handleSubmit(event) {
-    console.log("first name: " + firstName);
-    console.log("last name: " + lastName);
-    console.log("email: " + email);
-    console.log("username: " + username);
-    console.log("password: " + password);
     event.preventDefault();
     axios({
       method: "post",
@@ -123,9 +118,20 @@ const Panel = () => {
         username: username,
         password: password,
       },
-    }).catch(handleSignupError);
+    })
+      .then(handleSuccess)
+      .catch(handleSignupError);
   }
+
+  function handleSuccess(response) {
+    console.log("in handle success");
+    console.log(window.token);
+    window.token = response.data.token;
+    console.log("token" + window.token);
+  }
+
   function handleSignupError(error) {
+    console.log("error");
     console.log(error.response.statusText);
     console.log(error.response.status);
   }
@@ -143,20 +149,20 @@ const Panel = () => {
               First Name
               <input
                 style={formInputStyle}
-                type="text"
+                type='text'
                 value={firstName}
                 onChange={firstNameChange}
-                required="required"
+                required='required'
               />
             </label>
             <label style={formLabelStyle}>
               Last Name
               <input
                 style={formInputStyle}
-                type="text"
+                type='text'
                 value={lastName}
                 onChange={lastNameChange}
-                required="required"
+                required='required'
               />
             </label>
           </div>
@@ -165,20 +171,20 @@ const Panel = () => {
               Email
               <input
                 style={formInputStyle}
-                type="email"
+                type='email'
                 value={email}
                 onChange={handleEmailChange}
-                required="required"
+                required='required'
               />
             </label>
             <label style={formLabelStyle}>
               Username
               <input
                 style={formInputStyle}
-                type="text"
+                type='text'
                 value={username}
                 onChange={handleUsernameChange}
-                required="required"
+                required='required'
               />
             </label>
           </div>
@@ -187,15 +193,15 @@ const Panel = () => {
               Password
               <input
                 style={formInputStyle}
-                type="password"
+                type='password'
                 value={password}
                 onChange={handlePasswordChange}
-                required="required"
+                required='required'
               />
             </label>
           </div>
           <div style={rowStyle}>
-            <input style={submitStyle} type="submit" value="Sign Up" />
+            <input style={submitStyle} type='submit' value='Sign Up' />
           </div>
         </form>
         <div style={rowStyle}>

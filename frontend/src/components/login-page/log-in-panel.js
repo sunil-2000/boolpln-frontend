@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInDown } from "react-animations";
 import styled, { keyframes } from "styled-components";
+import axios from "axios";
 
 const Tada = styled.div`
   animation: 2s ${keyframes`${slideInDown}`};
@@ -85,10 +86,33 @@ const Panel = () => {
     setPassword(event.target.value);
   }
   function handleSubmit(event) {
-    console.log("username: " + username);
-    console.log("password: " + password);
     event.preventDefault();
+
+    axios({
+      method: "post",
+      url: "/api/token-auth/",
+      data: {
+        username: username,
+        password: password,
+      },
+    })
+      .then(handleSuccess)
+      .catch(handleSignupError);
   }
+
+  function handleSuccess(response) {
+    console.log("in handle success");
+    console.log(window.token);
+    window.token = response.data.token;
+    console.log("token" + window.token);
+  }
+
+  function handleSignupError(error) {
+    console.log("error: " + error.response);
+    console.log(error.response.statusText);
+    console.log(error.response.status);
+  }
+
   return (
     <Tada style={panelStyle}>
       <h1 style={titleStyle}>Log In</h1>
@@ -101,7 +125,7 @@ const Panel = () => {
             Username
             <input
               style={formInputStyle}
-              type="text"
+              type='text'
               value={username}
               onChange={handleUsernameChange}
             />
@@ -110,12 +134,12 @@ const Panel = () => {
             Password
             <input
               style={formInputStyle}
-              type="password"
+              type='password'
               value={password}
               onChange={handlePasswordChange}
             />
           </label>
-          <input style={submitStyle} type="submit" value="Log In" />
+          <input style={submitStyle} type='submit' value='Log In' />
         </form>
         <button style={goBackStyle} onClick={() => goBack("start")}>
           Back
