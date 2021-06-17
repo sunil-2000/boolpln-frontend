@@ -117,13 +117,16 @@ const Panel = () => {
       method: "post",
       url: "/api/users/",
       data: {
-        username: username,
+        first_name: firstName,
+        last_name: lastName,
         email: email,
+        username: username,
         password: password,
       },
     }).catch(handleSignupError);
   }
   function handleSignupError(error) {
+    console.log(error.response.statusText);
     console.log(error.response.status);
   }
 
