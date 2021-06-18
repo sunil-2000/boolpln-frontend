@@ -1,0 +1,12 @@
+/* css for log-in-page.js */
+
+.log-in-page {
+  height: 100vh;
+  background-image: url(../../background.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -3,85 +3,13 @@ import { useState } from "react";
 import { slideInUp } from "react-animations";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
+import classes from "../../styles/signup-page/sign-up-panel.module.css";
 
 const Tada = styled.div`
   animation: 2s ${keyframes`${slideInUp}`};
 `;
 
 const Panel = () => {
-  const panelStyle = {
-    backgroundColor: "#C4C4C4",
-    height: "44em",
-    width: "55em",
-    borderRadius: "2em",
-  };
-  const titleStyle = {
-    color: "white",
-    fontSize: "4em",
-    textAlign: "center",
-    marginBottom: "0.5em",
-  };
-  const goBackStyle = {
-    backgroundColor: "#9A9A9A",
-    border: "none",
-    color: "white",
-    fontSize: "2.5em",
-    paddingTop: "0.25em",
-    paddingBottom: "0.25em",
-    marginLeft: "2.5em",
-    marginRight: "2.5em",
-    borderRadius: "0.5em",
-    fontFamily: "'Open Sans', sans-serif",
-    fontWeight: "700",
-    width: "40%",
-  };
-  const submitStyle = {
-    backgroundColor: "#717171",
-    border: "none",
-    color: "white",
-    fontSize: "2.5em",
-    paddingTop: "0.25em",
-    paddingBottom: "0.25em",
-    marginTop: "0.5em",
-    marginLeft: "2.5em",
-    marginRight: "2.5em",
-    borderRadius: "0.5em",
-    fontFamily: "'Open Sans', sans-serif",
-    fontWeight: "700",
-    width: "40%",
-  };
-  const columnStyle = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "0.5em",
-    paddingLeft: "2.5em",
-    paddingRight: "2.5em",
-  };
-  const formLabelStyle = {
-    display: "inline-block",
-    textAlign: "center",
-    color: "white",
-    fontSize: "2em",
-    marginBottom: "0.25em",
-    width: "50%",
-  };
-  const formInputStyle = {
-    height: "3em",
-    width: "100%",
-    borderRadius: "2em",
-    border: "none",
-    outline: "none",
-    fontFamily: "'Open Sans', sans-serif",
-    textAlign: "center",
-    fontSize: "0.5em",
-    marginTop: "0.25em",
-  };
-  const rowStyle = {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: "2em",
-  };
   const history = useHistory();
   function goBack(path) {
     history.push(path);
@@ -137,28 +65,25 @@ const Panel = () => {
   }
 
   return (
-    <Tada style={panelStyle}>
-      <h1 style={titleStyle}>Sign Up</h1>
-      <div style={columnStyle}>
-        <form
-          style={{ display: "flex", flexDirection: "column" }}
-          onSubmit={handleSubmit}
-        >
-          <div style={rowStyle}>
-            <label style={formLabelStyle}>
+    <Tada className={classes.panel}>
+      <h1 className={classes.title}>Sign Up</h1>
+      <div className={classes.column}>
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <div className={classes.row}>
+            <label className={classes.formLabel}>
               First Name
               <input
-                style={formInputStyle}
+                className={classes.formInput}
                 type='text'
                 value={firstName}
                 onChange={firstNameChange}
                 required='required'
               />
             </label>
-            <label style={formLabelStyle}>
+            <label className={classes.formLabel}>
               Last Name
               <input
-                style={formInputStyle}
+                className={classes.formInput}
                 type='text'
                 value={lastName}
                 onChange={lastNameChange}
@@ -166,21 +91,21 @@ const Panel = () => {
               />
             </label>
           </div>
-          <div style={rowStyle}>
-            <label style={formLabelStyle}>
+          <div className={classes.row}>
+            <label className={classes.formLabel}>
               Email
               <input
-                style={formInputStyle}
+                className={classes.formInput}
                 type='email'
                 value={email}
                 onChange={handleEmailChange}
                 required='required'
               />
             </label>
-            <label style={formLabelStyle}>
+            <label className={classes.formLabel}>
               Username
               <input
-                style={formInputStyle}
+                className={classes.formInput}
                 type='text'
                 value={username}
                 onChange={handleUsernameChange}
@@ -188,11 +113,11 @@ const Panel = () => {
               />
             </label>
           </div>
-          <div style={rowStyle}>
-            <label style={formLabelStyle}>
+          <div className={classes.row}>
+            <label className={classes.formLabel}>
               Password
               <input
-                style={formInputStyle}
+                className={classes.formInput}
                 type='password'
                 value={password}
                 onChange={handlePasswordChange}
@@ -200,12 +125,12 @@ const Panel = () => {
               />
             </label>
           </div>
-          <div style={rowStyle}>
-            <input style={submitStyle} type='submit' value='Sign Up' />
+          <div className={classes.row}>
+            <input className={classes.submit} type='submit' value='Sign Up' />
           </div>
         </form>
-        <div style={rowStyle}>
-          <button style={goBackStyle} onClick={() => goBack("start")}>
+        <div className={classes.row}>
+          <button className={classes.goBack} onClick={() => goBack("start")}>
             Back
           </button>
         </div>

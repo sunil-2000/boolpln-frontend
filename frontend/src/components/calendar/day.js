@@ -53,59 +53,17 @@ class Day extends React.Component {
     return timeLst;
   }
   render() {
-    const dayTagStyle = {
-      border: "1px solid #C4C4C4",
-      borderRight: "none",
-      height: "4em",
-      display: "flex",
-      justifyContent: "space-around",
-      alignItems: "center",
-      fontSize: "2em",
-      fontFamily: "'Open Sans', sans-serif",
-      color: "#989898",
-      paddingBottom: "0.5em",
-      position: "-webkit-sticky",
-      position: "sticky",
-      top: "0",
-      backgroundColor: "#EEEEEE",
-    };
-    const dayTagSunStyle = {
-      border: "1px solid #C4C4C4",
-      height: "4em",
-      display: "flex",
-      justifyContent: "space-around",
-      alignItems: "center",
-      fontSize: "2em",
-      fontFamily: "'Open Sans', sans-serif",
-      color: "#989898",
-      paddingBottom: "0.5em",
-      position: "-webkit-sticky",
-      position: "sticky",
-      top: "0",
-      backgroundColor: "#EEEEEE",
-    };
     function handleBorderOverlap(end) {
-      if (end) return dayTagSunStyle;
-      else return dayTagStyle;
+      if (end) return "day-tag-sun";
+      else return "day-tag";
     }
     return (
-      <div className="day-container">
-        <div style={handleBorderOverlap(this.props.end)} className="day-tag">
-          <div
-            className="date-num"
-            style={{
-              fontSize: "1.5em",
-              fontFamily: "'Open Sans', sans-serif",
-              color: "#5E5E5E",
-            }}
-          >
-            {this.props.date}
-          </div>
-          <div style={{ fontSize: "1.2em", color: "#989898" }}>
-            {this.props.value}
-          </div>
+      <div className='day-container'>
+        <div className={handleBorderOverlap(this.props.end)}>
+          <div className='date-num'>{this.props.date}</div>
+          <div className='date-name'>{this.props.value}</div>
         </div>
-        <div className="day-column">
+        <div className='day-column'>
           {this.renderDay(this.props.hours)}
           {/* allow switch for am/pm, and eventually allow arg for renderDay to be derived from props*/}
         </div>

@@ -1,0 +1,29 @@
+/* master css file only import other css files into index.css*/
+/* going forward use module css files to avoid scoping problems (see
+log-in-panel.module.css and log-in-panel.js for example */
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 0;
+}
+
+ol,
+ul {
+  padding-left: 30px;
+}
+/* imports for calendar styling */
+@import url(calendar/time.css);
+@import url(calendar/day.css);
+@import url(calendar/timeSlotLabel.css);
+@import url(calendar/week.css);
+
+/* imports for login-page styling */
+@import url(login-page/log-in-page.css);
+@import url(login-page/log-in-panel.module.css);
+
+/* imports for signup page styling */
+@import url(signup-page/sign-up-page.module.css);
+@import url(signup-page/sign-up-panel.module.css);
+
+/* imports for start page styling */
+@import url(start-page/start-page.module.css);
+@import url(start-page/start-panel.module.css);

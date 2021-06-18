@@ -1,22 +1,12 @@
 import React, { Component } from "react";
 import background from "../../background.jpg";
 import Panel from "./sign-up-panel.js";
+import classes from "../../styles/signup-page/sign-up-page.module.css";
 
 class SignUp extends Component {
   render() {
     return (
-      <div
-        style={{
-          height: "100vh",
-          backgroundImage: `url(${background})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div class={classes.page}>
         <Panel />
       </div>
     );

@@ -1,0 +1,15 @@
+/* corresponds to time.js */
+.time {
+  border: 1px dotted #616060;
+  background: #fff;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 1.75em;
+  width: 6em;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+}

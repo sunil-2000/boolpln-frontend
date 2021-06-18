@@ -1,6 +1,6 @@
 import React from "react";
 import Day from "./day.js";
-import TimeslotLabel from "./timeslotLabel.js";
+import TimeSlotLabel from "./timeSlotLabel.js";
 
 const dateMap = {
   0: "Sun",
@@ -39,11 +39,11 @@ class Week extends React.Component {
       }
 
       labelsLst.push(
-        <TimeslotLabel
+        <TimeSlotLabel
           curHour={curHour}
           dispHour={dispHour}
           key={curHour}
-        ></TimeslotLabel>
+        ></TimeSlotLabel>
       );
       curHour = (curHour + 1) % 24;
     }
@@ -93,20 +93,6 @@ class Week extends React.Component {
   }
 
   render() {
-    const timeStyle = {
-      border: "1px solid #C4C4C4",
-      borderRight: "none",
-      height: "4em",
-      display: "flex",
-      flexShrink: "0",
-      justifyContent: "space-around",
-      alignItems: "center",
-      fontSize: "2em",
-      fontFamily: "Arial",
-      color: "#989898",
-      paddingBottom: "0.5em",
-    };
-
     function displayMonth() {
       const monthNames = [
         "January",
@@ -124,42 +110,18 @@ class Week extends React.Component {
       ];
       return monthNames[month];
     }
-    const monthBarStyle = {};
-
-    const weekContainerStyle = {
-      margin: "auto",
-      float: "right",
-      marginBottom: "10px",
-      height: "100%",
-    };
-
-    const calendarStyle = {
-      margin: "auto",
-      float: "right",
-      marginBottom: "10px",
-      backgroundColor: "#EEEEEE",
-    };
-
-    const monthNameStyle = {
-      marginLeft: "0.5em",
-      marginBottom: "0.25em",
-      marginTop: "0.25em",
-      fontSize: "5em",
-      fontFamily: "'Open Sans', sans-serif",
-      color: "#5E5E5E",
-    };
 
     return (
-      <div style={calendarStyle}>
-        <div style={monthBarStyle}>
-          <h1 style={monthNameStyle}>{displayMonth() + " " + year}</h1>
+      <div className='calendar-container'>
+        <div className='month-container'>
+          <h1 className='month-text'>{displayMonth() + " " + year}</h1>
         </div>
-        <div style={weekContainerStyle} className="week-container">
-          <div className="labels-container">
-            <div style={timeStyle} className="label-tag">
+        <div className='week-container'>
+          <div className='time-labels-container'>
+            <div className='time-label-tag'>
               <div>ALLDAY</div>
             </div>
-            <div className="labels-column">{this.renderLabels(12)}</div>
+            <div className='time-labels-column'>{this.renderLabels(12)}</div>
           </div>
           {this.renderDaysWeek(7)}
         </div>

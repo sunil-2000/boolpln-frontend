@@ -1,0 +1,56 @@
+/* css for day.js */
+
+.day-tag-sun {
+  border: 1px solid #c4c4c4;
+  height: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  font-size: 2em;
+  font-family: Open Sans, sans-serif;
+  color: #989898;
+  padding-bottom: 0.5em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #eeeeee;
+}
+
+.day-tag {
+  border-right: none;
+  border: 1px solid #c4c4c4;
+  height: 4em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2em;
+  font-family: Open Sans, sans-serif;
+  color: #989898;
+  padding-bottom: 0.5em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-num {
+  color: black;
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: Open Sans, sans-serif;
+  color: #5e5e5e;
+}
+
+.date-name {
+  font-size: 1.2em;
+  color: #989898;
+}
