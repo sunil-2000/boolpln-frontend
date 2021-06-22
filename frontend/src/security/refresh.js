@@ -1,21 +1,25 @@
 import axios from "axios";
 
 class Refresh {
-  jwtToken; // most recent JwtToken
+  static accessToken = null; // most recent access JwtToken
+  static refreshToken = null; // most recent refresh JwtToken
+  static username = null; // user's username
+  static firstName = null; // user's first name
+  static lastName = null; // user's last name
 
   constructor() {
     // constructor for refresh object
-    this.jwtToken = localStorage.getItem("jwt"); // get token if exists
+    Refresh.accessToken = localStorage.getItem("access"); // get access token if exists
+    Refresh.refreshToken = localStorage.getItem("refresh"); // get refresh token if it exists
   }
 
   // refresh function for fetching new jwt token
   refresh() {
     axios({
       method: "post",
-      url: "/api/token-auth/",
+      url: "/api/token/refresh/",
       data: {
-        username: username,
-        password: password,
+        refresh: Refresh.refreshToken,
       },
     })
       .then(handleSuccess)
@@ -55,10 +59,10 @@ class Refresh {
   // helper function used for login / signup
   handleSuccess(response) {
     console.log("in handle success");
-    console.log(this.jwtToken);
-    this.jwtToken = response.data.token;
-    localStorage.setItem("jwt");
-    console.log("token" + this.jwtToken);
+    Refresh.accessToken = response.data.access;
+    Refresh.refreshToken = response.data.refresh;
+    localStorage.setItem("access", Refresh.accessToken);
+    localStorage.setItem("refresh", Refresh.refreshToken);
   }
 
   // helper function used for login / signup
