@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInUp } from "react-animations";
 import styled, { keyframes } from "styled-components";
-import axios from "axios";
+import Refresh from "../../security/refresh.js";
 import classes from "../../styles/signup-page/sign-up-panel.module.css";
 
 const Tada = styled.div`
@@ -10,15 +10,21 @@ const Tada = styled.div`
 `;
 
 const Panel = () => {
+  const refresh = new Refresh(); // refresh obj for Panel
+
+  // history tracker
   const history = useHistory();
   function goBack(path) {
     history.push(path);
   }
+
+  // hooks for setting first name, last name, email, username, and password
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   function firstNameChange(event) {
     setFirstName(event.target.value);
   }
@@ -34,60 +40,35 @@ const Panel = () => {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-  function handleSubmit(event) {
+  function signUpHelper(event) {
     event.preventDefault();
-    axios({
-      method: "post",
-      url: "/api/users/",
-      data: {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        username: username,
-        password: password,
-      },
-    })
-      .then(handleSuccess)
-      .catch(handleSignupError);
-  }
-
-  function handleSuccess(response) {
-    console.log("in handle success");
-    console.log(window.token);
-    window.token = response.data.token;
-    console.log("token" + window.token);
-  }
-
-  function handleSignupError(error) {
-    console.log("error");
-    console.log(error.response.statusText);
-    console.log(error.response.status);
+    refresh.signup(firstName, lastName, email, username, password);
   }
 
   return (
     <Tada className={classes.panel}>
       <h1 className={classes.title}>Sign Up</h1>
       <div className={classes.column}>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={signUpHelper}>
           <div className={classes.row}>
             <label className={classes.formLabel}>
               First Name
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={firstName}
                 onChange={firstNameChange}
-                required='required'
+                required="required"
               />
             </label>
             <label className={classes.formLabel}>
               Last Name
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={lastName}
                 onChange={lastNameChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
@@ -96,20 +77,20 @@ const Panel = () => {
               Email
               <input
                 className={classes.formInput}
-                type='email'
+                type="email"
                 value={email}
                 onChange={handleEmailChange}
-                required='required'
+                required="required"
               />
             </label>
             <label className={classes.formLabel}>
               Username
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={username}
                 onChange={handleUsernameChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
@@ -118,15 +99,15 @@ const Panel = () => {
               Password
               <input
                 className={classes.formInput}
-                type='password'
+                type="password"
                 value={password}
                 onChange={handlePasswordChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
           <div className={classes.row}>
-            <input className={classes.submit} type='submit' value='Sign Up' />
+            <input className={classes.submit} type="submit" value="Sign Up" />
           </div>
         </form>
         <div className={classes.row}>
