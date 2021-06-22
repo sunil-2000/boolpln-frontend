@@ -16,7 +16,7 @@ class Refresh {
 
   // refresh function for fetching new jwt token
   refresh() {
-    axios({
+    return axios({
       method: "post",
       url: "/api/token/refresh/",
       data: {
@@ -43,7 +43,7 @@ class Refresh {
 
   // function called when user signs up and generates tokens
   signup(firstName, lastName, email, username, password) {
-    axios({
+    return axios({
       method: "post",
       url: "/api/users/",
       data: {

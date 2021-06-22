@@ -25,6 +25,7 @@ const Panel = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // functions that use hooks to change their respective js variables from above
   function firstNameChange(event) {
     setFirstName(event.target.value);
   }
@@ -40,11 +41,21 @@ const Panel = () => {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-  function signUpHelper(event) {
-    event.preventDefault();
-    refresh.signup(firstName, lastName, email, username, password);
+
+  // helper called when signup form is submitted
+  async function signUpHelper(event) {
+    event.preventDefault(); // very important else form autosubmits
+    let result = await refresh.signup(
+      firstName,
+      lastName,
+      email,
+      username,
+      password
+    ); // actually sends request, gets result
+    console.log("signUpHelper:" + result); // prints result for testing
   }
 
+  // actual html structure of signup panel
   return (
     <Tada className={classes.panel}>
       <h1 className={classes.title}>Sign Up</h1>

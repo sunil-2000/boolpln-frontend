@@ -35,8 +35,8 @@ const Panel = () => {
   // helper called when login form is submitted
   async function loginHelper(event) {
     event.preventDefault(); // very important else form autosubmits
-    let r = await refresh.login(username, password); // actually sends request
-    console.log("loginHelper:" + r);
+    let result = await refresh.login(username, password); // actually sends request, gets result
+    console.log("loginHelper:" + result); // prints result for testing
   }
 
   // actual html structure of login panel
