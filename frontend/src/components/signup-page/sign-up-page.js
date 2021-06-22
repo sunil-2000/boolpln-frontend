@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import background from "../../background.jpg";
 import Panel from "./sign-up-panel.js";
 import classes from "../../styles/signup-page/sign-up-page.module.css";
 

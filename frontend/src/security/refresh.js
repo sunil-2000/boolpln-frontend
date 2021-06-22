@@ -22,8 +22,8 @@ class Refresh {
         refresh: Refresh.refreshToken,
       },
     })
-      .then(handleSuccess)
-      .catch(handleError);
+      .then(this.handleSuccess)
+      .catch(this.handleError);
   }
   // function called when user logs in with credentials
   login(username, password) {
@@ -35,8 +35,8 @@ class Refresh {
         password: password,
       },
     })
-      .then(handleSuccess)
-      .catch(handleError);
+      .then(this.handleSuccessLogin)
+      .catch(this.handleError);
   }
 
   // function called when user signs up and generates jwt Token
@@ -52,17 +52,32 @@ class Refresh {
         password: password,
       },
     })
-      .then(handleSuccess)
-      .catch(handleError);
+      .then(this.handleSuccess)
+      .catch(this.handleError);
   }
 
   // helper function used for login / signup
-  handleSuccess(response) {
-    console.log("in handle success");
+  handleSuccessLogin(response) {
+    console.log("in handle success for login");
     Refresh.accessToken = response.data.access;
     Refresh.refreshToken = response.data.refresh;
+
+    Refresh.username = response.data.user.username;
+    Refresh.firstName = response.data.user.first_name;
+    Refresh.lastName = response.data.user.last_name;
+
+    console.log(Refresh.accessToken);
+    console.log(Refresh.refreshToken);
+    console.log(Refresh.username);
+    console.log(Refresh.firstName);
+    console.log(Refresh.lastName);
+
     localStorage.setItem("access", Refresh.accessToken);
     localStorage.setItem("refresh", Refresh.refreshToken);
+  }
+
+  handleSuccess(response) {
+    console.log("in success");
   }
 
   // helper function used for login / signup
@@ -72,3 +87,5 @@ class Refresh {
     console.log(error.response.status);
   }
 }
+
+export default Refresh;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import background from "../../background.jpg";
 import Panel from "./start-panel.js";
 import classes from "../../styles/start-page/start-page.module.css";
 

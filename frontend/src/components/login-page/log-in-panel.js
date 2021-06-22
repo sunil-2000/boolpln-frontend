@@ -3,6 +3,7 @@ import { useState } from "react";
 import { slideInDown } from "react-animations";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
+import Refresh from "../../security/refresh.js";
 import classes from "../../styles/login-page/log-in-panel.module.css";
 
 const Tada = styled.div`
@@ -10,10 +11,13 @@ const Tada = styled.div`
 `;
 
 const Panel = () => {
+  //var refreshAccess = new Refresh();
   const history = useHistory();
+
   function goBack(path) {
     history.push(path);
   }
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
