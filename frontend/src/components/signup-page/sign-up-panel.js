@@ -74,20 +74,20 @@ const Panel = () => {
               First Name
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={firstName}
                 onChange={firstNameChange}
-                required='required'
+                required="required"
               />
             </label>
             <label className={classes.formLabel}>
               Last Name
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={lastName}
                 onChange={lastNameChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
@@ -96,20 +96,20 @@ const Panel = () => {
               Email
               <input
                 className={classes.formInput}
-                type='email'
+                type="email"
                 value={email}
                 onChange={handleEmailChange}
-                required='required'
+                required="required"
               />
             </label>
             <label className={classes.formLabel}>
               Username
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={username}
                 onChange={handleUsernameChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
@@ -118,15 +118,15 @@ const Panel = () => {
               Password
               <input
                 className={classes.formInput}
-                type='password'
+                type="password"
                 value={password}
                 onChange={handlePasswordChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
           <div className={classes.row}>
-            <input className={classes.submit} type='submit' value='Sign Up' />
+            <input className={classes.submit} type="submit" value="Sign Up" />
           </div>
         </form>
         <div className={classes.row}>
