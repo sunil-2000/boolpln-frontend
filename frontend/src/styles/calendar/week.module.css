@@ -1,0 +1,61 @@
+/* css for week.js */
+.page {
+  display: flex;
+  flex-direction: row;
+}
+
+.calendarContainer {
+  margin: auto;
+  margin-right: 0;
+  margin-left: 0;
+  float: right;
+  background-color: #eeeeee;
+}
+
+.monthText {
+  margin-left: 0.5em;
+  margin-bottom: 0.25em;
+  margin-top: 0.25em;
+  font-size: 5em;
+  font-family: Open Sans, sans-serif;
+  color: #5e5e5e;
+}
+
+.weekContainer {
+  margin: auto;
+  float: right;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  margin-left: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 600px;
+}
+
+.timeLabelTag {
+  border: 1px solid #c4c4c4;
+  border-right: none;
+  height: 8.5em;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1em;
+  font-family: Open Sans, sans-serif;
+  color: #989898;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #eeeeee;
+  margin-bottom: 0.3em;
+}
+
+.timeLabelsContainer {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
