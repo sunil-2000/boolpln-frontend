@@ -15,7 +15,7 @@ class Refresh {
   }
 
   // refresh function for fetching new jwt token
-  refresh() {
+  async refresh() {
     return axios({
       method: "post",
       url: "/api/token/refresh/",
@@ -28,7 +28,7 @@ class Refresh {
   }
 
   // function called when user logs in with credentials, generates tokens
-  login(username, password) {
+  async login(username, password) {
     return axios({
       method: "post",
       url: "/api/token/",
@@ -42,7 +42,7 @@ class Refresh {
   }
 
   // function called when user signs up and generates tokens
-  signup(firstName, lastName, email, username, password) {
+  async signup(firstName, lastName, email, username, password) {
     return axios({
       method: "post",
       url: "/api/users/",
@@ -65,7 +65,7 @@ class Refresh {
     Refresh.refreshToken = response.data.refresh;
 
     Refresh.username = response.data.user.username;
-    Refresh.username = response.data.user.email;
+    Refresh.email = response.data.user.email;
     Refresh.firstName = response.data.user.first_name;
     Refresh.lastName = response.data.user.last_name;
 
@@ -88,7 +88,7 @@ class Refresh {
     Refresh.refreshToken = response.data.refresh;
 
     Refresh.username = response.data.username;
-    Refresh.username = response.data.email;
+    Refresh.email = response.data.email;
     Refresh.firstName = response.data.first_name;
     Refresh.lastName = response.data.last_name;
 
@@ -107,7 +107,6 @@ class Refresh {
   // helper function used for refresh
   handleSuccessRefresh(response) {
     console.log("in handle success for refresh");
-
     Refresh.accessToken = response.data.access;
     console.log(Refresh.accessToken);
     localStorage.setItem("access", Refresh.accessToken);
@@ -124,4 +123,4 @@ class Refresh {
   }
 }
 
-export default Refresh;
+export default Refresh; // export class

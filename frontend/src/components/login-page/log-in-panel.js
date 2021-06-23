@@ -49,7 +49,7 @@ const Panel = () => {
             Username
             <input
               className={classes.formInput}
-              type="text"
+              type='text'
               value={username}
               onChange={handleUsernameChange}
             />
@@ -58,12 +58,12 @@ const Panel = () => {
             Password
             <input
               className={classes.formInput}
-              type="password"
+              type='password'
               value={password}
               onChange={handlePasswordChange}
             />
           </label>
-          <input className={classes.submit} type="submit" value="Log In" />
+          <input className={classes.submit} type='submit' value='Log In' />
         </form>
         <button className={classes.goBack} onClick={() => goBack("start")}>
           Back

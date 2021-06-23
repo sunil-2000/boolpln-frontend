@@ -7,11 +7,15 @@ const Tada = styled.div`
   animation: 2s ${keyframes`${tada}`};
 `;
 
+// startup panel
 const Panel = () => {
+  // history tracker
   const history = useHistory();
   function changePage(path) {
     history.push(path);
   }
+
+  // actual html
   return (
     <Tada className={classes.panel}>
       <h1 className={classes.title}>Scheduler</h1>
