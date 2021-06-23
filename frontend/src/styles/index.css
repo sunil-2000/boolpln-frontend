@@ -14,7 +14,10 @@ ul {
 @import url(calendar/time.css);
 @import url(calendar/day.css);
 @import url(calendar/timeSlotLabel.css);
-@import url(calendar/week.css);
+@import url(calendar/week.module.css);
+
+/* imports for groups styling */
+@import url(groups/groups.module.css);
 
 /* imports for login-page styling */
 @import url(login-page/log-in-page.css);

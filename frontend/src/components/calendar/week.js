@@ -1,6 +1,8 @@
 import React from "react";
 import Day from "./day.js";
 import TimeSlotLabel from "./timeslotLabel.js";
+import Groups from "../groups/groups.js";
+import classes from "../../styles/calendar/week.module.css";
 
 const dateMap = {
   0: "Sun",
@@ -112,20 +114,25 @@ class Week extends React.Component {
     }
 
     return (
-      <div className="calendar-container">
-        <div className="month-container">
-          <h1 className="month-text">{displayMonth() + " " + year}</h1>
-        </div>
-        <div className="week-container">
-          <div className="time-labels-container">
-            <div className="time-label-tag">
-              <div>ALLDAY</div>
-            </div>
-            <div className="time-labels-column">{this.renderLabels(12)}</div>
+      <>
+        <Groups />
+        <div className={classes.calendarContainer}>
+          <div className={classes.monthContainer}>
+            <h1 className={classes.monthText}>{displayMonth() + " " + year}</h1>
           </div>
-          {this.renderDaysWeek(7)}
+          <div className={classes.weekContainer}>
+            <div className={classes.timeLabelsContainer}>
+              <div className={classes.timeLabelTag}>
+                <div>ALL DAY</div>
+              </div>
+              <div className={classes.timeLabelsColumn}>
+                {this.renderLabels(12)}
+              </div>
+            </div>
+            {this.renderDaysWeek(7)}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
