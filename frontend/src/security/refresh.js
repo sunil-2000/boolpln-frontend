@@ -104,12 +104,6 @@ class Refresh {
     return true;
   }
 
-<<<<<<< HEAD
-  handleSuccess(response) {
-    Refresh.accessToken = response.data.access;
-    Refresh.refreshToken = response.data.refresh;
-    console.log("in success");
-=======
   // helper function used for refresh
   handleSuccessRefresh(response) {
     console.log("in handle success for refresh");
@@ -119,7 +113,6 @@ class Refresh {
     localStorage.setItem("access", Refresh.accessToken);
 
     return true;
->>>>>>> eb0d7d8ae21c12ff141700fc3f491c1b870ef509
   }
 
   // helper function used on error
