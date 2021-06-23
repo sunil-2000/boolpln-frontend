@@ -77,6 +77,8 @@ class Refresh {
   }
 
   handleSuccess(response) {
+    Refresh.accessToken = response.data.access;
+    Refresh.refreshToken = response.data.refresh;
     console.log("in success");
   }
 
