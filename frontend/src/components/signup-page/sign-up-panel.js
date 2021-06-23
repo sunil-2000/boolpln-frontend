@@ -42,6 +42,15 @@ const Panel = () => {
     setPassword(event.target.value);
   }
 
+  // processes signup, if valid moves to home page, else prints to console
+  function processSignUp(result) {
+    if (result === true) {
+      history.push("/");
+    } else {
+      console.log("invalid signup");
+    }
+  }
+
   // helper called when signup form is submitted
   async function signUpHelper(event) {
     event.preventDefault(); // very important else form autosubmits
@@ -53,6 +62,7 @@ const Panel = () => {
       password
     ); // actually sends request, gets result
     console.log("signUpHelper:" + result); // prints result for testing
+    processSignUp(result);
   }
 
   // actual html structure of signup panel

@@ -32,11 +32,21 @@ const Panel = () => {
     setPassword(event.target.value);
   }
 
+  // uses hook to direct to home page, otherwise prints error to console
+  function processLogin(result) {
+    if (result === true) {
+      history.push("/");
+    } else {
+      console.log("invalid login");
+    }
+  }
+
   // helper called when login form is submitted
   async function loginHelper(event) {
     event.preventDefault(); // very important else form autosubmits
     let result = await refresh.login(username, password); // actually sends request, gets result
     console.log("loginHelper:" + result); // prints result for testing
+    processLogin(result);
   }
 
   // actual html structure of login panel
@@ -49,7 +59,7 @@ const Panel = () => {
             Username
             <input
               className={classes.formInput}
-              type='text'
+              type="text"
               value={username}
               onChange={handleUsernameChange}
             />
@@ -58,12 +68,12 @@ const Panel = () => {
             Password
             <input
               className={classes.formInput}
-              type='password'
+              type="password"
               value={password}
               onChange={handlePasswordChange}
             />
           </label>
-          <input className={classes.submit} type='submit' value='Log In' />
+          <input className={classes.submit} type="submit" value="Log In" />
         </form>
         <button className={classes.goBack} onClick={() => goBack("start")}>
           Back
