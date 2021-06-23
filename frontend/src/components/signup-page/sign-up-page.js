@@ -5,7 +5,7 @@ import classes from "../../styles/signup-page/sign-up-page.module.css";
 class SignUp extends Component {
   render() {
     return (
-      <div class={classes.page}>
+      <div className={classes.page}>
         <Panel />
       </div>
     );
