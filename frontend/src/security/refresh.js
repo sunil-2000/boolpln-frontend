@@ -41,6 +41,19 @@ class Refresh {
       .catch(this.handleError);
   }
 
+  // function for logging out. Clears all class variables and stored tokens
+  logout() {
+    Refresh.accessToken = null;
+    Refresh.refreshToken = null;
+    Refresh.username = null;
+    Refresh.email = null;
+    Refresh.firstName = null;
+    Refresh.lastName = null;
+
+    localStorage.setItem("access", Refresh.accessToken);
+    localStorage.setItem("refresh", Refresh.refreshToken);
+  }
+
   // function called when user signs up and generates tokens
   async signup(firstName, lastName, email, username, password) {
     return axios({
