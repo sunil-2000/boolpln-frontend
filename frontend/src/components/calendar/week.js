@@ -114,7 +114,7 @@ class Week extends React.Component {
     }
 
     return (
-      <>
+      <div className={classes.page}>
         <Groups />
         <div className={classes.calendarContainer}>
           <div className={classes.monthContainer}>
@@ -132,7 +132,7 @@ class Week extends React.Component {
             {this.renderDaysWeek(7)}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
