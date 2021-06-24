@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Week from "./components/calendar/week.js";
+import Home from "./components/home-page/home.js";
 import Start from "./components/start-page/start-page.js";
 import SignUp from "./components/signup-page/sign-up-page.js";
 import LogIn from "./components/login-page/log-in-page.js";
@@ -19,7 +19,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path='/' component={Week} exact />
+            <Route path='/' component={Home} exact />
             <Route path='/start' component={Start} />
             <Route path='/signup' component={SignUp} />
             <Route path='/login' component={LogIn} />

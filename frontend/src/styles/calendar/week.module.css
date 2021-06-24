@@ -1,8 +1,4 @@
 /* css for week.js */
-.page {
-  display: flex;
-  flex-direction: row;
-}
 
 .calendarContainer {
   margin: auto;
