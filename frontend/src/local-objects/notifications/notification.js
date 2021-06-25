@@ -1,7 +1,6 @@
-import React, { Component } from "react";
 import { store } from "react-notifications-component";
 
-class Notification extends Component {
+class Notification {
   addNotification(title, msg, type, location) {
     store.addNotification({
       title: title,
