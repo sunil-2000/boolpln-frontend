@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInDown } from "react-animations";
 import styled, { keyframes } from "styled-components";
-import Refresh from "../../security/refresh.js";
+import Refresh from "../../flow/security/refresh.js";
 import classes from "../../styles/login-page/log-in-panel.module.css";
 
 const Tada = styled.div`
@@ -59,7 +59,7 @@ const Panel = () => {
             Username
             <input
               className={classes.formInput}
-              type="text"
+              type='text'
               value={username}
               onChange={handleUsernameChange}
             />
@@ -68,12 +68,12 @@ const Panel = () => {
             Password
             <input
               className={classes.formInput}
-              type="password"
+              type='password'
               value={password}
               onChange={handlePasswordChange}
             />
           </label>
-          <input className={classes.submit} type="submit" value="Log In" />
+          <input className={classes.submit} type='submit' value='Log In' />
         </form>
         <button className={classes.goBack} onClick={() => goBack("start")}>
           Back

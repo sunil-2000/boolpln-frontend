@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classes from "../../styles/groups/groups.module.css";
+import classes from "../../../styles/groups/groups.module.css";
 // import "reactjs-popup/dist/index.css";
 
 const Groups = () => {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Panel from "./start-panel.js";
 import classes from "../../styles/start-page/start-page.module.css";
-import Credentials from "../../security/credentials.js";
+import Credentials from "../../flow/security/credentials.js";
 
 // class wrapper for start page
 class Start extends Component {

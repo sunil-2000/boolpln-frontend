@@ -1,7 +1,7 @@
 import React from "react";
 import Day from "./day.js";
 import TimeSlotLabel from "./time-slot-label.js";
-import classes from "../../styles/calendar/week.module.css";
+import classes from "../../../styles/calendar/week.module.css";
 
 const dateMap = {
   0: "Sun",
