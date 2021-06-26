@@ -1,13 +1,11 @@
 import Refresh from "./refresh.js";
-import { Redirect } from "react-router-dom";
 
 // class which does routing based on if existing credentials are good or not
-class Credentials {
+class Credentials extends Refresh {
   // method which changes paths based on if user is logged in
   async checkCredentials() {
     // run refresh
-    const refresh = new Refresh();
-    const result = await refresh.refresh();
+    const result = await this.refresh();
 
     // if true, there is a valid user so log in (get user info
     if (result) {

@@ -5,15 +5,21 @@ import React from "react";
 class GroupInvites extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      show: false,
-    };
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   // functions to handle showing / closing popups
-  handleShow = () => this.setState({ show: true });
-  handleClose = () => this.setState({ show: false });
+  handleShow() {
+    this.props.handleShow();
+  }
+  handleClose() {
+    this.props.handleClose();
+  }
 
-  renderInvite(invite) {}
+  renderInvite(invite) {
+    // create Invite objects
+  }
 
   renderInvites(data) {
     let inviteList = [];
@@ -28,12 +34,8 @@ class GroupInvites extends Component {
   render() {
     return (
       <>
-        <Button variant='primary' onClick={this.handleShow}>
-          Launch static backdrop modal
-        </Button>
-
         <Modal
-          show={this.state.show}
+          show={this.props.show}
           onHide={this.handleClose}
           aria-labelledby='90polk--contained-modal-title-vcenter'
           centered

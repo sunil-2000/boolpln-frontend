@@ -1,6 +1,7 @@
 import axios from "axios";
+import Refresh from "../security/refresh.js";
 
-class GroupInfo {
+class GroupInfo extends Refresh {
   sendInvite(accessToken, endpoint, groupId, userName) {
     axios
       .post(
