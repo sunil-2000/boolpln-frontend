@@ -12,6 +12,7 @@ class UserInfo extends Refresh {
     return axios({
       method: "post",
       url: "/api/token/",
+      skipAuthRefresh: true,
       data: {
         username: username,
         password: password,
@@ -39,6 +40,7 @@ class UserInfo extends Refresh {
     return axios({
       method: "post",
       url: "/api/users/",
+      skipAuthRefresh: true,
       data: {
         first_name: firstName,
         last_name: lastName,
@@ -71,12 +73,9 @@ class UserInfo extends Refresh {
     return axios({
       method: "get",
       url: "/api/current_user/",
-      header: {
-        Bearer: "JWT " + UserInfo.accessToken,
-      },
     })
       .then(this.handleSuccessGetUserInfo)
-      .catch(this.handleErrorGetUserInfo);
+      .catch(this.handleError);
   }
 
   // method that deletes the current user
@@ -85,12 +84,9 @@ class UserInfo extends Refresh {
     return axios({
       method: "delete",
       url: "/api/current_user/",
-      header: {
-        Bearer: "JWT " + UserInfo.accessToken,
-      },
     })
       .then(this.handleSuccessDeleteUser)
-      .catch(this.handleErrorDeleteUser);
+      .catch(this.handleError);
   }
 
   // helper function used for login
@@ -138,53 +134,9 @@ class UserInfo extends Refresh {
     };
   }
 
-  // function which handles the first error on trying to fetch user info
-  handleErrorGetUserInfo(error) {
-    const result = this.refresh(); // try to refresh token
-
-    if (result) {
-      // if successful, get user info again
-      return axios({
-        method: "get",
-        url: "/api/current_user/",
-        header: {
-          Bearer: "JWT " + UserInfo.accessToken,
-        },
-      })
-        .then(this.handleSuccessG)
-        .catch(this.handleError); // on second failure, just call standard error handler
-    } else {
-      // user refresh token expired, log out
-      this.logout();
-      return false;
-    }
-  }
-
   // function which handles successful user deletion
   handleSuccessDeleteUser() {
     return true;
-  }
-
-  // function which handles a failure to delete a user
-  handleErrorDeleteUser(error) {
-    const result = this.refresh(); // try to refresh token
-
-    if (result) {
-      // if successful, try to delete user again
-      return axios({
-        method: "delete",
-        url: "/api/current_user/",
-        header: {
-          Bearer: "JWT " + UserInfo.accessToken,
-        },
-      })
-        .then(this.handleSuccessDeleteUser)
-        .catch(this.handleError); // on second failure, just call standard error handler
-    } else {
-      // user refresh token expired, logoit
-      this.logout();
-      return false;
-    }
   }
 }
 

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 import React from "react";
+import Invite from "./invite.js";
 
 class GroupInvites extends Component {
   constructor(props) {
@@ -16,18 +17,26 @@ class GroupInvites extends Component {
     this.props.handleClose();
   }
 
-  renderInvite(invite) {
-    // create Invite objects
-  }
+  renderInvites(inviteList) {
+    if (inviteList.length === 0) {
+      return (
+        <div>
+          <h4>No Invites!</h4>
+          <p>Check back later or invite friends!</p>
+        </div>
+      );
+    } else {
+      let result = [];
 
-  renderInvites(data) {
-    let inviteList = [];
-    data.forEach((element) => {
-      // process element by packaging it into div
-      // by calling renderInvite
-      //append to inviteList
-    });
-    return inviteList;
+      inviteList.forEach((i) => {
+        // process element by packaging it into div
+        // by calling renderInvite
+        //append to inviteList
+        let inviteElt = <Invite groupName={i.groupName} key={i.groupID} />;
+        result.push(inviteElt);
+      });
+      return result;
+    }
   }
 
   render() {
@@ -45,12 +54,7 @@ class GroupInvites extends Component {
               Group Notifications
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <div>
-              <h4>Dummy Text</h4>
-              <p>DUmmmadfskjadsfkadfaldkjfhdfjlkhaslfdjhs</p>
-            </div>
-          </Modal.Body>
+          <Modal.Body>{this.renderInvites(this.props.data)}</Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
           </Modal.Footer>

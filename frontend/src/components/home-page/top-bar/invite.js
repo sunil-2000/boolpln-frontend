@@ -1,7 +1,14 @@
-import Component from "react";
+import { Component } from "react";
 import classes from "../../../styles/home-page/invite.module.css";
 import { Button } from "react-bootstrap";
+
 class Invite extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      groupID: "",
+    };
+  }
   handleAccept() {
     // function that handles accept for group invitation
   }

@@ -1,8 +1,9 @@
-import { Component, useState } from "react";
+import { Component } from "react";
 import { Nav } from "react-bootstrap";
 import UserInfo from "../../../flow/user-info/user-info.js";
 import GroupInvites from "./group-invites.js";
 import React from "react";
+import GroupInfo from "../../../flow/group-info/group-info";
 
 class NavBar extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class NavBar extends Component {
       settings: false,
       show: false,
       activeKey: "home",
+      data: new Array(),
       // activeKey does not currently work, should reset
       // ui selector on bell after closing from pop up modal (small issue)
     };
@@ -19,13 +21,13 @@ class NavBar extends Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-  // call some api method to get list of notifications for particular user
-  // when component mounts
-  componentDidMount() {}
 
   // handleShow used for notification click action
   async handleShow() {
     await this.setState({ show: true });
+    const groupInfo = new GroupInfo();
+    let inviteList = await groupInfo.getInvites();
+    await this.setState({ data: inviteList });
   }
   // handleClose used for notification popup close action
   async handleClose() {
@@ -77,6 +79,7 @@ class NavBar extends Component {
           show={this.state.show}
           handleClose={this.handleClose}
           handleShow={this.handleShow}
+          data={this.state.data}
         />
       </>
     );
