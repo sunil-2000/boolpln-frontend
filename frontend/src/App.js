@@ -4,6 +4,7 @@ import Home from "./components/home-page/home.js";
 import Start from "./components/start-page/start-page.js";
 import SignUp from "./components/signup-page/sign-up-page.js";
 import LogIn from "./components/login-page/log-in-page.js";
+import GroupInvites from "./components/home-page/top-bar/group-invites.js";
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
+            <Route path='/test' component={GroupInvites} />
             <Route path='/' component={Home} exact />
             <Route path='/start' component={Start} />
             <Route path='/signup' component={SignUp} />

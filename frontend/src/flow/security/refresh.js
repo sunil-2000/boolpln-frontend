@@ -52,6 +52,7 @@ class Refresh {
 
     localStorage.setItem("access", Refresh.accessToken);
     localStorage.setItem("refresh", Refresh.refreshToken);
+    console.log("logged out successfully");
   }
 
   // function called when user signs up and generates tokens

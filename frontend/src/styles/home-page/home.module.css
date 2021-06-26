@@ -1,4 +1,15 @@
+/* css for home.js */
+
 .page {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  padding: 10px;
+}
+
+.calendar {
   display: flex;
   flex-direction: row;
 }
