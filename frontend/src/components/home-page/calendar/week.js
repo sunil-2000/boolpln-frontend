@@ -53,41 +53,26 @@ class Week extends React.Component {
 
   renderDaysWeek(days) {
     let today = new Date();
-    let curDate = today.getDate();
-    let curHour = today.getHours();
-    let curDay = today.getDay();
+
     let dayLst = [];
 
     for (let x = 0; x < days; x++) {
-      if (x === days - 1) {
-        dayLst.push(
-          <Day
-            value={dateMap[curDay]}
-            hours={13}
-            end={true}
-            date={curDate}
-            hour={curHour}
-            month={month}
-            year={year}
-            key={curDate}
-          ></Day>
-        );
-      } else {
-        dayLst.push(
-          <Day
-            value={dateMap[curDay]}
-            hours={13}
-            end={false}
-            date={curDate}
-            hour={curHour}
-            month={month}
-            year={year}
-            key={curDate}
-          ></Day>
-        );
-      }
-      curDay = (curDay + 1) % 7;
-      curDate = today.getDate() + 1;
+      let curDate = today.getDate();
+      let curHour = today.getHours();
+      let curDay = today.getDay();
+      dayLst.push(
+        <Day
+          value={dateMap[curDay]}
+          hours={13}
+          end={false}
+          date={curDate}
+          hour={curHour}
+          month={month}
+          year={year}
+          key={curDate}
+        ></Day>
+      );
+
       today.setDate(today.getDate() + 1);
     }
     return dayLst;

@@ -11,27 +11,26 @@ class NavBar extends Component {
       notifications: false,
       settings: false,
       show: false,
+      activeKey: "home",
+      // activeKey does not currently work, should reset
+      // ui selector on bell after closing from pop up modal (small issue)
     };
-    this.handleChange = this.handleChange.bind();
-    this.handleClose = this.handleClose.bind();
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   // call some api method to get list of notifications for particular user
   // when component mounts
   componentDidMount() {}
 
-  // updates based on navbar actions by user
-  shouldComponentUpdate() {
-    if (this.state.notifications || this.state.settings) {
-      return true;
-    }
-    return false;
+  // handleShow used for notification click action
+  async handleShow() {
+    await this.setState({ show: true });
   }
-  handleChange = () => this.setState({ show: true });
-  handleClose = () => this.setState({ show: false });
-  // response when user clicks on notification icon
-
-  // response when user clicks on setting icon
-  handleSettingClick() {}
+  // handleClose used for notification popup close action
+  async handleClose() {
+    await this.setState({ show: false, activeKey: "" });
+  }
 
   render() {
     const userInfo = new UserInfo();
@@ -42,7 +41,7 @@ class NavBar extends Component {
       <>
         <Nav
           variant='pills'
-          defaultActiveKey='home'
+          defaultActiveKey={this.state.activeKey}
           className='justify-content-end'
         >
           <Nav.Item>
@@ -51,7 +50,7 @@ class NavBar extends Component {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey='alert' onSelect={this.handleChange}>
+            <Nav.Link eventKey='alert' onSelect={this.handleShow}>
               {alert}
             </Nav.Link>
           </Nav.Item>
@@ -65,15 +64,19 @@ class NavBar extends Component {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey='settings' title='Item'>
+            <Nav.Link
+              eventKey='settings'
+              title='Item'
+              onSelect={this.handleClose}
+            >
               {setting}
             </Nav.Link>
           </Nav.Item>
         </Nav>
         <GroupInvites
-          show={false}
+          show={this.state.show}
           handleClose={this.handleClose}
-          handleShow={this.handleChange}
+          handleShow={this.handleShow}
         />
       </>
     );

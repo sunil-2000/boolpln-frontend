@@ -5,7 +5,6 @@ import React from "react";
 class GroupInvites extends Component {
   constructor(props) {
     super(props);
-
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
