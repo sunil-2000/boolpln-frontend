@@ -22,8 +22,20 @@ class Invite extends Component {
       <div className={classes.groupInvite}>
         <h4>{this.props.groupName}</h4>
         <div className={classes.buttonContainer}>
-          <Button variant='success' onChange={this.handleAccept}></Button>
-          <Button variant='danger' onChange={this.handleReject}></Button>
+          <Button
+            className={classes.button}
+            variant='success'
+            onChange={this.handleAccept}
+          >
+            Accept
+          </Button>
+          <Button
+            className={classes.button}
+            variant='danger'
+            onChange={this.handleReject}
+          >
+            Reject
+          </Button>
         </div>
       </div>
     );
