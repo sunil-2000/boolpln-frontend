@@ -1,7 +1,6 @@
 import Groups from "./groups/groups.js";
 import Week from "./calendar/week.js";
 import classes from "../../styles/home-page/home.module.css";
-import ReactNotifications from "react-notifications-component";
 import NavBar from "./top-bar/nav-bar.js";
 import { Component } from "react";
 
@@ -33,7 +32,6 @@ class Home extends Component {
         </div>
         <div className={classes.calendar}>
           <Groups />
-
           <Week />
         </div>
       </div>

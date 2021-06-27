@@ -10,6 +10,7 @@ class GroupPopUp extends Component {
       usernames: {},
       completed: false,
       confirmName: false,
+      name: "",
     };
     // binds this to function for use
     this.handleClose = this.handleClose.bind(this);
@@ -17,6 +18,7 @@ class GroupPopUp extends Component {
     this.send = this.send.bind(this);
     this.userCallBack = this.userCallBack.bind(this);
     this.groupConfirm = this.groupConfirm.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   handleClose() {
@@ -57,11 +59,19 @@ class GroupPopUp extends Component {
     }
   }
 
+  async onChange(event) {
+    await this.setState({ name: event.target.value });
+  }
   send() {
     this.handleClose();
-    this.props.created(this.state.usernames);
-    console.log(this.state);
-    this.setState({ usernames: {}, inputs: 1 });
+    this.props.created(this.state.usernames, this.state.name);
+    //console.log(this.state);
+    this.setState({
+      usernames: {},
+      inputs: 1,
+      completed: false,
+      confirmName: false,
+    });
   }
 
   groupConfirm() {
@@ -89,6 +99,7 @@ class GroupPopUp extends Component {
               aria-label='Group Name'
               aria-describedby='basic-addon1'
               disabled={this.state.confirmName}
+              onChange={this.onChange}
             />
             <InputGroup.Append>
               <Button

@@ -25,12 +25,15 @@ class Groups extends Component {
     this.setState({ show: false });
   }
 
-  created(users) {
+  created(users, name) {
     let groups = this.state.groups.slice();
-    groups.push(users);
+    let dict = {};
+    dict["name"] = name;
+    dict["users"] = users;
+    groups.push(dict);
     this.setState({
       groupNo: this.state.groupNo + 1,
-      groups: users,
+      groups: groups,
     });
   }
 
@@ -39,7 +42,9 @@ class Groups extends Component {
     let colors = ["blue", "purple", "pink"];
     let result = [];
     for (let i = 0; i < this.state.groupNo; i++) {
-      result.push(<Icon color={colors[i]} key={i}></Icon>);
+      result.push(
+        <Icon color={colors[i]} key={i} name={this.state.groups[i].name}></Icon>
+      );
     }
     return result;
   }
