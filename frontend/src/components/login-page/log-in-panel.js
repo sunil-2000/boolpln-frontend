@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInDown } from "react-animations";
 import styled, { keyframes } from "styled-components";
-import Refresh from "../../flow/security/refresh.js";
+import UserInfo from "../../flow/user-info/user-info.js";
 import classes from "../../styles/login-page/log-in-panel.module.css";
 
 const Tada = styled.div`
@@ -11,7 +11,7 @@ const Tada = styled.div`
 
 // signup panel
 const Panel = () => {
-  const refresh = new Refresh(); // refresh obj for Panel
+  const userInfo = new UserInfo(); // refresh obj for Panel
 
   // history tracker
   const history = useHistory();
@@ -44,7 +44,7 @@ const Panel = () => {
   // helper called when login form is submitted
   async function loginHelper(event) {
     event.preventDefault(); // very important else form autosubmits
-    let result = await refresh.login(username, password); // actually sends request, gets result
+    let result = await userInfo.login(username, password); // actually sends request, gets result
     console.log("loginHelper:" + result); // prints result for testing
     processLogin(result);
   }
