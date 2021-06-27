@@ -8,6 +8,10 @@
   color: white;
 }
 
+.title {
+  margin: 1em;
+}
+
 .groupBox {
   margin-bottom: 1em;
 }

@@ -3,6 +3,8 @@
 .page {
   display: flex;
   flex-direction: column;
+  float: right;
+  width: 100%;
 }
 
 .nav {
@@ -12,4 +14,5 @@
 .calendar {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }

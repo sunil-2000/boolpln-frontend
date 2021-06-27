@@ -1,41 +1,66 @@
 import classes from "../../../styles/groups/groups.module.css";
-import { useState, useEffect } from "react";
+import GroupPopUp from "./group-pop-up.js";
+import { Component } from "react";
+import { Button } from "react-bootstrap";
+import Icon from "./icon.js";
 // import "reactjs-popup/dist/index.css";
 
-let initialData = [];
-
-const Groups = ({ onClick, newGroupName, listGroups, setListGroups }) => {
-  useEffect(() => {
-    if (listGroups.length > 0) setList(listGroups);
-  });
-
-  const [list, setList] = useState(initialData);
-
-  function clicked() {
-    onClick();
-    setListGroups(list.push(listGroups));
-    console.log(list);
+class Groups extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+      listGroups: [],
+      groups: [],
+      groupNo: 2, // limit to 3 groups for beta
+    };
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.created = this.created.bind(this);
+  }
+  handleShow() {
+    this.setState({ show: true });
+  }
+  handleClose() {
+    this.setState({ show: false });
   }
 
-  return (
-    <div className={classes.groupContainer}>
-      <h1>Groups</h1>
-      <div className={classes.groupScroll}>
-        <button className={classes.addButton} onClick={() => clicked()}>
-          Add Group
-        </button>
-        {newGroupName}
-        {list.map((group) => (
-          <div className={classes.groupBox}>
-            <svg height="5em" viewBox="-1 -1 2 2">
-              <circle cx="0" cy="0" r="1" fill="red"></circle>
-            </svg>
-            <div>{group.name}</div>
-          </div>
-        ))}
+  created(users) {
+    let groups = this.state.groups.slice();
+    groups.push(users);
+    this.setState({
+      groupNo: this.state.groupNo + 1,
+      groups: users,
+    });
+  }
+
+  renderGroupIcons() {
+    // blue(1) purple(2) pink(3)
+    let colors = ["blue", "purple", "pink"];
+    let result = [];
+    for (let i = 0; i < this.state.groupNo; i++) {
+      result.push(<Icon color={colors[i]}></Icon>);
+    }
+    return result;
+  }
+
+  render() {
+    console.log(this.state.groupNo > 3);
+    return (
+      <div className={classes.groupContainer}>
+        <h4 className={classes.title}>My Groups</h4>
+        <Button disabled={!(this.state.groupNo < 3)} onClick={this.handleShow}>
+          Create Group
+        </Button>
+        <GroupPopUp
+          created={this.created}
+          show={this.state.show}
+          handleClose={this.handleClose}
+        ></GroupPopUp>
+        <div className={classes.iconContainer}>{this.renderGroupIcons()}</div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Groups;
