@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInUp } from "react-animations";
 import styled, { keyframes } from "styled-components";
-import Refresh from "../../security/refresh.js";
+import Refresh from "../../flow/security/refresh.js";
 import classes from "../../styles/signup-page/sign-up-panel.module.css";
 
 const Tada = styled.div`

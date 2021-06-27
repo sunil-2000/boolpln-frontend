@@ -2,7 +2,21 @@
   background-color: #a6a6a6;
   width: 100%;
   font-family: Open Sans, sans-serif;
+  font-weight: 700;
   text-align: center;
   font-size: 1.5em;
   color: white;
+}
+
+.groupBox {
+  margin-bottom: 1em;
+}
+
+.addButton {
+  margin-bottom: 1em;
+}
+
+.groupScroll {
+  overflow-y: scroll;
+  height: 29em;
 }
