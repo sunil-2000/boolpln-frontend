@@ -5,7 +5,7 @@ class Icon extends Component {
     return (
       <div
         className={classes.icon}
-        style={{ "background-color": this.props.color }}
+        style={{ backgroundColor: this.props.color }}
       ></div>
     );
   }

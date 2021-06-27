@@ -16,7 +16,6 @@ class Input extends Component {
 
   async onChange(event) {
     await this.setState({ userName: event.target.value });
-    console.log(this.state.userName);
   }
 
   async confirm() {
@@ -34,30 +33,32 @@ class Input extends Component {
       />
     );
   }
+
   // need to implement onDelte (probably should be inherited from GroupPopUp)
   render() {
-    return (
-      <>
-        <InputGroup className='mb-3'>
-          <InputGroup.Prepend>
-            <InputGroup.Text id='basic-addon1'>@</InputGroup.Text>
-          </InputGroup.Prepend>
-          {this.renderForm()}
-          <InputGroup.Append>
-            <Button variant='outline-secondary' onClick={this.onDelete}>
-              Delete
-            </Button>
-            <Button
-              disabled={this.state.disabled}
-              variant='outline-secondary'
-              onClick={this.confirm}
-            >
-              Confirm
-            </Button>
-          </InputGroup.Append>
-        </InputGroup>
-      </>
-    );
+    if (!this.state.deleted) {
+      return (
+        <>
+          <InputGroup className='mb-3'>
+            <InputGroup.Prepend>
+              <InputGroup.Text id='basic-addon1'>@</InputGroup.Text>
+            </InputGroup.Prepend>
+            {this.renderForm()}
+            <InputGroup.Append>
+              <Button
+                disabled={this.state.disabled}
+                variant='outline-secondary'
+                onClick={this.confirm}
+              >
+                Confirm
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+        </>
+      );
+    } else {
+      return null;
+    }
   }
 }
 export default Input;

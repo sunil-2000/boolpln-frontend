@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, FormControl, InputGroup } from "react-bootstrap";
 import Input from "./input.js";
 
 class GroupPopUp extends Component {
@@ -9,12 +9,14 @@ class GroupPopUp extends Component {
       inputs: 1,
       usernames: {},
       completed: false,
+      confirmName: false,
     };
     // binds this to function for use
     this.handleClose = this.handleClose.bind(this);
     this.addUser = this.addUser.bind(this);
     this.send = this.send.bind(this);
     this.userCallBack = this.userCallBack.bind(this);
+    this.groupConfirm = this.groupConfirm.bind(this);
   }
 
   handleClose() {
@@ -26,7 +28,14 @@ class GroupPopUp extends Component {
     let result = [];
     for (let i = 0; i < this.state.inputs; i++) {
       // to gurantee id values are unique
-      result.push(<Input send={this.userCallBack} key={i} id={i} />);
+      result.push(
+        <Input
+          delete={this.didDelete}
+          send={this.userCallBack}
+          key={i}
+          id={i}
+        />
+      );
     }
     return result;
   }
@@ -39,17 +48,30 @@ class GroupPopUp extends Component {
     let users = { ...this.state.usernames };
     users[key] = childData;
     await this.setState({ usernames: users });
-    console.log("in usercallback" + this.state.inputs);
-    if (Object.keys(this.state.usernames).length === this.state.inputs) {
+    if (
+      Object.keys(this.state.usernames).length === this.state.inputs &&
+      this.state.inputs > 0 &&
+      this.state.confirmName
+    ) {
       this.setState({ completed: true });
     }
   }
 
   send() {
-    this.userCallBack();
     this.handleClose();
     this.props.created(this.state.usernames);
+    console.log(this.state);
     this.setState({ usernames: {}, inputs: 1 });
+  }
+
+  groupConfirm() {
+    this.setState({ confirmName: true });
+    if (
+      Object.keys(this.state.usernames).length === this.state.inputs &&
+      this.state.inputs > 0
+    ) {
+      this.setState({ completed: true });
+    }
   }
 
   render() {
@@ -60,7 +82,27 @@ class GroupPopUp extends Component {
             Make a group with friends
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{this.renderInputs()}</Modal.Body>
+        <Modal.Body>
+          <InputGroup className='mb-3'>
+            <FormControl
+              placeholder='Group Name'
+              aria-label='Group Name'
+              aria-describedby='basic-addon1'
+              disabled={this.state.confirmName}
+            />
+            <InputGroup.Append>
+              <Button
+                disabled={this.state.confirmName}
+                variant='outline-secondary'
+                onClick={this.groupConfirm}
+              >
+                Confirm
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+
+          {this.renderInputs()}
+        </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.addUser}>Add User</Button>
           <Button disabled={!this.state.completed} onClick={this.send}>

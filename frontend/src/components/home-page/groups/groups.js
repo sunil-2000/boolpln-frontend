@@ -12,7 +12,7 @@ class Groups extends Component {
       show: false,
       listGroups: [],
       groups: [],
-      groupNo: 2, // limit to 3 groups for beta
+      groupNo: 0, // limit to 3 groups for beta
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -39,13 +39,12 @@ class Groups extends Component {
     let colors = ["blue", "purple", "pink"];
     let result = [];
     for (let i = 0; i < this.state.groupNo; i++) {
-      result.push(<Icon color={colors[i]}></Icon>);
+      result.push(<Icon color={colors[i]} key={i}></Icon>);
     }
     return result;
   }
 
   render() {
-    console.log(this.state.groupNo > 3);
     return (
       <div className={classes.groupContainer}>
         <h4 className={classes.title}>My Groups</h4>
