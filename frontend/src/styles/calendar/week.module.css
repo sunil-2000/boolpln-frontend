@@ -32,7 +32,7 @@
 .timeLabelTag {
   border: 1px solid #c4c4c4;
   border-right: none;
-  height: 8.5em;
+  height: 8em;
   display: flex;
   flex-shrink: 0;
   justify-content: space-around;
