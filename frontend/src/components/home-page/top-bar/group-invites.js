@@ -32,7 +32,7 @@ class GroupInvites extends Component {
         // process element by packaging it into div
         // by calling renderInvite
         //append to inviteList
-        let inviteElt = <Invite groupName={i.groupName} key={i.groupID} />;
+        let inviteElt = <Invite groupName={i.group.groupName} key={i.group.groupID} />;
         result.push(inviteElt);
       });
       return result;
