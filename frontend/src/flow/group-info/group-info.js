@@ -2,22 +2,38 @@ import axios from "axios";
 import Refresh from "../security/refresh.js";
 
 class GroupInfo extends Refresh {
-  sendInvite(accessToken, endpoint, groupId, userName) {
-    axios
-      .post(
-        endpoint,
-        {
-          groupID: groupId,
-          username: userName,
-        },
-        {
-          headers: {
-            Bearer: "JWT " + accessToken,
-          },
-        }
-      )
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error));
+  // method that creates a group
+  async createGroup(groupName) {
+    return axios({
+      method: "post",
+      url: "/api/current_user/create_group/",
+      groupName: groupName,
+    })
+      .then(this.handleSuccessReturnData)
+      .catch(this.handleError);
+  }
+
+  // method that sends an invite
+  async sendInvite(groupID, userName) {
+    return axios({
+      method: "post",
+      url: "/api/current_user/invite_member/",
+      groupID: groupID,
+      username: userName,
+    })
+      .then(this.handleSuccessReturnData)
+      .catch(this.handleError);
+  }
+
+  // method that accepts an invite
+  async acceptInvite(groupID, userName) {
+    return axios({
+      method: "post",
+      url: "/api/current_user/accept_invite/",
+      groupID: groupID,
+    })
+      .then(this.handleSuccessReturnData)
+      .catch(this.handleError);
   }
 
   // method that gets a user's invites
@@ -26,15 +42,16 @@ class GroupInfo extends Refresh {
       method: "get",
       url: "/api/current_user/get_pending_groups/",
     })
-      .then(this.handleSuccessGetInvites)
+      .then(this.handleSuccessReturnData)
       .catch(this.handleError);
   }
 
-  // method which parses user invites on success
-  handleSuccessGetInvites(response) {
+  // method which returns data from api calls that return data
+  handleSuccessReturnData(response) {
     console.log("inside handle");
     console.log(response.data);
     return response.data;
   }
 }
+
 export default GroupInfo;

@@ -7,9 +7,9 @@ import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import Refresh from "./flow/security/refresh";
 
-const refreshAuthLogic = (failedRequest) => {
+const refreshAuthLogic = async (failedRequest) => {
   const refresh = new Refresh();
-  refresh.refresh();
+  await refresh.refresh();
   return Promise.resolve();
 };
 
@@ -17,8 +17,7 @@ axios.interceptors.request.use(
   (request) => {
     if (request.url.includes("current_user")) {
       console.log("inside interceptor");
-      request.headers["Authorization"] =
-        "Bearer " + localStorage.getItem("access");
+      request.headers["Authorization"] = "Bearer " + Refresh.accessToken;
       request.headers["Content-type"] = "application/json";
     }
     return request;

@@ -21,6 +21,10 @@ class Invite extends Component {
     return (
       <div className={classes.groupInvite}>
         <h4>{this.props.groupName}</h4>
+        <h5>
+          from {this.props.from.first_name} {this.props.from.last_name}
+        </h5>
+        <h5 className={classes.username}>{this.props.from.username}</h5>
         <div className={classes.buttonContainer}>
           <Button
             className={classes.button}
