@@ -24,7 +24,7 @@ class Invite extends Component {
         <h5>
           from {this.props.from.first_name} {this.props.from.last_name}
         </h5>
-        <h5 className={classes.username}>{this.props.from.username}</h5>
+        <h5 className={classes.username}>({this.props.from.username})</h5>
         <div className={classes.buttonContainer}>
           <Button
             className={classes.button}
