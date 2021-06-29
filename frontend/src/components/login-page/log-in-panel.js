@@ -11,7 +11,6 @@ const Tada = styled.div`
 
 // signup panel
 const Panel = () => {
-  const userInfo = new UserInfo(); // refresh obj for Panel
 
   // history tracker
   const history = useHistory();
@@ -44,7 +43,7 @@ const Panel = () => {
   // helper called when login form is submitted
   async function loginHelper(event) {
     event.preventDefault(); // very important else form autosubmits
-    let result = await userInfo.login(username, password); // actually sends request, gets result
+    let result = await UserInfo.login(username, password); // actually sends request, gets result
     console.log("loginHelper:" + result); // prints result for testing
     processLogin(result);
   }

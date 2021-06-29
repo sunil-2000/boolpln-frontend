@@ -25,8 +25,7 @@ class NavBar extends Component {
   // handleShow used for notification click action
   async handleShow() {
     await this.setState({ show: true });
-    const groupInfo = new GroupInfo();
-    let inviteList = await groupInfo.getInvites();
+    let inviteList = await GroupInfo.getInvites();
     await this.setState({ data: inviteList });
   }
   // handleClose used for notification popup close action
@@ -35,7 +34,6 @@ class NavBar extends Component {
   }
 
   render() {
-    const userInfo = new UserInfo();
     const alert = " 🔔 ";
     const setting = " ⚙️ ";
 
@@ -60,7 +58,7 @@ class NavBar extends Component {
             <Nav.Link
               eventKey='logout'
               href='/start'
-              onSelect={() => userInfo.logout()}
+              onSelect={() => UserInfo.logout()}
             >
               Logout
             </Nav.Link>

@@ -8,8 +8,7 @@ import createAuthRefreshInterceptor from "axios-auth-refresh";
 import Refresh from "./flow/security/refresh";
 
 const refreshAuthLogic = async (failedRequest) => {
-  const refresh = new Refresh();
-  await refresh.refresh();
+  await Refresh.refresh();
   return Promise.resolve();
 };
 
@@ -28,5 +27,5 @@ axios.interceptors.request.use(
 );
 
 createAuthRefreshInterceptor(axios, refreshAuthLogic);
-
+Refresh.startUp();
 ReactDOM.render(<App />, document.getElementById("root"));

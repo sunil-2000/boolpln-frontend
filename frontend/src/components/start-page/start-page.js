@@ -19,8 +19,7 @@ class Start extends Component {
   // auto-called on mount to DOM
   async componentDidMount() {
     // check credentials
-    const credentials = new Credentials();
-    const result = await credentials.checkCredentials();
+    const result = await Credentials.checkCredentials();
 
     // set state based on success
     this.setState({

@@ -8,7 +8,7 @@ class UserInfo extends Refresh {
   static lastName = null; // user's last name
 
   // function called when user logs in with credentials, generates tokens
-  async login(username, password) {
+  static async login(username, password) {
     return axios({
       method: "post",
       url: "/api/token/",
@@ -23,7 +23,7 @@ class UserInfo extends Refresh {
   }
 
   // function for logging out. Clears all class variables and stored tokens
-  logout() {
+  static logout() {
     UserInfo.accessToken = null;
     UserInfo.refreshToken = null;
     UserInfo.username = null;
@@ -36,7 +36,7 @@ class UserInfo extends Refresh {
   }
 
   // function called when user signs up and generates tokens
-  async signup(firstName, lastName, email, username, password) {
+  static async signup(firstName, lastName, email, username, password) {
     return axios({
       method: "post",
       url: "/api/users/",
@@ -54,7 +54,7 @@ class UserInfo extends Refresh {
   }
 
   // method that returns user info as a dict. Makes an API call if any of it is not defined.
-  getUserInfo() {
+  static getUserInfo() {
     if (
       UserInfo.username &&
       UserInfo.firstName &&
@@ -79,7 +79,7 @@ class UserInfo extends Refresh {
   }
 
   // method that deletes the current user
-  deleteUser() {
+  static deleteUser() {
     // if data not defined, make API call
     return axios({
       method: "delete",
@@ -90,7 +90,7 @@ class UserInfo extends Refresh {
   }
 
   // helper function used for login
-  handleSuccessLogin(response) {
+  static handleSuccessLogin(response) {
     UserInfo.accessToken = response.data.access;
     UserInfo.refreshToken = response.data.refresh;
 
@@ -105,7 +105,7 @@ class UserInfo extends Refresh {
   }
 
   // helper function used for signup
-  handleSuccessSignup(response) {
+  static handleSuccessSignup(response) {
     UserInfo.accessToken = response.data.access;
     UserInfo.refreshToken = response.data.refresh;
 
@@ -120,7 +120,7 @@ class UserInfo extends Refresh {
   }
 
   // method that gets user info from response and returns it as dictionary
-  handleSuccessGetUserInfo(response) {
+  static handleSuccessGetUserInfo(response) {
     UserInfo.username = response.data.username;
     UserInfo.email = response.data.email;
     UserInfo.firstName = response.data.first_name;
@@ -135,7 +135,7 @@ class UserInfo extends Refresh {
   }
 
   // function which handles successful user deletion
-  handleSuccessDeleteUser() {
+  static handleSuccessDeleteUser() {
     return true;
   }
 }

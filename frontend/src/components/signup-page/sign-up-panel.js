@@ -2,15 +2,14 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInUp } from "react-animations";
 import styled, { keyframes } from "styled-components";
-import Refresh from "../../flow/security/refresh.js";
 import classes from "../../styles/signup-page/sign-up-panel.module.css";
+import UserInfo from "../../flow/user-info/user-info.js";
 
 const Tada = styled.div`
   animation: 2s ${keyframes`${slideInUp}`};
 `;
 
 const Panel = () => {
-  const refresh = new Refresh(); // refresh obj for Panel
 
   // history tracker
   const history = useHistory();
@@ -54,7 +53,7 @@ const Panel = () => {
   // helper called when signup form is submitted
   async function signUpHelper(event) {
     event.preventDefault(); // very important else form autosubmits
-    let result = await refresh.signup(
+    let result = await UserInfo.signup(
       firstName,
       lastName,
       email,

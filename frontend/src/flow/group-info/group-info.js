@@ -3,7 +3,7 @@ import Refresh from "../security/refresh.js";
 
 class GroupInfo extends Refresh {
   // method that creates a group
-  async createGroup(groupName) {
+  static async createGroup(groupName) {
     return axios({
       method: "post",
       url: "/api/current_user/create_group/",
@@ -14,7 +14,7 @@ class GroupInfo extends Refresh {
   }
 
   // method that sends an invite
-  async sendInvite(groupID, userName) {
+  static async sendInvite(groupID, userName) {
     return axios({
       method: "post",
       url: "/api/current_user/invite_member/",
@@ -26,7 +26,7 @@ class GroupInfo extends Refresh {
   }
 
   // method that accepts an invite
-  async acceptInvite(groupID, userName) {
+  static async acceptInvite(groupID, userName) {
     return axios({
       method: "post",
       url: "/api/current_user/accept_invite/",
@@ -37,7 +37,7 @@ class GroupInfo extends Refresh {
   }
 
   // method that gets a user's invites
-  async getInvites() {
+  static async getInvites() {
     return axios({
       method: "get",
       url: "/api/current_user/get_pending_groups/",
@@ -47,7 +47,7 @@ class GroupInfo extends Refresh {
   }
 
   // method which returns data from api calls that return data
-  handleSuccessReturnData(response) {
+  static handleSuccessReturnData(response) {
     console.log("inside handle");
     console.log(response.data);
     return response.data;
