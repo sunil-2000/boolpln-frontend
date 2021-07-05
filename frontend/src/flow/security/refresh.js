@@ -4,8 +4,8 @@ class Refresh {
   static accessToken = null; // most recent access JwtToken
   static refreshToken = null; // most recent refresh JwtToken
 
+  // call to startup for remember me functionality
   static startUp() {
-    // constructor for refresh obje
     Refresh.accessToken = localStorage.getItem("access"); // get access token if exists
     Refresh.refreshToken = localStorage.getItem("refresh"); // get refresh token if it exists
   }
