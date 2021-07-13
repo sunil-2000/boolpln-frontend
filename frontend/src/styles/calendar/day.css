@@ -7,20 +7,18 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
   font-size: 2em;
   font-family: Open Sans, sans-serif;
   color: #989898;
   padding-bottom: 0.5em;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background-color: #eeeeee;
 }
 
 .day-tag {
-  border-right: none;
   border: 1px solid #c4c4c4;
+  border-right: none;
   height: 4em;
   display: flex;
   justify-content: space-around;
@@ -29,7 +27,6 @@
   font-family: Open Sans, sans-serif;
   color: #989898;
   padding-bottom: 0.5em;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background-color: #eeeeee;

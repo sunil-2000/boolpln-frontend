@@ -1,16 +1,12 @@
 .timeslot {
   color: #989898;
   font-family: Open Sans, sans-serif;
-  font-size: 1em;
-  text-align: center;
-  height: 2.43em;
-  line-height: 34px;
   border: 1px solid #eeeeee;
   border-right: none;
-  display: flex;
-  row-gap: 1px;
-  padding-bottom: 0.35em;
-  justify-content: right;
-  align-items: center;
   padding-right: 1em;
+  font-size: 24px;
+  height: 1.75em;
+  margin-right: -1px;
+  margin-top: -1px;
+  text-align: center;
 }

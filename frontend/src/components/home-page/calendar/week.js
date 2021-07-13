@@ -1,5 +1,6 @@
 import React from "react";
 import Day from "./day.js";
+import Submit from "./submit.js";
 import TimeSlotLabel from "./time-slot-label.js";
 import classes from "../../../styles/calendar/week.module.css";
 
@@ -20,7 +21,7 @@ class Week extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hours: null,
+      days: null,
     };
   }
   renderLabels(hours) {
@@ -58,15 +59,21 @@ class Week extends React.Component {
 
     for (let x = 0; x < days; x++) {
       let curDate = today.getDate();
-      let curHour = today.getHours();
       let curDay = today.getDay();
+      let utcDate =
+        today.getUTCDate() +
+        "/" +
+        today.getUTCMonth() +
+        "/" +
+        today.getUTCFullYear();
+      let end = x === days - 1 ? true : false;
       dayLst.push(
         <Day
           value={dateMap[curDay]}
           hours={13}
-          end={false}
+          end={end}
           date={curDate}
-          hour={curHour}
+          full_date={utcDate}
           month={month}
           year={year}
           key={curDate}
@@ -98,22 +105,23 @@ class Week extends React.Component {
     }
 
     return (
-      <div className={classes.calendarContainer}>
-        <div className={classes.monthContainer}>
-          <h1 className={classes.monthText}>{displayMonth() + " " + year}</h1>
-        </div>
-        <div className={classes.weekContainer}>
-          <div className={classes.timeLabelsContainer}>
-            <div className={classes.timeLabelTag}>
-              <div>ALL DAY</div>
-            </div>
-            <div className={classes.timeLabelsColumn}>
-              {this.renderLabels(12)}
-            </div>
+      <>
+        <div className={classes.calendarContainer}>
+          <Submit></Submit>
+          <div className={classes.monthContainer}>
+            <h1 className={classes.monthText}>{displayMonth() + " " + year}</h1>
           </div>
-          {this.renderDaysWeek(7)}
+          <div className={classes.weekContainer}>
+            <div className={classes.timeLabelsContainer}>
+              <div className={classes.timeLabelTag}></div>
+              <div className={classes.timeLabelsColumn}>
+                {this.renderLabels(12)}
+              </div>
+            </div>
+            {this.renderDaysWeek(7)}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

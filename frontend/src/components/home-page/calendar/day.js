@@ -7,17 +7,18 @@ class Day extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      days: Array(13).fill(""),
+      times: Array(23).fill(""),
       value: this.props.value,
-      end: false,
+      end: this.props.end,
+      date: this.props.full_date,
     };
   }
 
-  renderTimeSlot(i, y) {
-    let on = this.state.days[i] !== "" ? true : false;
+  renderTimeSlot(i) {
+    let on = this.state.times[i] !== "" ? true : false;
     return (
       <Time
-        fillColor={this.state.days[i]}
+        fillColor={this.state.times[i]}
         selected={on}
         onClick={() => this.handleClick(i)}
         key={
@@ -36,7 +37,8 @@ class Day extends React.Component {
   }
 
   handleClick(i) {
-    let timeSlots = this.state.days.slice();
+    console.log("event clicked", this.state.times[i]);
+    let timeSlots = this.state.times.slice();
 
     if (timeSlots[i] === "") {
       timeSlots[i] = "green";
@@ -44,13 +46,16 @@ class Day extends React.Component {
       timeSlots[i] = "";
     }
 
-    this.setState({ days: timeSlots });
+    this.setState({ times: timeSlots });
   }
   // renderDay returns a column with hoursNo number of time slots
-  renderDay(hoursNo) {
+  renderDay() {
+    console.log(
+      this.state.times + ", " + this.state.value + ", " + this.state.date
+    );
     let timeLst = [];
     for (let x = 0; x < 24; x++) {
-      timeLst.push(this.renderTimeSlot(x, this.props.hour));
+      timeLst.push(this.renderTimeSlot(x));
     }
     return timeLst;
   }
@@ -66,7 +71,7 @@ class Day extends React.Component {
           <div className='date-name'>{this.props.value}</div>
         </div>
         <div className='day-column'>
-          {this.renderDay(this.props.hours)}
+          {this.renderDay()}
           {/* allow switch for am/pm, and eventually allow arg for renderDay to be derived from props*/}
         </div>
       </div>
