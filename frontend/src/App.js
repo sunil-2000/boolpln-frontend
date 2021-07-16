@@ -7,14 +7,6 @@ import LogIn from "./components/login-page/log-in-page.js";
 import GroupInvites from "./components/home-page/top-bar/group-invites.js";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      token: window.token,
-    };
-  }
-
   render() {
     return (
       <BrowserRouter>

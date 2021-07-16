@@ -2,6 +2,8 @@ import React from "react";
 import Time from "./time";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
+import { connect } from "react-redux";
+import { addDay } from "../../../redux/actions/dayActions";
 
 class Day extends React.Component {
   constructor(props) {
@@ -45,7 +47,7 @@ class Day extends React.Component {
     } else {
       timeSlots[i] = "";
     }
-
+    // add call to update store
     this.setState({ times: timeSlots });
   }
   // renderDay returns a column with hoursNo number of time slots
@@ -64,6 +66,7 @@ class Day extends React.Component {
       if (end) return "day-tag-sun";
       else return "day-tag";
     }
+    this.props.addDay(this.state.date, this.state.times);
     return (
       <div className='day-container'>
         <div className={handleBorderOverlap(this.props.end)}>
@@ -79,4 +82,4 @@ class Day extends React.Component {
   }
 }
 
-export default Day;
+export default connect(null, { addDay })(Day);

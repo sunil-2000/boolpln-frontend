@@ -6,6 +6,8 @@ import App from "./App";
 import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import Refresh from "./flow/security/refresh";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const refreshAuthLogic = async (failedRequest) => {
   await Refresh.refresh();
@@ -28,4 +30,9 @@ axios.interceptors.request.use(
 
 createAuthRefreshInterceptor(axios, refreshAuthLogic);
 Refresh.startUp();
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
