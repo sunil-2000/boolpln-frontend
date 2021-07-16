@@ -60,12 +60,8 @@ class Week extends React.Component {
     for (let x = 0; x < days; x++) {
       let curDate = today.getDate();
       let curDay = today.getDay();
-      let utcDate =
-        today.getUTCDate() +
-        "/" +
-        today.getUTCMonth() +
-        "/" +
-        today.getUTCFullYear();
+      var copiedDate = new Date(today.getTime());
+
       let end = x === days - 1 ? true : false;
       dayLst.push(
         <Day
@@ -73,7 +69,7 @@ class Week extends React.Component {
           hours={13}
           end={end}
           date={curDate}
-          full_date={utcDate}
+          full_date={copiedDate}
           month={month}
           year={year}
           key={curDate}

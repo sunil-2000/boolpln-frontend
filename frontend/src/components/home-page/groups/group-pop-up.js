@@ -65,7 +65,7 @@ class GroupPopUp extends Component {
   send() {
     this.handleClose();
     this.props.created(this.state.usernames, this.state.name);
-    //console.log(this.state);
+
     this.setState({
       usernames: {},
       inputs: 1,

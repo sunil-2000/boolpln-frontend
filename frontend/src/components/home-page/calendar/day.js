@@ -9,7 +9,7 @@ class Day extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      times: Array(23).fill(""),
+      times: Array(24).fill(""),
       value: this.props.value,
       end: this.props.end,
       date: this.props.full_date,
@@ -39,7 +39,6 @@ class Day extends React.Component {
   }
 
   handleClick(i) {
-    console.log("event clicked", this.state.times[i]);
     let timeSlots = this.state.times.slice();
 
     if (timeSlots[i] === "") {
@@ -52,9 +51,6 @@ class Day extends React.Component {
   }
   // renderDay returns a column with hoursNo number of time slots
   renderDay() {
-    console.log(
-      this.state.times + ", " + this.state.value + ", " + this.state.date
-    );
     let timeLst = [];
     for (let x = 0; x < 24; x++) {
       timeLst.push(this.renderTimeSlot(x));

@@ -1,20 +1,33 @@
 import { FETCH_DAYS, NEW_DAYS } from "../actions/types";
 
 const initialState = {
-  items: [],
+  days: [],
 };
 
+function dayComparator(i, j) {
+  console.log(i, j);
+  return i > j ? 1 : -1;
+}
+
 export default function (state = initialState, action) {
-  console.log("in reduce");
   switch (action.type) {
     default:
       return state;
     case NEW_DAYS:
-      console.log(state.items);
-      const { date, timeSlots } = action.payload;
+      let { date, timeSlots } = action.payload;
+      const utcDate =
+        date.getUTCDate() +
+        "/" +
+        date.getUTCMonth() +
+        "/" +
+        date.getUTCFullYear();
+      console.log(utcDate);
+      let itemsCopy = [...state.days];
+      let updated = itemsCopy.filter((i) => i.utcDate !== utcDate);
+      updated.push({ date: date, utcDate: utcDate, timeSlots: timeSlots });
+      updated.sort((i, j) => dayComparator(i.date, j.date));
       return {
-        ...state,
-        items: [...state.items, { date: date, timeSlots: timeSlots }],
+        days: updated,
       };
   }
 }
