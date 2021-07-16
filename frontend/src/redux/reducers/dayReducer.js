@@ -5,7 +5,6 @@ const initialState = {
 };
 
 function dayComparator(i, j) {
-  console.log(i, j);
   return i > j ? 1 : -1;
 }
 
