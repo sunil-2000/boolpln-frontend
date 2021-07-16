@@ -21,7 +21,7 @@ export default function (state = initialState, action) {
         date.getUTCMonth() +
         "/" +
         date.getUTCFullYear();
-      console.log(utcDate);
+
       let itemsCopy = [...state.days];
       let updated = itemsCopy.filter((i) => i.utcDate !== utcDate);
       updated.push({ date: date, utcDate: utcDate, timeSlots: timeSlots });
