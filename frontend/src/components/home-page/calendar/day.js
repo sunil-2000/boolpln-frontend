@@ -57,12 +57,20 @@ class Day extends React.Component {
     }
     return timeLst;
   }
+
+  componentDidMount() {
+    this.props.addDay(this.state.date, this.state.times);
+  }
+  componentDidUpdate() {
+    this.props.addDay(this.state.date, this.state.times);
+  }
+
   render() {
     function handleBorderOverlap(end) {
       if (end) return "day-tag-sun";
       else return "day-tag";
     }
-    this.props.addDay(this.state.date, this.state.times);
+
     return (
       <div className='day-container'>
         <div className={handleBorderOverlap(this.props.end)}>

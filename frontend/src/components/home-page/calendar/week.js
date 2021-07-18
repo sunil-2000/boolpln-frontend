@@ -21,7 +21,7 @@ class Week extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      days: null,
+      groupId: this.props.group,
     };
   }
   renderLabels(hours) {

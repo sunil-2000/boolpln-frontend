@@ -3,6 +3,8 @@ import Week from "./calendar/week.js";
 import classes from "../../styles/home-page/home.module.css";
 import NavBar from "./top-bar/nav-bar.js";
 import { Component } from "react";
+import { connect } from "react-redux";
+import getGroups from "../../redux/middleware/getGroups.js";
 
 class Home extends Component {
   // ReactNotifications element locked in place, any other file can add
@@ -12,16 +14,23 @@ class Home extends Component {
     super(props);
     this.state = {
       seen: false,
-      listGroups: [],
     };
-  }
 
-  setListGroups() {
-    this.setState([]);
+    this.renderCal = this.renderCal.bind(this);
   }
 
   togglePopup() {
     this.setState({ seen: false });
+  }
+
+  renderCal() {
+    if (this.props.groups.length === 0) {
+      return null;
+    } else {
+      console.log(this.props.groups);
+      const groupId = this.props.groups[0].groupId;
+      return <Week groups={groupId}></Week>;
+    }
   }
 
   render() {
@@ -39,4 +48,9 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStatetoProps = (state) => {
+  const groups = getGroups(state);
+  return { groups: groups };
+};
+
+export default connect(mapStatetoProps)(Home);
