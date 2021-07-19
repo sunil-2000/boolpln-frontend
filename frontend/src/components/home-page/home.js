@@ -40,6 +40,7 @@ class Home extends Component {
     //this.props.getInvites();
     const { getGroups, getInvites } = this.props;
     getGroups();
+    getInvites();
   }
 
   render() {

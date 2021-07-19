@@ -46,9 +46,9 @@ export const getGroupsSuccess = (groups) => ({
 });
 
 // actions for getting invitations
-export const getInvitesSuccess = (groups) => ({
+export const getInvitesSuccess = (invites) => ({
   type: GET_INVITES_SUCCESS,
-  payload: { groups: groups },
+  payload: { invites: invites },
 });
 
 // actions for renaming a group

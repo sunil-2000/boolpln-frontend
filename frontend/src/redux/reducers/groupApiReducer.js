@@ -32,6 +32,8 @@ export default function groupApiReducer(state = initialState, action) {
         pending: false,
       };
     case GET_INVITES_SUCCESS:
+      console.log("in invtes");
+      console.log(action.payload);
       return {
         ...state,
         invites: action.payload.invites,
