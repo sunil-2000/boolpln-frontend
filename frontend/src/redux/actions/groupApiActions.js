@@ -1,54 +1,67 @@
 import {
-  CREATE_GROUP_PENDING,
   CREATE_GROUP_SUCCESS,
-  CREATE_GROUP_ERROR,
-  SEND_INVITE_PENDING,
   SEND_INVITE_SUCCESS,
-  SEND_INVITE_ERROR,
-  ACCEPT_INVITE_PENDING,
   ACCEPT_INVITE_SUCCESS,
-  ACCEPT_INVITE_ERROR,
-  LEAVE_GROUP_PENDING,
   LEAVE_GROUP_SUCCESS,
-  LEAVE_GROUP_ERROR,
-  DECLINE_INVITE_PENDING,
   DECLINE_INVITE_SUCCESS,
-  DECLINE_INVITE_ERROR,
-  GET_GROUPS_PENDING,
   GET_GROUPS_SUCCESS,
-  GET_GROUPS_ERROR,
-  GET_INVITES_PENDING,
   GET_INVITES_SUCCESS,
-  GET_INVITES_ERROR,
-  RENAME_GROUP_PENDING,
   RENAME_GROUP_SUCCESS,
-  RENAME_GROUP_ERROR,
+  GROUP_ERROR,
+  GROUP_PENDING,
 } from "../types";
 
-export const createGroupPending = () => ({
-  type: CREATE_GROUP_PENDING,
-});
-
-export const createGroupSuccess = (groupName) => ({
+// actions for creating a group
+export const createGroupSuccess = (newGroup) => ({
   type: CREATE_GROUP_SUCCESS,
-  payload: { groupName: groupName },
+  payload: { newGroup: newGroup },
 });
 
-export const createGroupError = (error) => ({
-  type: CREATE_GROUP_ERROR,
-  error: error,
+// actions for sending an invite
+export const sendInviteSuccess = (updatedGroup) => ({
+  type: SEND_INVITE_SUCCESS,
+  payload: { updatedGroup: updatedGroup },
 });
 
-export const getGroupsPending = () => ({
-  type: GET_GROUP_PENDING,
+// actions for accepting an invite
+export const acceptInviteSuccess = (joinedGroup) => ({
+  type: ACCEPT_INVITE_SUCCESS,
+  payload: { joinedGroup: joinedGroup },
 });
 
-export const getGroupsSuccess = (groupName) => ({
-  type: GET_GROUP_SUCCESS,
-  payload: { groupName: groupName },
+// actions for leaving a group
+export const leaveGroupSuccess = () => ({
+  type: LEAVE_GROUP_SUCCESS,
 });
 
-export const getGroupsError = (error) => ({
-  type: GET_GROUP_ERROR,
+// actions for declining an invitation
+export const declineInvitationSuccess = () => ({
+  type: DECLINE_INVITE_SUCCESS,
+});
+
+// actions for getting groups
+export const getGroupsSuccess = (groups) => ({
+  type: GET_GROUPS_SUCCESS,
+  payload: { groups: groups },
+});
+
+// actions for getting invitations
+export const getInvitesSuccess = (groups) => ({
+  type: GET_INVITES_SUCCESS,
+  payload: { groups: groups },
+});
+
+// actions for renaming a group
+export const renameGroupSuccess = (invites) => ({
+  type: RENAME_GROUP_SUCCESS,
+  payload: { invites: invites },
+});
+
+export const groupPending = () => ({
+  type: GROUP_PENDING,
+});
+
+export const groupError = (error) => ({
+  type: GROUP_ERROR,
   error: error,
 });

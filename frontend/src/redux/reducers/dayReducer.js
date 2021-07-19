@@ -11,7 +11,7 @@ function dayComparator(i, j) {
 }
 
 // reducer for setting selected days
-export default function (state = initialState, action) {
+export default function dayReducer(state = initialState, action) {
   // go over each action type
   switch (action.type) {
     case NEW_DAYS:

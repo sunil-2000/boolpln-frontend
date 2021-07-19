@@ -54,6 +54,7 @@ class Day extends React.Component {
     }
 
     this.setState({ times: timeSlots }); // set day's state
+    this.props.addDay(this.state.date, timeSlots);
   }
 
   // renders 24 timeslots as a day
@@ -73,9 +74,7 @@ class Day extends React.Component {
   }
 
   // when component updates, call redux action to save state
-  componentDidUpdate() {
-    this.props.addDay(this.state.date, this.state.times);
-  }
+  componentDidUpdate() {}
 
   // function for assigning special css. Is this necessary, and if so, should it be moved outside?
   handleBorderOverlap(end) {
@@ -86,12 +85,12 @@ class Day extends React.Component {
   // actually renders the page
   render() {
     return (
-      <div className="day-container">
+      <div className='day-container'>
         <div className={this.handleBorderOverlap(this.props.end)}>
-          <div className="date-num">{this.props.date}</div>
-          <div className="date-name">{this.props.value}</div>
+          <div className='date-num'>{this.props.date}</div>
+          <div className='date-name'>{this.props.value}</div>
         </div>
-        <div className="day-column">
+        <div className='day-column'>
           {this.renderDay()}
           {/* allow switch for am/pm, and eventually allow arg for renderDay to be derived from props*/}
         </div>

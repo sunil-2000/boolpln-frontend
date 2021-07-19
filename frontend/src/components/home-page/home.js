@@ -4,7 +4,16 @@ import classes from "../../styles/home-page/home.module.css";
 import NavBar from "./top-bar/nav-bar.js";
 import { Component } from "react";
 import { connect } from "react-redux";
-import getGroups from "../../redux/middleware/getGroups.js";
+import { bindActionCreators } from "redux";
+import getGroups from "../../redux/middleware/groups/getGroups";
+import getInvites from "../../redux/middleware/groups/getInvites";
+
+import {
+  groupError,
+  groupPending,
+  getGroupsSuccess,
+  getInvitesSuccess,
+} from "../../redux/actions/groupApiActions.js";
 
 class Home extends Component {
   // ReactNotifications element locked in place, any other file can add
@@ -24,13 +33,13 @@ class Home extends Component {
   }
 
   renderCal() {
-    if (this.props.groups.length === 0) {
-      return null;
-    } else {
-      console.log(this.props.groups);
-      const groupId = this.props.groups[0].groupId;
-      return <Week groups={groupId}></Week>;
-    }
+    console.log(this.props);
+  }
+
+  componentDidMount() {
+    //this.props.getInvites();
+    const { getGroups, getInvites } = this.props;
+    getGroups();
   }
 
   render() {
@@ -48,9 +57,20 @@ class Home extends Component {
   }
 }
 
-const mapStatetoProps = (state) => {
-  const groups = getGroups(state);
-  return { groups: groups };
-};
+const mapStatetoProps = (state) => ({
+  error: groupError(state),
+  groups: getGroupsSuccess(state),
+  pending: groupPending(state),
+  invites: getInvitesSuccess(state),
+});
 
-export default connect(mapStatetoProps)(Home);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      getGroups: getGroups,
+      getInvites: getInvites,
+    },
+    dispatch
+  );
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Home);

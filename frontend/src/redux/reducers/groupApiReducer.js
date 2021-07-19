@@ -1,10 +1,8 @@
 import {
-  CREATE_GROUP_PENDING,
-  CREATE_GROUP_SUCCESS,
-  CREATE_GROUP_ERROR,
-  GET_GROUPS_PENDING,
   GET_GROUPS_SUCCESS,
-  GET_GROUPS_ERROR,
+  GET_INVITES_SUCCESS,
+  GROUP_ERROR,
+  GROUP_PENDING,
 } from "../types";
 
 const initialState = {
@@ -14,36 +12,31 @@ const initialState = {
   error: null,
 };
 
-export function createGroupApiReducer(state = initialState, action) {
+export default function groupApiReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_GROUP_PENDING:
+    case GROUP_PENDING:
       return {
         ...state,
         pending: true,
       };
-    case CREATE_GROUP_SUCCESS:
-      return {
-        ...state,
-        groups: [...state.groups] + action.payload,
-      };
-    case CREATE_GROUP_ERROR:
+    case GROUP_ERROR:
       return {
         ...state,
         error: action.error,
+        pending: false,
       };
-    default:
-      return state;
-  }
-}
-
-export function getGroupApiReducer(state = initialState, action) {
-  switch (action.type) {
-    case GET_GROUPS_PENDING:
-      return null;
     case GET_GROUPS_SUCCESS:
-      return null;
-    case GET_GROUPS_ERROR:
-      return null;
+      return {
+        ...state,
+        groups: action.payload.groups,
+        pending: false,
+      };
+    case GET_INVITES_SUCCESS:
+      return {
+        ...state,
+        invites: action.payload.invites,
+        pending: false,
+      };
     default:
       return state;
   }

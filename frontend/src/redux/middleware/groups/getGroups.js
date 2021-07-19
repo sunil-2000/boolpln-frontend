@@ -1,26 +1,28 @@
 import {
-  getGroupsPending,
+  groupError,
   getGroupsSuccess,
-  getGroupsError,
-} from "../actions/groupApiActions";
+  groupPending,
+} from "../../actions/groupApiActions";
 import axios from "axios";
 
 // function passed to home component
 function getGroups() {
   return (dispatch) => {
-    dispatch(getGroupsPending());
+    dispatch(groupPending());
     axios({
       method: "get",
       url: "/api/current_user/get_joined_groups/",
     })
       .then((res) => {
-        if (res.error) {
-          throw res.error;
-        }
         dispatch(getGroupsSuccess(res.data));
-        return res.data;
       })
-      .catch((error) => dispatch(getGroupsError(error)));
+      .catch((error) => {
+        let errorMsg = "fatal error";
+        if (error.response.status) {
+          errorMsg = error.response.status;
+        }
+        dispatch(groupError(errorMsg));
+      });
   };
 }
 
