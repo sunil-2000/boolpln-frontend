@@ -70,11 +70,9 @@ class Day extends React.Component {
 
   // when component mounts, call redux action to save state
   componentDidMount() {
+    console.log(this.props);
     this.props.addDay(this.state.date, this.state.times);
   }
-
-  // when component updates, call redux action to save state
-  componentDidUpdate() {}
 
   // function for assigning special css. Is this necessary, and if so, should it be moved outside?
   handleBorderOverlap(end) {

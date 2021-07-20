@@ -1,6 +1,13 @@
 import { Component } from "react";
 import { Modal, Button, FormControl, InputGroup } from "react-bootstrap";
 import Input from "./input.js";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import createGroup from "../../../redux/middleware/groups/createGroup";
+import {
+  getCurrentGroup,
+  getPendingStatus,
+} from "../../../redux/reducers/groupApiReducer";
 
 class GroupPopUp extends Component {
   constructor(props) {
@@ -11,6 +18,8 @@ class GroupPopUp extends Component {
       completed: false,
       confirmName: false,
       name: "",
+      groupID: null,
+      pending: this.props.pending,
     };
     // binds this to function for use
     this.handleClose = this.handleClose.bind(this);
@@ -62,9 +71,12 @@ class GroupPopUp extends Component {
   async onChange(event) {
     await this.setState({ name: event.target.value });
   }
-  send() {
+  async send() {
     this.handleClose();
     this.props.created(this.state.usernames, this.state.name);
+    // async gurantees we do not proceed until store is updated
+    // need this for sending invites after creating group
+    await this.props.createGroup(this.state.name);
 
     this.setState({
       usernames: {},
@@ -124,4 +136,20 @@ class GroupPopUp extends Component {
     );
   }
 }
-export default GroupPopUp;
+
+const mapStateToProps = (state) => {
+  return {
+    currentGroup: getCurrentGroup(state),
+    pending: getPendingStatus(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      createGroup: createGroup,
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupPopUp);

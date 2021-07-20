@@ -12,9 +12,9 @@ import {
 } from "../types";
 
 // actions for creating a group
-export const createGroupSuccess = (newGroup) => ({
+export const createGroupSuccess = (newGroup, groupID) => ({
   type: CREATE_GROUP_SUCCESS,
-  payload: { newGroup: newGroup },
+  payload: { newGroup: newGroup, groupID: groupID },
 });
 
 // actions for sending an invite
