@@ -8,7 +8,6 @@ class Input extends Component {
     super(props);
     this.state = {
       userName: "",
-      id: this.props.id,
       disabled: false,
       fill: "Username",
     };
@@ -22,7 +21,6 @@ class Input extends Component {
 
   confirm() {
     this.setState({ disabled: true, fill: this.state.userName });
-    this.props.send(this.state.userName, this.state.id);
     this.props.addedGroupMember({ groupMember: this.state.userName });
   }
   renderForm() {

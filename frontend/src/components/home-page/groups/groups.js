@@ -3,6 +3,11 @@ import GroupPopUp from "./group-pop-up.js";
 import { Component } from "react";
 import { Button } from "react-bootstrap";
 import Icon from "./icon.js";
+import { connect } from "react-redux";
+import {
+  getCurrentGroup,
+  getGroupList,
+} from "../../../redux/reducers/groupApiReducer";
 // import "reactjs-popup/dist/index.css";
 
 class Groups extends Component {
@@ -10,14 +15,11 @@ class Groups extends Component {
     super(props);
     this.state = {
       show: false,
-      listGroups: [],
-      groups: [],
-      groupNo: 0, // limit to 3 groups for beta
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.created = this.created.bind(this);
   }
+
   handleShow() {
     this.setState({ show: true });
   }
@@ -25,27 +27,23 @@ class Groups extends Component {
     this.setState({ show: false });
   }
 
-  created(users, name) {
-    let groups = this.state.groups.slice();
-    let dict = {};
-    dict["name"] = name;
-    dict["users"] = users;
-    groups.push(dict);
-    this.setState({
-      groupNo: this.state.groupNo + 1,
-      groups: groups,
-    });
-  }
-
   renderGroupIcons() {
     // blue(1) purple(2) pink(3)
+    const groups = this.props.groups;
     let colors = ["blue", "purple", "pink"];
     let result = [];
-    for (let i = 0; i < this.state.groupNo; i++) {
+    let i = 0;
+    groups.forEach((group) => {
       result.push(
-        <Icon color={colors[i]} key={i} name={this.state.groups[i].name}></Icon>
+        <Icon
+          color={colors[i % 3]}
+          key={group.groupName + ", " + group.groupID}
+          name={group.groupName}
+          id={group.groupID}
+        ></Icon>
       );
-    }
+      i += 1;
+    });
     return result;
   }
 
@@ -53,7 +51,10 @@ class Groups extends Component {
     return (
       <div className={classes.groupContainer}>
         <h4 className={classes.title}>My Groups</h4>
-        <Button disabled={!(this.state.groupNo < 3)} onClick={this.handleShow}>
+        <Button
+          disabled={!(this.props.groups.length < 3)}
+          onClick={this.handleShow}
+        >
           Create Group
         </Button>
         <GroupPopUp
@@ -67,4 +68,11 @@ class Groups extends Component {
   }
 }
 
-export default Groups;
+const mapStateToProps = (state) => {
+  return {
+    groups: getGroupList(state),
+    currentGroup: getCurrentGroup(state),
+  };
+};
+
+export default connect(mapStateToProps)(Groups);

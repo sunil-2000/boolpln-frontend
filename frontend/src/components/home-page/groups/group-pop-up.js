@@ -10,6 +10,7 @@ import sendInvite from "../../../redux/middleware/groups/sendInvite";
 import {
   getCurrentGroup,
   getPendingStatus,
+  getAddedMembers,
 } from "../../../redux/reducers/groupApiReducer";
 import { clearGroupMembers } from "../../../redux/actions/groupApiActions.js";
 
@@ -18,89 +19,64 @@ class GroupPopUp extends Component {
     super(props);
     this.state = {
       inputs: 1,
-      usernames: {},
-      completed: false,
       confirmName: false,
       name: "",
-      groupID: null,
-      pending: this.props.pending,
     };
     // binds this to function for use
     this.handleClose = this.handleClose.bind(this);
     this.addUser = this.addUser.bind(this);
     this.send = this.send.bind(this);
-    this.userCallBack = this.userCallBack.bind(this);
     this.groupConfirm = this.groupConfirm.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
   handleClose() {
-    this.setState({ usernames: {}, inputs: 1 });
+    this.setState({ inputs: 1, confirmName: false });
     this.props.handleClose();
-    console.log(this.props);
     this.props.clearGroupMembers();
+  }
+
+  addUser() {
+    this.setState({ inputs: this.state.inputs + 1, completed: false });
+  }
+
+  onChange(event) {
+    this.setState({ name: event.target.value });
+  }
+  // async gurantees we do not proceed until store is updated
+  // need this for sending invites after creating group
+  async send() {
+    await this.props.createGroup(this.state.name);
+    await this.props.sendInvite(
+      this.props.currentGroupID,
+      this.props.addedMembers
+    );
+    this.setState({ inputs: 1, confirmName: false });
+    this.handleClose();
+  }
+
+  groupConfirm() {
+    this.setState({ confirmName: true });
+  }
+
+  // check if group pop up is appropriately completed, which is defined by
+  // all input fields being filled and confirmed
+  // if true this is used to allow user to to send invite and create the group
+  checkComplete() {
+    const check = !(
+      this.state.inputs === this.props.addedMembers.length &&
+      this.props.addedMembers.length > 0
+    );
+    return check;
   }
 
   renderInputs() {
     let result = [];
     for (let i = 0; i < this.state.inputs; i++) {
       // to gurantee id values are unique
-      result.push(
-        <Input
-          delete={this.didDelete}
-          send={this.userCallBack}
-          key={i}
-          id={i}
-        />
-      );
+      result.push(<Input delete={this.didDelete} key={i} />);
     }
     return result;
-  }
-
-  async addUser() {
-    await this.setState({ inputs: this.state.inputs + 1, completed: false });
-  }
-
-  async userCallBack(childData, key) {
-    let users = { ...this.state.usernames };
-    users[key] = childData;
-    await this.setState({ usernames: users });
-    if (
-      Object.keys(this.state.usernames).length === this.state.inputs &&
-      this.state.inputs > 0 &&
-      this.state.confirmName
-    ) {
-      this.setState({ completed: true });
-    }
-  }
-
-  async onChange(event) {
-    await this.setState({ name: event.target.value });
-  }
-  async send() {
-    this.props.created(this.state.usernames, this.state.name);
-    // async gurantees we do not proceed until store is updated
-    // need this for sending invites after creating group
-    await this.props.createGroup(this.state.name);
-    console.log(this.state.usernames);
-    this.props.sendInvite(this.props.currentGroupID, this.state.usernames);
-    this.setState({
-      usernames: {},
-      inputs: 1,
-      completed: false,
-      confirmName: false,
-    });
-    this.handleClose();
-  }
-
-  groupConfirm() {
-    this.setState({ confirmName: true });
-    if (
-      Object.keys(this.state.usernames).length === this.state.inputs &&
-      this.state.inputs > 0
-    ) {
-      this.setState({ completed: true });
-    }
   }
 
   render() {
@@ -135,7 +111,7 @@ class GroupPopUp extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.addUser}>Add User</Button>
-          <Button disabled={!this.state.completed} onClick={this.send}>
+          <Button disabled={this.checkComplete()} onClick={this.send}>
             Send
           </Button>
         </Modal.Footer>
@@ -149,6 +125,7 @@ const mapStateToProps = (state) => {
   return {
     currentGroupID: currentGroup !== null ? currentGroup.groupID : null,
     pending: getPendingStatus(state),
+    addedMembers: getAddedMembers(state),
   };
 };
 

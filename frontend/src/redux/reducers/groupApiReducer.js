@@ -70,7 +70,6 @@ export default function groupApiReducer(state = initialState, action) {
         addedMembers: addedMembersCopy,
       };
     case CLEAR_GROUP_MEMBERS:
-      console.log("in clear");
       return {
         ...state,
         addedMembers: [],
@@ -84,3 +83,4 @@ export default function groupApiReducer(state = initialState, action) {
 export const getGroupList = (state) => state.groupApiReducer.groups;
 export const getCurrentGroup = (state) => state.groupApiReducer.currentGroup;
 export const getPendingStatus = (state) => state.groupApiReducer.pending;
+export const getAddedMembers = (state) => state.groupApiReducer.addedMembers;
