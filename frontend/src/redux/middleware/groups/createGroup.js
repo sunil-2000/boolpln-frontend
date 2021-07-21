@@ -7,7 +7,6 @@ import axios from "axios";
 
 // function passed to home component
 function createGroup(groupName) {
-  console.log("in create");
   return (dispatch) =>
     new Promise((resolve, reject) => {
       {
@@ -33,5 +32,4 @@ function createGroup(groupName) {
       }
     });
 }
-
 export default createGroup;

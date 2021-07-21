@@ -1,9 +1,12 @@
 import {
+  ADDED_GROUP_MEMBER,
+  CLEAR_GROUP_MEMBERS,
   CREATE_GROUP_SUCCESS,
   GET_GROUPS_SUCCESS,
   GET_INVITES_SUCCESS,
   GROUP_ERROR,
   GROUP_PENDING,
+  SEND_INVITE_SUCCESS,
 } from "../types";
 
 const initialState = {
@@ -12,6 +15,7 @@ const initialState = {
   pending: false,
   error: null,
   currentGroup: null,
+  addedMembers: [],
 };
 
 export default function groupApiReducer(state = initialState, action) {
@@ -40,6 +44,11 @@ export default function groupApiReducer(state = initialState, action) {
         pending: false,
         currentGroup: addedGroup,
       };
+    case SEND_INVITE_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+      };
     case GET_GROUPS_SUCCESS:
       return {
         ...state,
@@ -51,6 +60,20 @@ export default function groupApiReducer(state = initialState, action) {
         ...state,
         invites: action.payload.invites,
         pending: false,
+      };
+    // non api calls
+    case ADDED_GROUP_MEMBER:
+      let addedMembersCopy = [...state.addedMembers];
+      addedMembersCopy.push(action.payload.groupMember);
+      return {
+        ...state,
+        addedMembers: addedMembersCopy,
+      };
+    case CLEAR_GROUP_MEMBERS:
+      console.log("in clear");
+      return {
+        ...state,
+        addedMembers: [],
       };
     default:
       return state;

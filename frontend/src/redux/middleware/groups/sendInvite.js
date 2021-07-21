@@ -6,19 +6,19 @@ import {
 import axios from "axios";
 
 // function passed to home component
-function createGroup(groupID, userName) {
+function sendInvite(groupID, userName) {
   return (dispatch) => {
     dispatch(groupPending());
     axios({
       method: "post",
-      url: "/api/current_user/invite_member/",
+      url: "/api/current_user/invite_members/",
       data: {
         groupID: groupID,
         username: userName,
       },
     })
       .then((res) => {
-        dispatch(sendInviteSuccess(groupName, res.data.groupID));
+        dispatch(sendInviteSuccess(groupID, res.data.groupID));
       })
       .catch((error) => {
         let errorMsg = "fatal error";
@@ -31,4 +31,4 @@ function createGroup(groupID, userName) {
   };
 }
 
-export default createGroup;
+export default sendInvite;

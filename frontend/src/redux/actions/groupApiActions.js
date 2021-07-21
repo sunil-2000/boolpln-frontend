@@ -9,7 +9,19 @@ import {
   RENAME_GROUP_SUCCESS,
   GROUP_ERROR,
   GROUP_PENDING,
+  ADDED_GROUP_MEMBER,
+  CLEAR_GROUP_MEMBERS,
 } from "../types";
+
+// non api actions
+export const addedGroupMember = (groupMember) => ({
+  type: ADDED_GROUP_MEMBER,
+  payload: { groupMember: groupMember },
+});
+
+export const clearGroupMembers = () => ({
+  type: CLEAR_GROUP_MEMBERS,
+});
 
 // actions for creating a group
 export const createGroupSuccess = (newGroup, groupID) => ({
@@ -24,9 +36,8 @@ export const sendInviteSuccess = (updatedGroup) => ({
 });
 
 // actions for accepting an invite
-export const acceptInviteSuccess = (joinedGroup) => ({
+export const acceptInviteSuccess = () => ({
   type: ACCEPT_INVITE_SUCCESS,
-  payload: { joinedGroup: joinedGroup },
 });
 
 // actions for leaving a group

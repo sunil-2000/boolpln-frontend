@@ -1,13 +1,17 @@
 import { Component } from "react";
 import { Modal, Button, FormControl, InputGroup } from "react-bootstrap";
 import Input from "./input.js";
+
+// redux
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import createGroup from "../../../redux/middleware/groups/createGroup";
+import sendInvite from "../../../redux/middleware/groups/sendInvite";
 import {
   getCurrentGroup,
   getPendingStatus,
 } from "../../../redux/reducers/groupApiReducer";
+import { clearGroupMembers } from "../../../redux/actions/groupApiActions.js";
 
 class GroupPopUp extends Component {
   constructor(props) {
@@ -33,6 +37,8 @@ class GroupPopUp extends Component {
   handleClose() {
     this.setState({ usernames: {}, inputs: 1 });
     this.props.handleClose();
+    console.log(this.props);
+    this.props.clearGroupMembers();
   }
 
   renderInputs() {
@@ -72,18 +78,19 @@ class GroupPopUp extends Component {
     await this.setState({ name: event.target.value });
   }
   async send() {
-    this.handleClose();
     this.props.created(this.state.usernames, this.state.name);
     // async gurantees we do not proceed until store is updated
     // need this for sending invites after creating group
     await this.props.createGroup(this.state.name);
-
+    console.log(this.state.usernames);
+    this.props.sendInvite(this.props.currentGroupID, this.state.usernames);
     this.setState({
       usernames: {},
       inputs: 1,
       completed: false,
       confirmName: false,
     });
+    this.handleClose();
   }
 
   groupConfirm() {
@@ -138,8 +145,9 @@ class GroupPopUp extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const currentGroup = getCurrentGroup(state);
   return {
-    currentGroup: getCurrentGroup(state),
+    currentGroupID: currentGroup !== null ? currentGroup.groupID : null,
     pending: getPendingStatus(state),
   };
 };
@@ -148,6 +156,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       createGroup: createGroup,
+      sendInvite: sendInvite,
+      clearGroupMembers: clearGroupMembers,
     },
     dispatch
   );

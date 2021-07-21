@@ -1,5 +1,7 @@
 import { Component } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { addedGroupMember } from "../../../redux/actions/groupApiActions";
 
 class Input extends Component {
   constructor(props) {
@@ -14,13 +16,14 @@ class Input extends Component {
     this.confirm = this.confirm.bind(this);
   }
 
-  async onChange(event) {
-    await this.setState({ userName: event.target.value });
+  onChange(event) {
+    this.setState({ userName: event.target.value });
   }
 
-  async confirm() {
-    await this.setState({ disabled: true, fill: this.state.userName });
+  confirm() {
+    this.setState({ disabled: true, fill: this.state.userName });
     this.props.send(this.state.userName, this.state.id);
+    this.props.addedGroupMember({ groupMember: this.state.userName });
   }
   renderForm() {
     return (
@@ -61,4 +64,4 @@ class Input extends Component {
     }
   }
 }
-export default Input;
+export default connect(null, { addedGroupMember })(Input);

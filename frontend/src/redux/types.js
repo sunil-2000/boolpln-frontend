@@ -14,3 +14,7 @@ export const GET_INVITES_SUCCESS = "GET_INVITES_SUCCESS";
 export const RENAME_GROUP_SUCCESS = "RENAME_GROUP_SUCCESS";
 export const GROUP_ERROR = "GROUP_ERROR";
 export const GROUP_PENDING = "GROUP_PENDING";
+
+// non group api, but group related
+export const ADDED_GROUP_MEMBER = "ADDED_GROUP_MEMBER";
+export const CLEAR_GROUP_MEMBERS = "CLEAR_GROUP_MEMBERS";
