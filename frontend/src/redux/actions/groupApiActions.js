@@ -11,6 +11,7 @@ import {
   GROUP_PENDING,
   ADDED_GROUP_MEMBER,
   CLEAR_GROUP_MEMBERS,
+  SELECT_GROUP,
 } from "../types";
 
 // non api actions
@@ -21,6 +22,17 @@ export const addedGroupMember = (groupMember) => ({
 
 export const clearGroupMembers = () => ({
   type: CLEAR_GROUP_MEMBERS,
+});
+
+export const selectGroup = (groupID, groupName, members) => ({
+  type: SELECT_GROUP,
+  payload: {
+    currentGroup: {
+      groupID: groupID,
+      groupName: groupName,
+      groupMembers: members,
+    },
+  },
 });
 
 // actions for creating a group
@@ -36,8 +48,9 @@ export const sendInviteSuccess = (updatedGroup) => ({
 });
 
 // actions for accepting an invite
-export const acceptInviteSuccess = () => ({
+export const acceptInviteSuccess = (group, inviteId) => ({
   type: ACCEPT_INVITE_SUCCESS,
+  payload: { acceptedGroup: group, inviteId: inviteId },
 });
 
 // actions for leaving a group

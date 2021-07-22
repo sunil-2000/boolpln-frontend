@@ -18,3 +18,4 @@ export const GROUP_PENDING = "GROUP_PENDING";
 // non group api, but group related
 export const ADDED_GROUP_MEMBER = "ADDED_GROUP_MEMBER";
 export const CLEAR_GROUP_MEMBERS = "CLEAR_GROUP_MEMBERS";
+export const SELECT_GROUP = "SELECT_GROUP";

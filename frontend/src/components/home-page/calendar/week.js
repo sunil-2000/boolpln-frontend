@@ -3,6 +3,8 @@ import Day from "./day.js";
 import Submit from "./submit.js";
 import TimeSlotLabel from "./time-slot-label.js";
 import classes from "../../../styles/calendar/week.module.css";
+import { connect } from "react-redux";
+import { getCurrentGroup } from "../../../redux/reducers/groupApiReducer.js";
 
 const dateMap = {
   0: "Sun",
@@ -81,31 +83,58 @@ class Week extends React.Component {
     return dayLst;
   }
 
-  render() {
-    function displayMonth() {
-      const monthNames = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
-      return monthNames[month];
-    }
+  handleMemberList() {
+    const currentGroup = this.props.currentGroup;
+    let result = [];
+    if (currentGroup) {
+      let members = currentGroup.groupMembers;
 
+      let membersCleaned = members.map((member) => member.username);
+      membersCleaned.forEach((member) => {
+        console.log(member);
+        result.push(<div key={member}>{member}</div>);
+      });
+    }
+    return result;
+  }
+
+  handleGroupName() {
+    const currentGroup = this.props.currentGroup;
+    let result = { groupName: "" };
+    if (currentGroup) {
+      result.groupName = currentGroup.groupName;
+    }
+    return <h1>{result.groupName}</h1>;
+  }
+  displayMonth() {
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return monthNames[month];
+  }
+  render() {
+    console.log(this.props);
     return (
       <>
         <div className={classes.calendarContainer}>
           <Submit></Submit>
           <div className={classes.monthContainer}>
-            <h1 className={classes.monthText}>{displayMonth() + " " + year}</h1>
+            <h1 className={classes.monthText}>
+              {this.displayMonth() + " " + year}
+            </h1>
+            {this.handleGroupName()}
+            {this.handleMemberList()}
           </div>
           <div className={classes.weekContainer}>
             <div className={classes.timeLabelsContainer}>
@@ -121,4 +150,11 @@ class Week extends React.Component {
     );
   }
 }
-export default Week;
+
+const mapStateToProps = (state) => {
+  return {
+    currentGroup: getCurrentGroup(state),
+  };
+};
+
+export default connect(mapStateToProps)(Week);

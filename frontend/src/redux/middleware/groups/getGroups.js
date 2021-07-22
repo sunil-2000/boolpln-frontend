@@ -18,7 +18,7 @@ function getGroups() {
       })
       .catch((error) => {
         let errorMsg = "fatal error";
-        if (error.response.status) {
+        if (error.response) {
           errorMsg = error.response.status;
         }
         dispatch(groupError(errorMsg));

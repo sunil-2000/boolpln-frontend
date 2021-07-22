@@ -40,6 +40,7 @@ class Groups extends Component {
           key={group.groupName + ", " + group.groupID}
           name={group.groupName}
           id={group.groupID}
+          members={group.groupMembers}
         ></Icon>
       );
       i += 1;
