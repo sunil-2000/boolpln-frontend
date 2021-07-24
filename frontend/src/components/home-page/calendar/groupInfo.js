@@ -9,12 +9,14 @@ import { connect } from "react-redux";
 import { getCurrentGroup } from "../../../redux/reducers/groupApiReducer.js";
 import classes from "../../../styles/calendar/groupInfo.module.css";
 import RenameGroup from "./renameGroup.js";
+import LeaveGroup from "./leaveGroups.js";
 
 class GroupInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showRename: false,
+      showLeave: false,
     };
   }
   handleMemberList() {
@@ -69,7 +71,17 @@ class GroupInfo extends Component {
           show={this.state.showRename}
           handleClose={() => this.setState({ showRename: false })}
         ></RenameGroup>
-        <Button className={classes.button}>Leave Group</Button>
+        <Button
+          disabled={this.props.currentGroup !== null ? false : true}
+          onClick={() => this.setState({ showLeave: true })}
+          className={classes.button}
+        >
+          Leave Group
+        </Button>
+        <LeaveGroup
+          show={this.state.showLeave}
+          handleClose={() => this.setState({ showLeave: false })}
+        ></LeaveGroup>
       </>
     );
   }

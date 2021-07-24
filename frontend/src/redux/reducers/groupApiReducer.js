@@ -10,6 +10,7 @@ import {
   GROUP_PENDING,
   SEND_INVITE_SUCCESS,
   RENAME_GROUP_SUCCESS,
+  LEAVE_GROUP_SUCCESS,
 } from "../types";
 
 const initialState = {
@@ -100,6 +101,22 @@ export default function groupApiReducer(state = initialState, action) {
         currentGroup: action.payload.group,
         pending: false,
       };
+    case LEAVE_GROUP_SUCCESS: {
+      const groupsCopy = [...state.groups];
+      let updated = groupsCopy.filter(
+        (group) => group.groupID !== action.payload.deletedGroupID
+      );
+      let currentGroup = null;
+      if (updated.length > 0) {
+        currentGroup = updated[0];
+      }
+      return {
+        ...state,
+        currentGroup: currentGroup,
+        groups: updated,
+        pending: false,
+      };
+    }
     // non api calls
     case ADDED_GROUP_MEMBER:
       let addedMembersCopy = [...state.addedMembers];
@@ -114,7 +131,6 @@ export default function groupApiReducer(state = initialState, action) {
         addedMembers: [],
       };
     case SELECT_GROUP:
-      console.log(action.payload);
       return {
         ...state,
         currentGroup: action.payload.currentGroup,

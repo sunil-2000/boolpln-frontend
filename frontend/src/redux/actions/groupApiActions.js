@@ -54,8 +54,9 @@ export const acceptInviteSuccess = (group, inviteId) => ({
 });
 
 // actions for leaving a group
-export const leaveGroupSuccess = () => ({
+export const leaveGroupSuccess = (groupID) => ({
   type: LEAVE_GROUP_SUCCESS,
+  payload: { deletedGroupID: groupID },
 });
 
 // actions for declining an invitation
