@@ -76,9 +76,9 @@ export const getInvitesSuccess = (invites) => ({
 });
 
 // actions for renaming a group
-export const renameGroupSuccess = (invites) => ({
+export const renameGroupSuccess = (group) => ({
   type: RENAME_GROUP_SUCCESS,
-  payload: { invites: invites },
+  payload: { group: group },
 });
 
 export const groupPending = () => ({

@@ -1,31 +1,29 @@
 import {
-  groupPending,
-  getInvitesSuccess,
   groupError,
+  renameGroupSuccess,
+  groupPending,
 } from "../../actions/groupApiActions";
 import axios from "axios";
 
 // function passed to home component
-function getInvites() {
+function renameGroup(groupID, proposedName) {
   return (dispatch) => {
     dispatch(groupPending());
-
     axios({
-      method: "get",
-      url: "/api/current_user/get_pending_groups/",
+      method: "put",
+      url: "api/current_user/rename_group/",
+      data: { groupID: groupID, groupName: proposedName },
     })
       .then((res) => {
-        dispatch(getInvitesSuccess(res.data));
+        dispatch(renameGroupSuccess(res.data));
       })
       .catch((error) => {
         let errorMsg = "fatal error";
         if (error.response.status) {
           errorMsg = error.response.status;
         }
-
         dispatch(groupError(errorMsg));
       });
   };
 }
-
-export default getInvites;
+export default renameGroup;

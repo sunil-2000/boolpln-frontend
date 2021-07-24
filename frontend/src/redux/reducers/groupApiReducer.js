@@ -9,6 +9,7 @@ import {
   GROUP_ERROR,
   GROUP_PENDING,
   SEND_INVITE_SUCCESS,
+  RENAME_GROUP_SUCCESS,
 } from "../types";
 
 const initialState = {
@@ -61,7 +62,6 @@ export default function groupApiReducer(state = initialState, action) {
         (invite) => invite.id !== action.payload.inviteId
       );
       groupsCopy.push(action.payload.newGroup);
-
       return {
         ...state,
         groups: groupsCopy,
@@ -69,16 +69,35 @@ export default function groupApiReducer(state = initialState, action) {
         pending: false,
       };
     }
-    case GET_GROUPS_SUCCESS:
+    case GET_GROUPS_SUCCESS: {
+      let currentGroup = null;
+      if (state.currentGroup == null) {
+        currentGroup = action.payload.groups[0];
+      }
       return {
         ...state,
         groups: action.payload.groups,
         pending: false,
+        currentGroup: currentGroup,
       };
+    }
     case GET_INVITES_SUCCESS:
       return {
         ...state,
         invites: action.payload.invites,
+        pending: false,
+      };
+    case RENAME_GROUP_SUCCESS:
+      const modifiedGroupID = action.payload.group.groupID;
+      let groupsCopy = [...state.groups];
+      let updated = groupsCopy.filter(
+        (group) => group.groupID !== modifiedGroupID
+      );
+      updated.push(action.payload.group);
+      return {
+        ...state,
+        groups: updated,
+        currentGroup: action.payload.group,
         pending: false,
       };
     // non api calls

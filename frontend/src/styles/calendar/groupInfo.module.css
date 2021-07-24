@@ -1,0 +1,12 @@
+.groupName {
+  margin: 1em;
+  background-color: lightblue;
+  border-radius: 25px;
+  padding: 20px;
+  border-style: solid;
+}
+
+.button {
+  font-size: large;
+  margin: 0.2em;
+}

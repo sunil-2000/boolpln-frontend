@@ -2,9 +2,8 @@ import React from "react";
 import Day from "./day.js";
 import Submit from "./submit.js";
 import TimeSlotLabel from "./time-slot-label.js";
+import GroupInfo from "./groupInfo.js";
 import classes from "../../../styles/calendar/week.module.css";
-import { connect } from "react-redux";
-import { getCurrentGroup } from "../../../redux/reducers/groupApiReducer.js";
 
 const dateMap = {
   0: "Sun",
@@ -83,29 +82,6 @@ class Week extends React.Component {
     return dayLst;
   }
 
-  handleMemberList() {
-    const currentGroup = this.props.currentGroup;
-    let result = [];
-    if (currentGroup) {
-      let members = currentGroup.groupMembers;
-
-      let membersCleaned = members.map((member) => member.username);
-      membersCleaned.forEach((member) => {
-        console.log(member);
-        result.push(<div key={member}>{member}</div>);
-      });
-    }
-    return result;
-  }
-
-  handleGroupName() {
-    const currentGroup = this.props.currentGroup;
-    let result = { groupName: "" };
-    if (currentGroup) {
-      result.groupName = currentGroup.groupName;
-    }
-    return <h1>{result.groupName}</h1>;
-  }
   displayMonth() {
     const monthNames = [
       "January",
@@ -124,17 +100,15 @@ class Week extends React.Component {
     return monthNames[month];
   }
   render() {
-    console.log(this.props);
     return (
       <>
         <div className={classes.calendarContainer}>
-          <Submit></Submit>
           <div className={classes.monthContainer}>
             <h1 className={classes.monthText}>
               {this.displayMonth() + " " + year}
             </h1>
-            {this.handleGroupName()}
-            {this.handleMemberList()}
+            <GroupInfo></GroupInfo>
+            <Submit></Submit>
           </div>
           <div className={classes.weekContainer}>
             <div className={classes.timeLabelsContainer}>
@@ -151,10 +125,4 @@ class Week extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentGroup: getCurrentGroup(state),
-  };
-};
-
-export default connect(mapStateToProps)(Week);
+export default Week;
