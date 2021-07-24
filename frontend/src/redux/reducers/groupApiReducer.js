@@ -1,5 +1,6 @@
 import {
   ACCEPT_INVITE_SUCCESS,
+  DECLINE_INVITE_SUCCESS,
   ADDED_GROUP_MEMBER,
   SELECT_GROUP,
   CLEAR_GROUP_MEMBERS,
@@ -60,9 +61,9 @@ export default function groupApiReducer(state = initialState, action) {
       let groupsCopy = [...state.groups];
       let invitesCopy = [...state.invites];
       let updatedInvites = invitesCopy.filter(
-        (invite) => invite.id !== action.payload.inviteId
+        (invite) => invite.id !== action.payload.inviteID
       );
-      groupsCopy.push(action.payload.newGroup);
+      groupsCopy.push(action.payload.acceptedGroup);
       return {
         ...state,
         groups: groupsCopy,
@@ -70,6 +71,16 @@ export default function groupApiReducer(state = initialState, action) {
         pending: false,
       };
     }
+    case DECLINE_INVITE_SUCCESS:
+      let invitesCopy = [...state.invites];
+      let updatedInvites = invitesCopy.filter(
+        (invite) => invite.id !== action.payload.inviteID
+      );
+      return {
+        ...state,
+        invites: updatedInvites,
+        pending: false,
+      };
     case GET_GROUPS_SUCCESS: {
       let currentGroup = null;
       if (state.currentGroup == null) {

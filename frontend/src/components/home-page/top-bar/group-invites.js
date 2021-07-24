@@ -3,21 +3,12 @@ import { Modal, Button } from "react-bootstrap";
 import React from "react";
 import Invite from "./invite.js";
 
-class GroupInvites extends Component {
-  constructor(props) {
-    super(props);
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-  }
-  // functions to handle showing / closing popups
-  handleShow() {
-    this.props.handleShow();
-  }
-  handleClose() {
-    this.props.handleClose();
-  }
+import { connect } from "react-redux";
+import { getInvites } from "../../../redux/reducers/groupApiReducer";
 
-  renderInvites(inviteList) {
+class GroupInvites extends Component {
+  renderInvites() {
+    const inviteList = this.props.groupInvites;
     if (inviteList.length === 0) {
       return (
         <div>
@@ -27,7 +18,7 @@ class GroupInvites extends Component {
       );
     } else {
       let result = [];
-
+      console.log(inviteList);
       inviteList.forEach((i) => {
         // process element by packaging it into div
         // by calling renderInvite
@@ -36,7 +27,9 @@ class GroupInvites extends Component {
           <Invite
             from={i.invitingUser}
             groupName={i.group.groupName}
-            key={i.group.groupID}
+            groupID={i.group.groupID}
+            inviteID={i.inviteID}
+            key={i.inviteID + ", " + i.group.groupID}
           />
         );
         result.push(inviteElt);
@@ -50,7 +43,7 @@ class GroupInvites extends Component {
       <>
         <Modal
           show={this.props.show}
-          onHide={this.handleClose}
+          onHide={this.props.handleClose}
           aria-labelledby='90polk--contained-modal-title-vcenter'
           centered
           scrollable={true}
@@ -60,13 +53,18 @@ class GroupInvites extends Component {
               Group Notifications
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>{this.renderInvites(this.props.data)}</Modal.Body>
+          <Modal.Body>{this.renderInvites()}</Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
+            <Button onClick={this.props.handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
       </>
     );
   }
 }
-export default GroupInvites;
+
+const mapStateToProps = (state) => ({
+  groupInvites: getInvites(state),
+});
+
+export default connect(mapStateToProps)(GroupInvites);

@@ -48,9 +48,9 @@ export const sendInviteSuccess = (updatedGroup) => ({
 });
 
 // actions for accepting an invite
-export const acceptInviteSuccess = (group, inviteId) => ({
+export const acceptInviteSuccess = (group, inviteID) => ({
   type: ACCEPT_INVITE_SUCCESS,
-  payload: { acceptedGroup: group, inviteId: inviteId },
+  payload: { acceptedGroup: group, inviteID: inviteID },
 });
 
 // actions for leaving a group
@@ -60,8 +60,9 @@ export const leaveGroupSuccess = (groupID) => ({
 });
 
 // actions for declining an invitation
-export const declineInvitationSuccess = () => ({
+export const declineInviteSuccess = (inviteID) => ({
   type: DECLINE_INVITE_SUCCESS,
+  payload: { inviteID: inviteID },
 });
 
 // actions for getting groups

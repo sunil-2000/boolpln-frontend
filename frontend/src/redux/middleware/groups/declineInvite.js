@@ -1,11 +1,11 @@
 import {
   groupError,
-  acceptInviteSuccess,
   groupPending,
+  declineInviteSuccess,
 } from "../../actions/groupApiActions";
 import axios from "axios";
 
-function acceptInvite(groupID, inviteID) {
+function declineInvite(groupID, inviteID) {
   return (dispatch) => {
     dispatch(groupPending());
     return axios({
@@ -16,7 +16,9 @@ function acceptInvite(groupID, inviteID) {
       },
     })
       .then((res) => {
-        dispatch(acceptInviteSuccess(res.data, inviteID));
+        if (res.status === 204) {
+          dispatch(declineInviteSuccess(inviteID));
+        }
       })
       .catch((error) => {
         let errorMsg = "fatal error";
@@ -27,4 +29,4 @@ function acceptInvite(groupID, inviteID) {
       });
   };
 }
-export default acceptInvite;
+export default declineInvite;

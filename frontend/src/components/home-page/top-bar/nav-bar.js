@@ -1,9 +1,8 @@
 import { Component } from "react";
 import { Nav } from "react-bootstrap";
 import UserInfo from "../../../flow/user-info/user-info.js";
-import GroupInvites from "./group-invites.js";
+import GroupInvites from "./group-invites";
 import React from "react";
-import GroupInfo from "../../../flow/group-info/group-info";
 
 class NavBar extends Component {
   constructor(props) {
@@ -11,22 +10,11 @@ class NavBar extends Component {
     this.state = {
       notifications: false,
       settings: false,
-      show: false,
       activeKey: "home",
-      data: new Array(),
       // activeKey does not currently work, should reset
       // ui selector on bell after closing from pop up modal (small issue)
     };
-
-    this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-  }
-
-  // handleShow used for notification click action
-  async handleShow() {
-    await this.setState({ show: true });
-    let inviteList = await GroupInfo.getInvites();
-    await this.setState({ data: inviteList });
   }
   // handleClose used for notification popup close action
   async handleClose() {
@@ -50,7 +38,10 @@ class NavBar extends Component {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey='alert' onSelect={this.handleShow}>
+            <Nav.Link
+              eventKey='alert'
+              onSelect={() => this.setState({ notifications: true })}
+            >
               {alert}
             </Nav.Link>
           </Nav.Item>
@@ -74,10 +65,8 @@ class NavBar extends Component {
           </Nav.Item>
         </Nav>
         <GroupInvites
-          show={this.state.show}
-          handleClose={this.handleClose}
-          handleShow={this.handleShow}
-          data={this.state.data}
+          show={this.state.notifications}
+          handleClose={() => this.setState({ notifications: false })}
         />
       </>
     );
