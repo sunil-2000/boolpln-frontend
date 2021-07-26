@@ -11,12 +11,7 @@ class Input extends Component {
       disabled: false,
       fill: "Username",
     };
-    this.onChange = this.onChange.bind(this);
     this.confirm = this.confirm.bind(this);
-  }
-
-  onChange(event) {
-    this.setState({ userName: event.target.value });
   }
 
   confirm() {
@@ -30,7 +25,7 @@ class Input extends Component {
         placeholder={this.state.fill}
         aria-label='Username'
         aria-describedby='basic-addon1'
-        onChange={this.onChange}
+        onChange={(event) => this.setState({ userName: event.target.value })}
       />
     );
   }

@@ -19,6 +19,7 @@ class RenameGroup extends Component {
     if (groupID && this.state.confirmed) {
       this.props.renameGroup(groupID, this.state.name);
     }
+    this.setState({ confirmed: false, name: "" });
     this.props.handleClose();
   }
 

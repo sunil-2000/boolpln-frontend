@@ -16,15 +16,6 @@ class Groups extends Component {
     this.state = {
       show: false,
     };
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-  }
-
-  handleShow() {
-    this.setState({ show: true });
-  }
-  handleClose() {
-    this.setState({ show: false });
   }
 
   renderGroupIcons() {
@@ -54,14 +45,14 @@ class Groups extends Component {
         <h4 className={classes.title}>My Groups</h4>
         <Button
           disabled={!(this.props.groups.length < 3)}
-          onClick={this.handleShow}
+          onClick={() => this.setState({ show: true })}
         >
           Create Group
         </Button>
         <GroupPopUp
           created={this.created}
           show={this.state.show}
-          handleClose={this.handleClose}
+          handleClose={() => this.setState({ show: false })}
         ></GroupPopUp>
         <div className={classes.iconContainer}>{this.renderGroupIcons()}</div>
       </div>

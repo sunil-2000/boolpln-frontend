@@ -24,10 +24,7 @@ class GroupPopUp extends Component {
     };
     // binds this to function for use
     this.handleClose = this.handleClose.bind(this);
-    this.addUser = this.addUser.bind(this);
     this.send = this.send.bind(this);
-    this.groupConfirm = this.groupConfirm.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
   handleClose() {
@@ -36,13 +33,6 @@ class GroupPopUp extends Component {
     this.props.clearGroupMembers();
   }
 
-  addUser() {
-    this.setState({ inputs: this.state.inputs + 1, completed: false });
-  }
-
-  onChange(event) {
-    this.setState({ name: event.target.value });
-  }
   // async gurantees we do not proceed until store is updated
   // need this for sending invites after creating group
   async send() {
@@ -53,10 +43,6 @@ class GroupPopUp extends Component {
     );
     this.setState({ inputs: 1, confirmName: false });
     this.handleClose();
-  }
-
-  groupConfirm() {
-    this.setState({ confirmName: true });
   }
 
   // check if group pop up is appropriately completed, which is defined by
@@ -94,23 +80,28 @@ class GroupPopUp extends Component {
               aria-label='Group Name'
               aria-describedby='basic-addon1'
               disabled={this.state.confirmName}
-              onChange={this.onChange}
+              onChange={(event) => this.setState({ name: event.target.value })}
             />
             <InputGroup.Append>
               <Button
                 disabled={this.state.confirmName}
                 variant='outline-secondary'
-                onClick={this.groupConfirm}
+                onClick={() => this.setState({ confirmName: true })}
               >
                 Confirm
               </Button>
             </InputGroup.Append>
           </InputGroup>
-
           {this.renderInputs()}
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.addUser}>Add User</Button>
+          <Button
+            onClick={() =>
+              this.setState({ inputs: this.state.inputs + 1, completed: false })
+            }
+          >
+            Add User
+          </Button>
           <Button disabled={this.checkComplete()} onClick={this.send}>
             Send
           </Button>
