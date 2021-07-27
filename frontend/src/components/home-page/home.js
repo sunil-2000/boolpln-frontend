@@ -20,21 +20,24 @@ class Home extends Component {
     this.state = {
       seen: false,
     };
-
-    this.renderCal = this.renderCal.bind(this);
   }
 
   togglePopup() {
     this.setState({ seen: false });
   }
 
-  renderCal() {
+  componentDidUpdate() {
     const date = new Date();
+    console.log(this.props.groupApiGroup);
+    console.log(this.props.calGroup);
     if (
-      (this.props.groupApiGroup && !this.props.calGroup) ||
-      this.props.calGroup !== this.props.groupApiGroup
+      this.props.groupApiGroup !== null &&
+      this.props.groupApiGroup !== this.props.calGroup
     )
-      getCalendar(this.props.groupApiGroup, date.getTimezoneOffset());
+      this.props.getCalendar(
+        this.props.groupApiGroup,
+        date.getTimezoneOffset()
+      );
   }
 
   componentDidMount() {
@@ -74,6 +77,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getGroups: getGroups,
       getInvites: getInvites,
+      getCalendar: getCalendar,
     },
     dispatch
   );
