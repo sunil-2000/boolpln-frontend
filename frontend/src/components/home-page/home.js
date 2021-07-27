@@ -7,13 +7,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import getGroups from "../../redux/middleware/groups/getGroups";
 import getInvites from "../../redux/middleware/groups/getInvites";
-
-import {
-  groupError,
-  groupPending,
-  getGroupsSuccess,
-  getInvitesSuccess,
-} from "../../redux/actions/groupApiActions.js";
+import { getCurrentGroup } from "../../redux/reducers/groupApiReducer.js";
+import { getCalendarGroup } from "../../redux/reducers/calendarReducer.js";
+import getCalendar from "../../redux/middleware/calendar/getCalendar.js";
 
 class Home extends Component {
   // ReactNotifications element locked in place, any other file can add
@@ -33,7 +29,12 @@ class Home extends Component {
   }
 
   renderCal() {
-    console.log(this.props);
+    const date = new Date();
+    if (
+      (this.props.groupApiGroup && !this.props.calGroup) ||
+      this.props.calGroup !== this.props.groupApiGroup
+    )
+      getCalendar(this.props.groupApiGroup, date.getTimezoneOffset());
   }
 
   componentDidMount() {
@@ -58,12 +59,15 @@ class Home extends Component {
   }
 }
 
-const mapStatetoProps = (state) => ({
-  error: groupError(state),
-  groups: getGroupsSuccess(state),
-  pending: groupPending(state),
-  invites: getInvitesSuccess(state),
-});
+function mapStateToProps(state) {
+  const groupApiGroup = getCurrentGroup(state);
+  const calGroup = getCalendarGroup(state);
+
+  return {
+    groupApiGroup: groupApiGroup ? groupApiGroup.groupID : null,
+    calGroup: calGroup ? calGroup.groupID : null,
+  };
+}
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -74,4 +78,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

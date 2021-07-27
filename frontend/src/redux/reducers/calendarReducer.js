@@ -1,8 +1,10 @@
-import { NEW_DAYS } from "../types";
+import { NEW_DAYS, GET_CALENDAR_SUCCESS } from "../types";
 
 // initial state of any calendar
 const initialState = {
   days: [],
+  groupID: null,
+  groupDays: [],
 };
 
 // function for comparing which day came first
@@ -11,7 +13,7 @@ function dayComparator(i, j) {
 }
 
 // reducer for setting selected days
-export default function dayReducer(state = initialState, action) {
+export default function calendarReducer(state = initialState, action) {
   // go over each action type
   switch (action.type) {
     case NEW_DAYS:
@@ -24,7 +26,6 @@ export default function dayReducer(state = initialState, action) {
         date.getUTCMonth() +
         "/" +
         date.getUTCFullYear();
-
       let itemsCopy = [...state.days]; // deep copy of days
       let updated = itemsCopy.filter((i) => i.utcDate !== utcDate); // keep other days
       updated.push({ date: date, utcDate: utcDate, timeSlots: timeSlots }); // add new day with new info
@@ -34,6 +35,12 @@ export default function dayReducer(state = initialState, action) {
       return {
         days: updated,
       };
+    case GET_CALENDAR_SUCCESS:
+      return {
+        ...state,
+        groupDays: action.payload.calendar,
+        groupID: action.payload.groupID,
+      };
     default:
       // on default do nothing
       return state;
@@ -41,4 +48,5 @@ export default function dayReducer(state = initialState, action) {
 }
 
 // getters
-export const getDayList = (state) => state.dayReducer.days;
+export const getDayList = (state) => state.calendarReducer.days;
+export const getCalendarGroup = (state) => state.calendarReducer.groupID;

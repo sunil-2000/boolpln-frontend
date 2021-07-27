@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import dayReducer from "./dayReducer";
+import calendarReducer from "./calendarReducer";
 import groupApiReducer from "./groupApiReducer";
 export default combineReducers({
-  dayReducer,
+  calendarReducer,
   groupApiReducer,
 });

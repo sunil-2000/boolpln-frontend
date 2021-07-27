@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Button } from "react-bootstrap";
 import classes from "../../../styles/calendar/submit.module.css";
 import { connect } from "react-redux";
-import { getDayList } from "../../../redux/reducers/dayReducer";
+import { getDayList } from "../../../redux/reducers/calendarReducer";
 
 class Submit extends Component {
   constructor(props) {
