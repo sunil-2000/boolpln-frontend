@@ -14,6 +14,7 @@ class Day extends React.Component {
       value: this.props.value, // the day of the week
       end: this.props.end, // indicator for last of the 7 days displayed. Is it necessary?
       date: this.props.full_date, // full date of the day
+      userTimes: Array(24).fill(null),
     };
   }
 
@@ -45,16 +46,18 @@ class Day extends React.Component {
   // function that handles a click on a time slot
   handleClick(i) {
     let timeSlots = this.state.times.slice(); // create  a shallow copy of the array of time slots
-
+    let userTimes = this.state.userTimes.slice();
     // if slot has been selected, mark as deselected, otherwise do opposite
     if (timeSlots[i] === "") {
       timeSlots[i] = "green";
+      userTimes[i] = "anus";
     } else {
       timeSlots[i] = "";
+      userTimes[i] = null;
     }
 
-    this.setState({ times: timeSlots }); // set day's state
-    this.props.addDay(this.state.date, timeSlots);
+    this.setState({ times: timeSlots, userTimes: userTimes }); // set day's state
+    this.props.addDay(this.state.date, userTimes);
   }
 
   // renders 24 timeslots as a day
@@ -70,8 +73,7 @@ class Day extends React.Component {
 
   // when component mounts, call redux action to save state
   componentDidMount() {
-    console.log(this.props);
-    this.props.addDay(this.state.date, this.state.times);
+    this.props.addDay(this.state.date, this.state.userTimes);
   }
 
   // function for assigning special css. Is this necessary, and if so, should it be moved outside?

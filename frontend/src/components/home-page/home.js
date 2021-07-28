@@ -19,6 +19,7 @@ class Home extends Component {
     super(props);
     this.state = {
       seen: false,
+      groupID: null,
     };
   }
 
@@ -28,16 +29,15 @@ class Home extends Component {
 
   componentDidUpdate() {
     const date = new Date();
-    console.log(this.props.groupApiGroup);
-    console.log(this.props.calGroup);
     if (
       this.props.groupApiGroup !== null &&
-      this.props.groupApiGroup !== this.props.calGroup
-    )
+      this.props.groupApiGroup !== this.state.groupID
+    ) {
       this.props.getCalendar(
         this.props.groupApiGroup,
         date.getTimezoneOffset()
       );
+    }
   }
 
   componentDidMount() {
@@ -64,11 +64,9 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   const groupApiGroup = getCurrentGroup(state);
-  const calGroup = getCalendarGroup(state);
 
   return {
     groupApiGroup: groupApiGroup ? groupApiGroup.groupID : null,
-    calGroup: calGroup ? calGroup.groupID : null,
   };
 }
 

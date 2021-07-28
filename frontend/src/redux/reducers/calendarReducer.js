@@ -1,4 +1,10 @@
-import { NEW_DAYS, GET_CALENDAR_SUCCESS } from "../types";
+import {
+  NEW_DAYS,
+  GET_CALENDAR_SUCCESS,
+  UPDATE_CALENDAR_SUCCESS,
+  CALENDAR_ERROR,
+  CALENDAR_PENDING,
+} from "../types";
 
 // initial state of any calendar
 const initialState = {
@@ -33,6 +39,7 @@ export default function calendarReducer(state = initialState, action) {
 
       // return tthe updated days
       return {
+        ...state,
         days: updated,
       };
     case GET_CALENDAR_SUCCESS:
@@ -40,7 +47,27 @@ export default function calendarReducer(state = initialState, action) {
         ...state,
         groupDays: action.payload.calendar,
         groupID: action.payload.groupID,
+        pending: false,
       };
+    case UPDATE_CALENDAR_SUCCESS:
+      return {
+        ...state,
+        groupDays: action.payload.week,
+        pending: false,
+      };
+    case CALENDAR_ERROR: {
+      return {
+        ...state,
+        error: action.error,
+        pending: false,
+      };
+    }
+    case CALENDAR_PENDING: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
     default:
       // on default do nothing
       return state;

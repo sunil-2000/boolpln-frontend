@@ -2,7 +2,12 @@ import { Component } from "react";
 import { Button } from "react-bootstrap";
 import classes from "../../../styles/calendar/submit.module.css";
 import { connect } from "react-redux";
-import { getDayList } from "../../../redux/reducers/calendarReducer";
+import {
+  getDayList,
+  getCalendarGroup,
+} from "../../../redux/reducers/calendarReducer";
+import { bindActionCreators } from "redux";
+import updateCalendar from "../../../redux/middleware/calendar/updateCalendar";
 
 class Submit extends Component {
   constructor(props) {
@@ -11,7 +16,11 @@ class Submit extends Component {
   }
   handleClick() {
     console.log("in click");
-    console.log(this.props);
+    const days = this.props.days;
+    const updated = days.map((day) => day.timeSlots);
+    console.log(this.props.groupID);
+    this.props.updateCalendar(this.props.groupID, updated);
+
     // move api call to redux getDays function
   }
   render() {
@@ -30,7 +39,16 @@ class Submit extends Component {
 
 const mapStatetoProps = (state) => {
   const days = getDayList(state);
-  return { days: days };
+  const groupID = getCalendarGroup(state);
+  return { days: days, groupID: groupID };
 };
 
-export default connect(mapStatetoProps)(Submit);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      updateCalendar: updateCalendar,
+    },
+    dispatch
+  );
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Submit);
