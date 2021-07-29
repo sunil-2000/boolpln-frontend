@@ -19,3 +19,8 @@ export const GROUP_PENDING = "GROUP_PENDING";
 export const ADDED_GROUP_MEMBER = "ADDED_GROUP_MEMBER";
 export const CLEAR_GROUP_MEMBERS = "CLEAR_GROUP_MEMBERS";
 export const SELECT_GROUP = "SELECT_GROUP";
+
+// user info
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const USER_PENDING = "USER_PENDING";
+export const USER_ERROR = "USER_ERROR";

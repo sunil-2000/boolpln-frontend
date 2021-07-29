@@ -58,13 +58,6 @@ class Home extends Component {
   }
 }
 
-const mapStatetoProps = (state) => ({
-  error: groupError(state),
-  groups: getGroupsSuccess(state),
-  pending: groupPending(state),
-  invites: getInvitesSuccess(state),
-});
-
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
@@ -74,4 +67,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Home);
+export default connect(null, mapDispatchToProps)(Home);
