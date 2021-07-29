@@ -14,7 +14,7 @@ class Day extends React.Component {
       value: this.props.value, // the day of the week
       end: this.props.end, // indicator for last of the 7 days displayed. Is it necessary?
       date: this.props.full_date, // full date of the day
-      userTimes: Array(24).fill(null),
+      userTimes: Array(24).fill(false),
     };
   }
 
@@ -50,10 +50,10 @@ class Day extends React.Component {
     // if slot has been selected, mark as deselected, otherwise do opposite
     if (timeSlots[i] === "") {
       timeSlots[i] = "green";
-      userTimes[i] = "anus";
+      userTimes[i] = true;
     } else {
       timeSlots[i] = "";
-      userTimes[i] = null;
+      userTimes[i] = false;
     }
 
     this.setState({ times: timeSlots, userTimes: userTimes }); // set day's state

@@ -50,7 +50,6 @@ class Groups extends Component {
           Create Group
         </Button>
         <GroupPopUp
-          created={this.created}
           show={this.state.show}
           handleClose={() => this.setState({ show: false })}
         ></GroupPopUp>
