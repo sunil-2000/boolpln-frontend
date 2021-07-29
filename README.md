@@ -1,0 +1,3 @@
+## Frontend for Scheduler App
+
+Libraries: Redux, Axios...
