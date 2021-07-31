@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import getGroups from "../../redux/middleware/groups/getGroups";
 import getInvites from "../../redux/middleware/groups/getInvites";
+import getUser from "../../redux/middleware/user/getUser.js";
 import { getCurrentGroup } from "../../redux/reducers/groupApiReducer.js";
 import { getCalendarGroup } from "../../redux/reducers/calendarReducer.js";
 import getCalendar from "../../redux/middleware/calendar/getCalendar.js";
@@ -42,9 +43,10 @@ class Home extends Component {
 
   componentDidMount() {
     //this.props.getInvites();
-    const { getGroups, getInvites } = this.props;
+    const { getGroups, getInvites, getUser } = this.props;
     getGroups();
     getInvites();
+    getUser();
   }
 
   render() {
@@ -76,6 +78,7 @@ const mapDispatchToProps = (dispatch) =>
       getGroups: getGroups,
       getInvites: getInvites,
       getCalendar: getCalendar,
+      getUser: getUser,
     },
     dispatch
   );

@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Nav } from "react-bootstrap";
 import UserInfo from "../../../flow/user-info/user-info.js";
 import GroupInvites from "./group-invites";
+import Settings from "./settings";
 import React from "react";
 
 class NavBar extends Component {
@@ -28,18 +29,18 @@ class NavBar extends Component {
     return (
       <>
         <Nav
-          variant='pills'
+          variant="pills"
           defaultActiveKey={this.state.activeKey}
-          className='justify-content-end'
+          className="justify-content-end"
         >
           <Nav.Item>
-            <Nav.Link eventKey='home' href='/'>
+            <Nav.Link eventKey="home" href="/">
               My Calendars
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link
-              eventKey='alert'
+              eventKey="alert"
               onSelect={() => this.setState({ notifications: true })}
             >
               {alert}
@@ -47,8 +48,8 @@ class NavBar extends Component {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link
-              eventKey='logout'
-              href='/start'
+              eventKey="logout"
+              href="/start"
               onSelect={() => UserInfo.logout()}
             >
               Logout
@@ -56,9 +57,9 @@ class NavBar extends Component {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link
-              eventKey='settings'
-              title='Item'
-              onSelect={this.handleClose}
+              eventKey="settings"
+              title="Item"
+              onSelect={() => this.setState({ settings: true })}
             >
               {setting}
             </Nav.Link>
@@ -67,6 +68,10 @@ class NavBar extends Component {
         <GroupInvites
           show={this.state.notifications}
           handleClose={() => this.setState({ notifications: false })}
+        />
+        <Settings
+          show={this.state.settings}
+          handleClose={() => this.setState({ settings: false })}
         />
       </>
     );
