@@ -9,6 +9,8 @@ import Refresh from "./flow/security/refresh";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
+axios.defaults.baseURL = "https://scheduler-gang.herokuapp.com";
+
 const refreshAuthLogic = async (failedRequest) => {
   await Refresh.refresh();
   return Promise.resolve();
