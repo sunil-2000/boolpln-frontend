@@ -41,3 +41,4 @@ export const getUsername = (state) => state.userApiReducer.username;
 export const getEmail = (state) => state.userApiReducer.email;
 export const getFirstName = (state) => state.userApiReducer.firstName;
 export const getLastName = (state) => state.userApiReducer.lastName;
+export const getUserError = (state) => state.userApiReducer.error;

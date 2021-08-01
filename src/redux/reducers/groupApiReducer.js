@@ -31,6 +31,7 @@ export default function groupApiReducer(state = initialState, action) {
         pending: true,
       };
     case GROUP_ERROR:
+      console.log(action.error);
       return {
         ...state,
         error: action.error,
@@ -157,3 +158,4 @@ export const getCurrentGroup = (state) => state.groupApiReducer.currentGroup;
 export const getPendingStatus = (state) => state.groupApiReducer.pending;
 export const getAddedMembers = (state) => state.groupApiReducer.addedMembers;
 export const getInvites = (state) => state.groupApiReducer.invites;
+export const getGroupError = (state) => state.groupApiReducer.error;

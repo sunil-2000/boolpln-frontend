@@ -11,6 +11,7 @@ const initialState = {
   days: [],
   groupID: null,
   groupDays: [],
+  error: null,
 };
 
 // function for comparing which day came first
@@ -77,3 +78,4 @@ export default function calendarReducer(state = initialState, action) {
 // getters
 export const getDayList = (state) => state.calendarReducer.days;
 export const getCalendarGroup = (state) => state.calendarReducer.groupID;
+export const getCalError = (state) => state.calendarReducer.error;
