@@ -24,18 +24,20 @@ class Groups extends Component {
     let colors = ["blue", "purple", "pink"];
     let result = [];
     let i = 0;
-    groups.forEach((group) => {
-      result.push(
-        <Icon
-          color={colors[i % 3]}
-          key={group.groupName + ", " + group.groupID}
-          name={group.groupName}
-          id={group.groupID}
-          members={group.groupMembers}
-        ></Icon>
-      );
-      i += 1;
-    });
+    if (groups.length > 0) {
+      groups.forEach((group) => {
+        result.push(
+          <Icon
+            color={colors[i % 3]}
+            key={group.groupName + ", " + group.groupID}
+            name={group.groupName}
+            id={group.groupID}
+            members={group.groupMembers}
+          ></Icon>
+        );
+        i += 1;
+      });
+    }
     return result;
   }
 

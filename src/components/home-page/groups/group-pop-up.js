@@ -113,8 +113,12 @@ class GroupPopUp extends Component {
 
 const mapStateToProps = (state) => {
   const currentGroup = getCurrentGroup(state);
+  console.log(currentGroup);
   return {
-    currentGroupID: currentGroup !== null ? currentGroup.groupID : null,
+    currentGroupID:
+      currentGroup !== null && currentGroup !== undefined
+        ? currentGroup.groupID
+        : null,
     pending: getPendingStatus(state),
     addedMembers: getAddedMembers(state),
   };

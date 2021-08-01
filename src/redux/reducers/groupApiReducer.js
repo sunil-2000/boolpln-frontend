@@ -83,7 +83,7 @@ export default function groupApiReducer(state = initialState, action) {
       };
     case GET_GROUPS_SUCCESS: {
       let currentGroup = null;
-      if (state.currentGroup == null) {
+      if (state.currentGroup === null && action.payload.groups.length > 0) {
         currentGroup = action.payload.groups[0];
       }
       return {
