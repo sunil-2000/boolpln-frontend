@@ -1,16 +1,12 @@
-import {
-  getUserSuccess,
-  userError,
-  userPending,
-} from "../../actions/userApiActions";
+import { logout, userError, userPending } from "../../actions/userApiActions";
 import axios from "axios";
 
-function getUser() {
+function deleteUser() {
   return (dispatch) => {
     dispatch(userPending);
-    axios({ method: "get", url: "/api/current_user/" })
+    axios({ method: "delete", url: "/api/current_user/" })
       .then((res) => {
-        dispatch(getUserSuccess(res.data));
+        dispatch(logout);
       })
       .catch((error) => {
         let errorMsg = "fatal error";
@@ -22,4 +18,4 @@ function getUser() {
   };
 }
 
-export default getUser;
+export default deleteUser;

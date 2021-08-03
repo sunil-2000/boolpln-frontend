@@ -1,16 +1,26 @@
 import {
-  getUserSuccess,
+  createUserSuccess,
   userError,
   userPending,
 } from "../../actions/userApiActions";
 import axios from "axios";
 
-function getUser() {
+function createUser(firstName, lastName, email, username, password) {
   return (dispatch) => {
     dispatch(userPending);
-    axios({ method: "get", url: "/api/current_user/" })
+    axios({
+      method: "post",
+      url: "/api/users/",
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        username: username,
+        password: password,
+      },
+    })
       .then((res) => {
-        dispatch(getUserSuccess(res.data));
+        dispatch(createUserSuccess(res.data));
       })
       .catch((error) => {
         let errorMsg = "fatal error";
@@ -22,4 +32,4 @@ function getUser() {
   };
 }
 
-export default getUser;
+export default login;
