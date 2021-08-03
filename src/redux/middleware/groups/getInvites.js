@@ -19,10 +19,9 @@ function getInvites() {
       })
       .catch((error) => {
         let errorMsg = "fatal error";
-        if (error.response.status) {
-          errorMsg = error.response.status;
+        if ("response" in error) {
+          errorMsg = error.response;
         }
-
         dispatch(groupError(errorMsg));
       });
   };

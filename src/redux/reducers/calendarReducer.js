@@ -4,6 +4,7 @@ import {
   UPDATE_CALENDAR_SUCCESS,
   CALENDAR_ERROR,
   CALENDAR_PENDING,
+  CLEAR_ERROR,
 } from "../types";
 
 // initial state of any calendar
@@ -11,6 +12,7 @@ const initialState = {
   days: [],
   groupID: null,
   groupDays: [],
+  error: null,
 };
 
 // function for comparing which day came first
@@ -68,6 +70,11 @@ export default function calendarReducer(state = initialState, action) {
         pending: true,
       };
     }
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       // on default do nothing
       return state;
@@ -77,3 +84,4 @@ export default function calendarReducer(state = initialState, action) {
 // getters
 export const getDayList = (state) => state.calendarReducer.days;
 export const getCalendarGroup = (state) => state.calendarReducer.groupID;
+export const getCalError = (state) => state.calendarReducer.error;

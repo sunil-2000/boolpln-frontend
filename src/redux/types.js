@@ -34,3 +34,6 @@ export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
 export const USER_PENDING = "USER_PENDING";
 export const LOGOUT = "LOGOUT";
 export const USER_ERROR = "USER_ERROR";
+
+// general types
+export const CLEAR_ERROR = "CLEAR_ERROR";

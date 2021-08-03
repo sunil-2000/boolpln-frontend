@@ -6,6 +6,7 @@ import {
   LOGOUT,
   USER_PENDING,
   USER_ERROR,
+  CLEAR_ERROR,
 } from "../types";
 
 const initialState = {
@@ -85,6 +86,11 @@ export default function userApiReducer(state = initialState, action) {
         ...state,
         pending: true,
       };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       return state;
   }
@@ -98,3 +104,4 @@ export const getLastName = (state) => state.userApiReducer.lastName;
 export const getRefreshToken = (state) => state.userApiReducer.refreshToken;
 export const getAccessToken = (state) => state.userApiReducer.accessToken;
 export const getLoggedIn = (state) => state.userApiReducer.loggedIn;
+export const getUserError = (state) => state.userApiReducer.error;
