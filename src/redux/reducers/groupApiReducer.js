@@ -12,6 +12,7 @@ import {
   SEND_INVITE_SUCCESS,
   RENAME_GROUP_SUCCESS,
   LEAVE_GROUP_SUCCESS,
+  CLEAR_ERROR,
 } from "../types";
 
 const initialState = {
@@ -146,6 +147,11 @@ export default function groupApiReducer(state = initialState, action) {
       return {
         ...state,
         currentGroup: action.payload.currentGroup,
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
       };
     default:
       return state;

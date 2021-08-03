@@ -30,3 +30,6 @@ export const CALENDAR_PENDING = "CALENDAR_PENDING";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const USER_PENDING = "USER_PENDING";
 export const USER_ERROR = "USER_ERROR";
+
+// general types
+export const CLEAR_ERROR = "CLEAR_ERROR";

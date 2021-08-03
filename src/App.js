@@ -11,30 +11,46 @@ import { connect } from "react-redux";
 import { getGroupError } from "./redux/reducers/groupApiReducer.js";
 import { getCalError } from "./redux/reducers/calendarReducer.js";
 import { getUserError } from "./redux/reducers/userApiReducer.js";
+import { clearError } from "./redux/actions/general.js";
+
+const errorMapping = {
+  groupError: "Group Error!",
+  userError: "User Error!",
+  calError: "Calendar Error",
+};
 
 class App extends Component {
   componentDidUpdate(prevProps) {
     const currProps = ["userError", "groupError", "calError"];
     const newErrors = currProps.filter(
-      (errorType) => props[errorType] !== prevProps[errorType]
+      (errorType) =>
+        this.props[errorType] !== prevProps[errorType] &&
+        this.props[errorType] !== null
     );
+
     if (newErrors.length > 0) {
       newErrors.forEach((error) => {
+        console.log(error);
+        console.log(this.props[error]);
         store.addNotification({
-          title: "Group error!",
-          message: "" + this.props["error"],
-          type: "success",
+          title: errorMapping[error],
+          message: "" + this.props[error].data,
+          type: "danger",
           insert: "top",
-          container: "top-right",
+          container: "top-left",
           animationIn: ["animate__animated", "animate__fadeIn"],
           animationOut: ["animate__animated", "animate__fadeOut"],
           dismiss: {
             duration: 5000,
             onScreen: true,
+            pauseOnHover: true,
           },
         });
       });
+      this.props.clearError();
     }
+
+    // dispatch action to clear error field (clear after displaying to user)
   }
   render() {
     return (
@@ -64,4 +80,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { clearError })(App);

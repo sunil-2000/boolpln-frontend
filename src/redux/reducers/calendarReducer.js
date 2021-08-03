@@ -4,6 +4,7 @@ import {
   UPDATE_CALENDAR_SUCCESS,
   CALENDAR_ERROR,
   CALENDAR_PENDING,
+  CLEAR_ERROR,
 } from "../types";
 
 // initial state of any calendar
@@ -69,6 +70,11 @@ export default function calendarReducer(state = initialState, action) {
         pending: true,
       };
     }
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       // on default do nothing
       return state;

@@ -20,8 +20,8 @@ function getCalendar(groupID) {
       })
       .catch((error) => {
         let errorMsg = "fatal error";
-        if (error.response) {
-          errorMsg = error.response.status;
+        if ("response" in error) {
+          errorMsg = error.response;
         }
         dispatch(calendarError(errorMsg));
       });
