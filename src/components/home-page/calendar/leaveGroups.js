@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Button, Modal, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import leaveGroup from "../../../redux/middleware/groups/leaveGroup";
 import { getCurrentGroup } from "../../../redux/reducers/groupApiReducer";
 import { connect } from "react-redux";

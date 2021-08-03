@@ -10,6 +10,7 @@ import { getCurrentGroup } from "../../../redux/reducers/groupApiReducer.js";
 import classes from "../../../styles/calendar/groupInfo.module.css";
 import RenameGroup from "./renameGroup.js";
 import LeaveGroup from "./leaveGroups.js";
+import InviteContainer from "../shared/inviteContainer.js";
 
 class GroupInfo extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class GroupInfo extends Component {
     this.state = {
       showRename: false,
       showLeave: false,
+      showInvite: false,
     };
   }
   handleMemberList() {
@@ -64,6 +66,7 @@ class GroupInfo extends Component {
         <Button
           onClick={() => this.setState({ showRename: true })}
           className={classes.button}
+          disabled={this.props.currentGroup !== null ? false : true}
         >
           Rename Group
         </Button>
@@ -78,6 +81,18 @@ class GroupInfo extends Component {
         >
           Leave Group
         </Button>
+        <Button
+          disabled={this.props.currentGroup !== null ? false : true}
+          onClick={() => this.setState({ showInvite: true })}
+          className={classes.button}
+        >
+          Invite others
+        </Button>
+        <InviteContainer
+          isCreate={false}
+          show={this.state.showInvite}
+          handleClose={() => this.setState({ showInvite: false })}
+        ></InviteContainer>
         <LeaveGroup
           show={this.state.showLeave}
           handleClose={() => this.setState({ showLeave: false })}
