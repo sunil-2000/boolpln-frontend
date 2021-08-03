@@ -1,4 +1,9 @@
-import { GET_USER_SUCCESS, USER_PENDING, USER_ERROR } from "../types";
+import {
+  GET_USER_SUCCESS,
+  USER_PENDING,
+  USER_ERROR,
+  CLEAR_ERROR,
+} from "../types";
 
 const initialState = {
   username: "",
@@ -31,6 +36,11 @@ export default function userApiReducer(state = initialState, action) {
         ...state,
         pending: true,
       };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       return state;
   }
@@ -41,3 +51,4 @@ export const getUsername = (state) => state.userApiReducer.username;
 export const getEmail = (state) => state.userApiReducer.email;
 export const getFirstName = (state) => state.userApiReducer.firstName;
 export const getLastName = (state) => state.userApiReducer.lastName;
+export const getUserError = (state) => state.userApiReducer.error;

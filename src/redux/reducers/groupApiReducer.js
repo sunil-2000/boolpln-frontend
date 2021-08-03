@@ -12,6 +12,7 @@ import {
   SEND_INVITE_SUCCESS,
   RENAME_GROUP_SUCCESS,
   LEAVE_GROUP_SUCCESS,
+  CLEAR_ERROR,
 } from "../types";
 
 const initialState = {
@@ -31,6 +32,7 @@ export default function groupApiReducer(state = initialState, action) {
         pending: true,
       };
     case GROUP_ERROR:
+      console.log(action.error);
       return {
         ...state,
         error: action.error,
@@ -146,6 +148,11 @@ export default function groupApiReducer(state = initialState, action) {
         ...state,
         currentGroup: action.payload.currentGroup,
       };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       return state;
   }
@@ -157,3 +164,4 @@ export const getCurrentGroup = (state) => state.groupApiReducer.currentGroup;
 export const getPendingStatus = (state) => state.groupApiReducer.pending;
 export const getAddedMembers = (state) => state.groupApiReducer.addedMembers;
 export const getInvites = (state) => state.groupApiReducer.invites;
+export const getGroupError = (state) => state.groupApiReducer.error;

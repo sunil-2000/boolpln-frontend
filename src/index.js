@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-notifications-component/dist/theme.css";
 import App from "./App";
 import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
