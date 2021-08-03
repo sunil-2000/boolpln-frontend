@@ -13,6 +13,9 @@ import {
   RENAME_GROUP_SUCCESS,
   LEAVE_GROUP_SUCCESS,
   CLEAR_ERROR,
+  DELETE_ADDED_GROUP_MEMBER,
+  ADDED_GROUP_NAME,
+  CLEAR_ADDED_GROUP_NAME,
 } from "../types";
 
 const initialState = {
@@ -22,6 +25,7 @@ const initialState = {
   error: null,
   currentGroup: null,
   addedMembers: [],
+  addedGroupName: null,
 };
 
 export default function groupApiReducer(state = initialState, action) {
@@ -52,6 +56,7 @@ export default function groupApiReducer(state = initialState, action) {
         groups: groupsCopy,
         pending: false,
         currentGroup: addedGroup,
+        addedGroupName: null,
       };
     }
     case SEND_INVITE_SUCCESS:
@@ -131,13 +136,17 @@ export default function groupApiReducer(state = initialState, action) {
       };
     }
     // non api calls
-    case ADDED_GROUP_MEMBER:
+    case ADDED_GROUP_MEMBER: {
       let addedMembersCopy = [...state.addedMembers];
-      addedMembersCopy.push(action.payload.groupMember);
+      const updated = addedMembersCopy.filter(
+        (member) => member.id !== action.payload.id
+      );
+      updated.push(action.payload);
       return {
         ...state,
-        addedMembers: addedMembersCopy,
+        addedMembers: updated,
       };
+    }
     case CLEAR_GROUP_MEMBERS:
       return {
         ...state,
@@ -147,6 +156,25 @@ export default function groupApiReducer(state = initialState, action) {
       return {
         ...state,
         currentGroup: action.payload.currentGroup,
+      };
+    case DELETE_ADDED_GROUP_MEMBER: {
+      const copy = [...state.addedMembers];
+      const updated = copy.filter((member) => member.id !== action.payload.id);
+      return {
+        ...state,
+        addedMembers: updated,
+      };
+    }
+    case ADDED_GROUP_NAME: {
+      return {
+        ...state,
+        addedGroupName: action.payload.groupName,
+      };
+    }
+    case CLEAR_ADDED_GROUP_NAME:
+      return {
+        ...state,
+        addedGroupName: null,
       };
     case CLEAR_ERROR:
       return {
@@ -165,3 +193,5 @@ export const getPendingStatus = (state) => state.groupApiReducer.pending;
 export const getAddedMembers = (state) => state.groupApiReducer.addedMembers;
 export const getInvites = (state) => state.groupApiReducer.invites;
 export const getGroupError = (state) => state.groupApiReducer.error;
+export const getAddedGroupName = (state) =>
+  state.groupApiReducer.addedGroupName;

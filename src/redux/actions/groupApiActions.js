@@ -12,12 +12,29 @@ import {
   ADDED_GROUP_MEMBER,
   CLEAR_GROUP_MEMBERS,
   SELECT_GROUP,
+  DELETE_ADDED_GROUP_MEMBER,
+  ADDED_GROUP_NAME,
+  CLEAR_ADDED_GROUP_NAME,
 } from "../types";
 
 // non api actions
-export const addedGroupMember = (groupMember) => ({
+export const addedGroupName = (groupName) => ({
+  type: ADDED_GROUP_NAME,
+  payload: { groupName: groupName },
+});
+
+export const clearAddedGroupName = () => ({
+  type: CLEAR_ADDED_GROUP_NAME,
+});
+
+export const addedGroupMember = (groupMember, id) => ({
   type: ADDED_GROUP_MEMBER,
-  payload: { groupMember: groupMember },
+  payload: { groupMember: groupMember, id: id },
+});
+
+export const deleteAddedGroupMember = (id) => ({
+  type: DELETE_ADDED_GROUP_MEMBER,
+  payload: { id: id },
 });
 
 export const clearGroupMembers = () => ({

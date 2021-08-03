@@ -30,11 +30,16 @@ class App extends Component {
 
     if (newErrors.length > 0) {
       newErrors.forEach((error) => {
-        console.log(error);
-        console.log(this.props[error]);
+        let errormsg = "";
+        if (typeof this.props[error].data === "string") {
+          errormsg = this.props[error].data;
+        } else {
+          errormsg = "sorry something went wrong";
+        }
+
         store.addNotification({
           title: errorMapping[error],
-          message: "" + this.props[error].data,
+          message: errormsg,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -47,10 +52,9 @@ class App extends Component {
           },
         });
       });
+      // dispatch action to clear error field (clear after displaying to user)
       this.props.clearError();
     }
-
-    // dispatch action to clear error field (clear after displaying to user)
   }
   render() {
     return (

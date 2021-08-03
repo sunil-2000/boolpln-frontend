@@ -1,5 +1,5 @@
 import classes from "../../../styles/groups/groups.module.css";
-import GroupPopUp from "./group-pop-up.js";
+import InviteContainer from "../shared/inviteContainer";
 import { Component } from "react";
 import { Button } from "react-bootstrap";
 import Icon from "./icon.js";
@@ -51,10 +51,11 @@ class Groups extends Component {
         >
           Create Group
         </Button>
-        <GroupPopUp
+        <InviteContainer
+          isCreate={true}
           show={this.state.show}
           handleClose={() => this.setState({ show: false })}
-        ></GroupPopUp>
+        ></InviteContainer>
         <div className={classes.iconContainer}>{this.renderGroupIcons()}</div>
       </div>
     );
