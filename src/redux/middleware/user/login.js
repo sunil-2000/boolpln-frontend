@@ -1,25 +1,29 @@
 import {
-  getUserSuccess,
+  loginSuccess,
   userError,
   userPending,
 } from "../../actions/userApiActions";
 import axios from "axios";
 
-function getUser() {
+function login(username, password) {
   return (dispatch) => {
     dispatch(userPending);
-    axios({ method: "get", url: "/api/current_user/" })
+    axios({
+      method: "post",
+      url: "/api/token/",
+      data: { username: username, password: password },
+    })
       .then((res) => {
-        dispatch(getUserSuccess(res.data));
+        dispatch(loginSuccess(res.data));
       })
       .catch((error) => {
         let errorMsg = "fatal error";
-        if ("response" in error) {
-          errorMsg = error.response;
+        if (error.response) {
+          errorMsg = error.response.status;
         }
         dispatch(userError(errorMsg));
       });
   };
 }
 
-export default getUser;
+export default login;

@@ -28,7 +28,11 @@ export const CALENDAR_PENDING = "CALENDAR_PENDING";
 
 // user types
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const REFRESH_SUCCESS = "REFRESH_SUCCESS";
+export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
 export const USER_PENDING = "USER_PENDING";
+export const LOGOUT = "LOGOUT";
 export const USER_ERROR = "USER_ERROR";
 
 // general types
