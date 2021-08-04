@@ -2,6 +2,9 @@
 
 // calendar ops
 export const NEW_DAYS = "NEW_DAYS";
+export const NEW_TIME = "NEW_TIME";
+export const CLEAR_CALENDAR = "CLEAR_CALENDAR";
+export const CLEAR_SUBMIT = "CLEAR_SUBMIT";
 
 // group api
 export const CREATE_GROUP_SUCCESS = "CREATE_GROUP_SUCCESS";

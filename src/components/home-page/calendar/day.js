@@ -3,7 +3,6 @@ import Time from "./time";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
 import { connect } from "react-redux";
-import { addDay } from "../../../redux/actions/dayActions";
 import { getGroupDayList } from "../../../redux/reducers/calendarReducer";
 
 // class which represents each dat in the calendar
@@ -24,7 +23,7 @@ class Day extends React.Component {
   renderTimeSlot(i) {
     let fillColor = "";
     let data = [];
-    const week = this.props.week;
+    const week = [...this.props.week];
     if (week.length > 0) {
       const day = week[this.props.index];
       if (day.length > 0) {
@@ -46,28 +45,12 @@ class Day extends React.Component {
           ", " +
           i
         }
-        index={i}
+        dayIndex={this.props.index}
+        timeIndex={i}
         data={data}
         selected={this.state.userTimes[i]}
       />
     );
-  }
-
-  // function that handles a click on a time slot
-  handleClick(i) {
-    let timeSlots = this.state.times.slice(); // create  a shallow copy of the array of time slots
-    let userTimes = this.state.userTimes.slice();
-    // if slot has been selected, mark as deselected, otherwise do opposite
-    if (timeSlots[i] === "") {
-      timeSlots[i] = "green";
-      userTimes[i] = true;
-    } else {
-      timeSlots[i] = "";
-      userTimes[i] = false;
-    }
-
-    this.setState({ times: timeSlots, userTimes: userTimes }); // set day's state
-    this.props.addDay(this.state.date, userTimes);
   }
 
   // renders 24 timeslots as a day
@@ -79,11 +62,6 @@ class Day extends React.Component {
     }
 
     return timeLst; // return list
-  }
-
-  // when component mounts, call redux action to save state
-  componentDidMount() {
-    this.props.addDay(this.state.date, this.state.userTimes);
   }
 
   // function for assigning special css. Is this necessary, and if so, should it be moved outside?
@@ -110,10 +88,9 @@ class Day extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const dayList = getGroupDayList(state);
   return {
-    week: dayList,
+    week: getGroupDayList(state),
   };
 };
 
-export default connect(mapStateToProps, { addDay })(Day); // attach redux action to day as a prop
+export default connect(mapStateToProps)(Day); // attach redux action to day as a prop

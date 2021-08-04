@@ -14,7 +14,7 @@
 }
 
 .selected {
-  border: 2px solid black;
+  border: 1px dotted #616060;
   float: left;
   font-size: 24px;
   font-weight: bold;
