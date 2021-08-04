@@ -85,3 +85,4 @@ export default function calendarReducer(state = initialState, action) {
 export const getDayList = (state) => state.calendarReducer.days;
 export const getCalendarGroup = (state) => state.calendarReducer.groupID;
 export const getCalError = (state) => state.calendarReducer.error;
+export const getGroupDayList = (state) => state.calendarReducer.groupDays;
