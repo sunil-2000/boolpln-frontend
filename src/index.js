@@ -25,7 +25,7 @@ store.subscribe(() => {
 });
 
 const refreshAuthLogic = async (failedRequest) => {
-  console.log(await store.dispatch(refresh(getRefreshToken(store.getState()))));
+  await store.dispatch(refresh(getRefreshToken(store.getState())));
   return Promise.resolve();
 };
 
