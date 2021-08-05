@@ -3,7 +3,7 @@ import Time from "./time";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
 import { connect } from "react-redux";
-import { addDay } from "../../../redux/actions/dayActions";
+import { getGroupDayList } from "../../../redux/reducers/calendarReducer";
 
 // class which represents each dat in the calendar
 class Day extends React.Component {
@@ -16,17 +16,25 @@ class Day extends React.Component {
       date: this.props.full_date, // full date of the day
       userTimes: Array(24).fill(false),
     };
+    this.renderTimeSlot = this.renderTimeSlot.bind(this);
   }
 
   // function that  renders a single timeslot on each day
   renderTimeSlot(i) {
-    let on = this.state.times[i] !== "" ? true : false; // whether the timeslot is "on"
-
+    let fillColor = "";
+    let data = [];
+    const week = [...this.props.week];
+    if (week.length > 0) {
+      const day = week[this.props.index];
+      if (day.length > 0) {
+        fillColor = day[i] !== null ? "green" : "";
+        data = day[i];
+      }
+    }
     // the key should be able to be just i (debug only then)
     return (
       <Time
-        fillColor={this.state.times[i]}
-        selected={on}
+        fillColor={fillColor}
         onClick={() => this.handleClick(i)}
         key={
           this.props.month +
@@ -35,29 +43,14 @@ class Day extends React.Component {
           "/" +
           this.props.year +
           ", " +
-          i +
-          ", " +
-          on
+          i
         }
+        dayIndex={this.props.index}
+        timeIndex={i}
+        data={data}
+        selected={this.state.userTimes[i]}
       />
     );
-  }
-
-  // function that handles a click on a time slot
-  handleClick(i) {
-    let timeSlots = this.state.times.slice(); // create  a shallow copy of the array of time slots
-    let userTimes = this.state.userTimes.slice();
-    // if slot has been selected, mark as deselected, otherwise do opposite
-    if (timeSlots[i] === "") {
-      timeSlots[i] = "green";
-      userTimes[i] = true;
-    } else {
-      timeSlots[i] = "";
-      userTimes[i] = false;
-    }
-
-    this.setState({ times: timeSlots, userTimes: userTimes }); // set day's state
-    this.props.addDay(this.state.date, userTimes);
   }
 
   // renders 24 timeslots as a day
@@ -69,11 +62,6 @@ class Day extends React.Component {
     }
 
     return timeLst; // return list
-  }
-
-  // when component mounts, call redux action to save state
-  componentDidMount() {
-    this.props.addDay(this.state.date, this.state.userTimes);
   }
 
   // function for assigning special css. Is this necessary, and if so, should it be moved outside?
@@ -99,4 +87,10 @@ class Day extends React.Component {
   }
 }
 
-export default connect(null, { addDay })(Day); // attach redux action to day as a prop
+const mapStateToProps = (state) => {
+  return {
+    week: getGroupDayList(state),
+  };
+};
+
+export default connect(mapStateToProps)(Day); // attach redux action to day as a prop

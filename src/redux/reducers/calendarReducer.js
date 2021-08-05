@@ -1,18 +1,25 @@
 import {
-  NEW_DAYS,
+  NEW_TIME,
   GET_CALENDAR_SUCCESS,
   UPDATE_CALENDAR_SUCCESS,
   CALENDAR_ERROR,
   CALENDAR_PENDING,
   CLEAR_ERROR,
+  CLEAR_CALENDAR,
 } from "../types";
+
+const days = [];
+for (let i = 0; i < 7; i++) {
+  days.push(Array(24).fill(false));
+}
 
 // initial state of any calendar
 const initialState = {
-  days: [],
+  days: days,
   groupID: null,
   groupDays: [],
   error: null,
+  submit: false,
 };
 
 // function for comparing which day came first
@@ -24,25 +31,14 @@ function dayComparator(i, j) {
 export default function calendarReducer(state = initialState, action) {
   // go over each action type
   switch (action.type) {
-    case NEW_DAYS:
-      let { date, timeSlots } = action.payload; // get date and selected timeslots
-
-      // generate date in UTC
-      const utcDate =
-        date.getUTCDate() +
-        "/" +
-        date.getUTCMonth() +
-        "/" +
-        date.getUTCFullYear();
-      let itemsCopy = [...state.days]; // deep copy of days
-      let updated = itemsCopy.filter((i) => i.utcDate !== utcDate); // keep other days
-      updated.push({ date: date, utcDate: utcDate, timeSlots: timeSlots }); // add new day with new info
-      updated.sort((i, j) => dayComparator(i.date, j.date)); // sort for readability
-
-      // return tthe updated days
+    case NEW_TIME:
+      let weekCopy = [...state.days];
+      let dayCopy = [...weekCopy[action.payload.dayIndex]];
+      dayCopy[action.payload.timeIndex] = action.payload.value;
+      weekCopy[action.payload.dayIndex] = dayCopy;
       return {
         ...state,
-        days: updated,
+        days: weekCopy,
       };
     case GET_CALENDAR_SUCCESS:
       return {
@@ -70,6 +66,17 @@ export default function calendarReducer(state = initialState, action) {
         pending: true,
       };
     }
+    case CLEAR_CALENDAR: {
+      const days = [];
+      for (let i = 0; i < 7; i++) {
+        days.push(Array(24).fill(false));
+      }
+      return {
+        ...state,
+        days: days,
+        submit: true,
+      };
+    }
     case CLEAR_ERROR:
       return {
         ...state,
@@ -85,3 +92,5 @@ export default function calendarReducer(state = initialState, action) {
 export const getDayList = (state) => state.calendarReducer.days;
 export const getCalendarGroup = (state) => state.calendarReducer.groupID;
 export const getCalError = (state) => state.calendarReducer.error;
+export const getGroupDayList = (state) => state.calendarReducer.groupDays;
+export const getSubmit = (state) => state.calendarReducer.submit;

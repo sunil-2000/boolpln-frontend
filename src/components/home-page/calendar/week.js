@@ -66,6 +66,7 @@ class Week extends React.Component {
       let end = x === days - 1 ? true : false;
       dayLst.push(
         <Day
+          index={x}
           value={dateMap[curDay]}
           hours={13}
           end={end}
