@@ -33,7 +33,7 @@ export const loginSuccess = (data) => ({
 export const refreshSuccess = (data) => ({
   type: REFRESH_SUCCESS,
   payload: {
-    refreshToken: data.refresh,
+    accessToken: data.access,
   },
 });
 

@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers/index.js";
 import thunk from "redux-thunk";
+import { userLoad } from "./userStorage";
 
 // setup file for redux
 
@@ -18,6 +19,7 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 );
 
-const store = createStore(rootReducer, enhancer);
+const userData = userLoad();
+const store = createStore(rootReducer, userData, enhancer);
 
 export default store;

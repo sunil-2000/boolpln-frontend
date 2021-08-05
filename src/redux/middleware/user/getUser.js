@@ -7,7 +7,7 @@ import axios from "axios";
 
 function getUser() {
   return (dispatch) => {
-    dispatch(userPending);
+    dispatch(userPending());
     axios({ method: "get", url: "/api/current_user/" })
       .then((res) => {
         dispatch(getUserSuccess(res.data));

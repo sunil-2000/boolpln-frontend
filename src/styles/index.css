@@ -20,7 +20,7 @@ ul {
 @import url(groups/groups.module.css);
 
 /* imports for login-page styling */
-@import url(login-page/log-in-page.css);
+@import url(login-page/log-in-page.module.css);
 @import url(login-page/log-in-panel.module.css);
 
 /* imports for signup page styling */

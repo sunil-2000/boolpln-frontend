@@ -11,6 +11,8 @@ import getUser from "../../redux/middleware/user/getUser.js";
 import { getCurrentGroup } from "../../redux/reducers/groupApiReducer.js";
 import { getCalendarGroup } from "../../redux/reducers/calendarReducer.js";
 import getCalendar from "../../redux/middleware/calendar/getCalendar.js";
+import { Redirect } from "react-router";
+import { getLoggedIn } from "../../redux/reducers/userApiReducer.js";
 
 class Home extends Component {
   // ReactNotifications element locked in place, any other file can add
@@ -29,6 +31,10 @@ class Home extends Component {
   }
 
   componentDidUpdate() {
+    if (!this.props.loggedIn) {
+      return;
+    }
+
     const date = new Date();
     if (
       this.props.groupApiGroup !== null &&
@@ -42,6 +48,10 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.loggedIn) {
+      return;
+    }
+
     //this.props.getInvites();
     const { getGroups, getInvites, getUser } = this.props;
     getGroups();
@@ -50,6 +60,10 @@ class Home extends Component {
   }
 
   render() {
+    if (!this.props.loggedIn) {
+      return <Redirect to="/start" />;
+    }
+
     return (
       <div className={classes.page}>
         <div className={classes.nav}>
@@ -69,6 +83,7 @@ function mapStateToProps(state) {
 
   return {
     groupApiGroup: groupApiGroup ? groupApiGroup.groupID : null,
+    loggedIn: getLoggedIn(state),
   };
 }
 

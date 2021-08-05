@@ -7,7 +7,7 @@ import axios from "axios";
 
 function createUser(firstName, lastName, email, username, password) {
   return (dispatch) => {
-    dispatch(userPending);
+    dispatch(userPending());
     axios({
       method: "post",
       url: "/api/users/",
@@ -17,6 +17,7 @@ function createUser(firstName, lastName, email, username, password) {
         email: email,
         username: username,
         password: password,
+        skipAuthRefresh: true,
       },
     })
       .then((res) => {
@@ -24,12 +25,12 @@ function createUser(firstName, lastName, email, username, password) {
       })
       .catch((error) => {
         let errorMsg = "fatal error";
-        if (error.response) {
-          errorMsg = error.response.status;
+        if ("response" in error) {
+          errorMsg = error.response;
         }
         dispatch(userError(errorMsg));
       });
   };
 }
 
-export default login;
+export default createUser;

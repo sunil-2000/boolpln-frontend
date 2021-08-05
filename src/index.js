@@ -6,22 +6,34 @@ import "react-notifications-component/dist/theme.css";
 import App from "./App";
 import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
-import Refresh from "./flow/security/refresh";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import {
+  getRefreshToken,
+  getAccessToken,
+  getLoggedIn,
+} from "./redux/reducers/userApiReducer";
+import refresh from "./redux/middleware/user/refresh";
 
 axios.defaults.baseURL = "https://scheduler-gang.herokuapp.com";
 
+store.subscribe(() => {
+  const userDataToSave = store.getState();
+  localStorage.setItem("refreshToken", getRefreshToken(userDataToSave));
+  localStorage.setItem("accessToken", getAccessToken(userDataToSave));
+  localStorage.setItem("loggedIn", getLoggedIn(userDataToSave));
+});
+
 const refreshAuthLogic = async (failedRequest) => {
-  await Refresh.refresh();
+  await store.dispatch(refresh(getRefreshToken(store.getState())));
   return Promise.resolve();
 };
 
 axios.interceptors.request.use(
   (request) => {
     if (request.url.includes("current_user")) {
-      console.log("inside interceptor");
-      request.headers["Authorization"] = "Bearer " + Refresh.accessToken;
+      request.headers["Authorization"] =
+        "Bearer " + getAccessToken(store.getState());
       request.headers["Content-type"] = "application/json";
     }
     return request;
@@ -32,7 +44,6 @@ axios.interceptors.request.use(
 );
 
 createAuthRefreshInterceptor(axios, refreshAuthLogic);
-Refresh.startUp();
 ReactDOM.render(
   <Provider store={store}>
     <App />
