@@ -2,16 +2,16 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { slideInDown } from "react-animations";
 import styled, { keyframes } from "styled-components";
-import UserInfo from "../../flow/user-info/user-info.js";
 import classes from "../../styles/login-page/log-in-panel.module.css";
+import login from "../../redux/middleware/user/login.js";
+import { connect } from "react-redux";
 
 const Tada = styled.div`
   animation: 2s ${keyframes`${slideInDown}`};
 `;
 
 // signup panel
-const Panel = () => {
-
+const Panel = (props) => {
   // history tracker
   const history = useHistory();
   function goBack(path) {
@@ -31,21 +31,11 @@ const Panel = () => {
     setPassword(event.target.value);
   }
 
-  // uses hook to direct to home page, otherwise prints error to console
-  function processLogin(result) {
-    if (result === true) {
-      history.push("/");
-    } else {
-      console.log("invalid login");
-    }
-  }
-
   // helper called when login form is submitted
   async function loginHelper(event) {
     event.preventDefault(); // very important else form autosubmits
-    let result = await UserInfo.login(username, password); // actually sends request, gets result
-    console.log("loginHelper:" + result); // prints result for testing
-    processLogin(result);
+    props.login(username, password);
+    console.log("loginHelper:"); // prints result for testing
   }
 
   // actual html structure of login panel
@@ -58,7 +48,7 @@ const Panel = () => {
             Username
             <input
               className={classes.formInput}
-              type='text'
+              type="text"
               value={username}
               onChange={handleUsernameChange}
             />
@@ -67,12 +57,12 @@ const Panel = () => {
             Password
             <input
               className={classes.formInput}
-              type='password'
+              type="password"
               value={password}
               onChange={handlePasswordChange}
             />
           </label>
-          <input className={classes.submit} type='submit' value='Log In' />
+          <input className={classes.submit} type="submit" value="Log In" />
         </form>
         <button className={classes.goBack} onClick={() => goBack("start")}>
           Back
@@ -82,4 +72,4 @@ const Panel = () => {
   );
 };
 
-export default Panel;
+export default connect(null, { login })(Panel);

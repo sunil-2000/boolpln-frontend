@@ -1,9 +1,10 @@
 import { Component } from "react";
 import { Nav } from "react-bootstrap";
-import UserInfo from "../../../flow/user-info/user-info.js";
 import GroupInvites from "./group-invites";
 import Settings from "./settings";
 import React from "react";
+import { logout } from "../../../redux/actions/userApiActions.js";
+import { connect } from "react-redux";
 
 class NavBar extends Component {
   constructor(props) {
@@ -47,11 +48,7 @@ class NavBar extends Component {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
-              eventKey="logout"
-              href="/start"
-              onSelect={() => UserInfo.logout()}
-            >
+            <Nav.Link eventKey="logout" onSelect={() => this.props.logout()}>
               Logout
             </Nav.Link>
           </Nav.Item>
@@ -77,4 +74,4 @@ class NavBar extends Component {
     );
   }
 }
-export default NavBar;
+export default connect(null, { logout })(NavBar);

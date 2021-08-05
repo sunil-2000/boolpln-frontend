@@ -3,14 +3,14 @@ import { useState } from "react";
 import { slideInUp } from "react-animations";
 import styled, { keyframes } from "styled-components";
 import classes from "../../styles/signup-page/sign-up-panel.module.css";
-import UserInfo from "../../flow/user-info/user-info.js";
+import createUser from "../../redux/middleware/user/createUser";
+import { connect } from "react-redux";
 
 const Tada = styled.div`
   animation: 2s ${keyframes`${slideInUp}`};
 `;
 
-const Panel = () => {
-
+const Panel = (props) => {
   // history tracker
   const history = useHistory();
   function goBack(path) {
@@ -41,27 +41,11 @@ const Panel = () => {
     setPassword(event.target.value);
   }
 
-  // processes signup, if valid moves to home page, else prints to console
-  function processSignUp(result) {
-    if (result === true) {
-      history.push("/");
-    } else {
-      console.log("invalid signup");
-    }
-  }
-
   // helper called when signup form is submitted
   async function signUpHelper(event) {
     event.preventDefault(); // very important else form autosubmits
-    let result = await UserInfo.signup(
-      firstName,
-      lastName,
-      email,
-      username,
-      password
-    ); // actually sends request, gets result
-    console.log("signUpHelper:" + result); // prints result for testing
-    processSignUp(result);
+    props.createUser(firstName, lastName, email, username, password);
+    console.log("signUpHelper:"); // prints result for testing
   }
 
   // actual html structure of signup panel
@@ -75,20 +59,20 @@ const Panel = () => {
               First Name
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={firstName}
                 onChange={firstNameChange}
-                required='required'
+                required="required"
               />
             </label>
             <label className={classes.formLabel}>
               Last Name
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={lastName}
                 onChange={lastNameChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
@@ -97,20 +81,20 @@ const Panel = () => {
               Email
               <input
                 className={classes.formInput}
-                type='email'
+                type="email"
                 value={email}
                 onChange={handleEmailChange}
-                required='required'
+                required="required"
               />
             </label>
             <label className={classes.formLabel}>
               Username
               <input
                 className={classes.formInput}
-                type='text'
+                type="text"
                 value={username}
                 onChange={handleUsernameChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
@@ -119,15 +103,15 @@ const Panel = () => {
               Password
               <input
                 className={classes.formInput}
-                type='password'
+                type="password"
                 value={password}
                 onChange={handlePasswordChange}
-                required='required'
+                required="required"
               />
             </label>
           </div>
           <div className={classes.row}>
-            <input className={classes.submit} type='submit' value='Sign Up' />
+            <input className={classes.submit} type="submit" value="Sign Up" />
           </div>
         </form>
         <div className={classes.row}>
@@ -140,4 +124,4 @@ const Panel = () => {
   );
 };
 
-export default Panel;
+export default connect(null, { createUser })(Panel);

@@ -8,11 +8,12 @@ import axios from "axios";
 
 function refresh(refreshToken) {
   return (dispatch) => {
-    dispatch(userPending);
-    axios({
+    dispatch(userPending());
+    return axios({
       method: "post",
       url: "/api/token/refresh/",
       data: { refresh: refreshToken },
+      skipAuthRefresh: true,
     })
       .then((res) => {
         dispatch(refreshSuccess(res.data));

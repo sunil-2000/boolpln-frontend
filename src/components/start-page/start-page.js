@@ -1,37 +1,16 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import Panel from "./start-panel.js";
 import classes from "../../styles/start-page/start-page.module.css";
-import Credentials from "../../flow/security/credentials.js";
+import { connect } from "react-redux";
+import { getLoggedIn } from "../../redux/reducers/userApiReducer.js";
+import { Redirect } from "react-router";
 
 // class wrapper for start page
 class Start extends Component {
-  // constructor
-  constructor(props) {
-    super(props); // call super
-
-    // set credentials state to false
-    this.state = {
-      credentials: false,
-    };
-  }
-
-  // auto-called on mount to DOM
-  async componentDidMount() {
-    // check credentials
-    const result = await Credentials.checkCredentials();
-
-    // set state based on success
-    this.setState({
-      credentials: result,
-    });
-  }
-
   // renders in the login panels
   render() {
-    // redirect if has valid credential
-    if (this.state.credentials) {
-      return <Redirect to='/' />;
+    if (this.props.loggedIn) {
+      return <Redirect to="/" />;
     }
 
     return (
@@ -42,4 +21,10 @@ class Start extends Component {
   }
 }
 
-export default Start;
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: getLoggedIn(state),
+  };
+};
+
+export default connect(mapStateToProps)(Start);

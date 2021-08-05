@@ -105,3 +105,4 @@ export const getRefreshToken = (state) => state.userApiReducer.refreshToken;
 export const getAccessToken = (state) => state.userApiReducer.accessToken;
 export const getLoggedIn = (state) => state.userApiReducer.loggedIn;
 export const getUserError = (state) => state.userApiReducer.error;
+export const getUserPending = (state) => state.userApiReducer.pending;
