@@ -22,11 +22,6 @@ const initialState = {
   submit: false,
 };
 
-// function for comparing which day came first
-function dayComparator(i, j) {
-  return i > j ? 1 : -1;
-}
-
 // reducer for setting selected days
 export default function calendarReducer(state = initialState, action) {
   // go over each action type

@@ -21,6 +21,7 @@ class GroupInfo extends Component {
       showInvite: false,
     };
   }
+
   handleMemberList() {
     const currentGroup = this.props.currentGroup;
     let result = [];
@@ -48,18 +49,18 @@ class GroupInfo extends Component {
       <>
         {this.handleGroupName()}
         <OverlayTrigger
-          placement='right'
-          trigger='click'
+          placement="right"
+          trigger={["hover", "focus"]}
           overlay={
             <Popover>
-              <Popover.Title as='h3'>
+              <Popover.Title as="h3">
                 <strong>Members</strong>
               </Popover.Title>
               <PopoverContent>{this.handleMemberList()}</PopoverContent>
             </Popover>
           }
         >
-          <Button className={classes.button} variant='success'>
+          <Button className={classes.button} variant="success">
             Group Members
           </Button>
         </OverlayTrigger>

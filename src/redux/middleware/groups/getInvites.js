@@ -9,7 +9,6 @@ import axios from "axios";
 function getInvites() {
   return (dispatch) => {
     dispatch(groupPending());
-
     axios({
       method: "get",
       url: "/api/current_user/get_pending_groups/",

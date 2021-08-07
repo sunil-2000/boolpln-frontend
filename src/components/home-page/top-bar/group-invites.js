@@ -18,7 +18,6 @@ class GroupInvites extends Component {
       );
     } else {
       let result = [];
-      console.log(inviteList);
       inviteList.forEach((i) => {
         // process element by packaging it into div
         // by calling renderInvite
@@ -44,12 +43,12 @@ class GroupInvites extends Component {
         <Modal
           show={this.props.show}
           onHide={this.props.handleClose}
-          aria-labelledby='90polk--contained-modal-title-vcenter'
+          aria-labelledby="90polk--contained-modal-title-vcenter"
           centered
           scrollable={true}
         >
           <Modal.Header closeButton>
-            <Modal.Title id='contained-modal-title-vcenter'>
+            <Modal.Title id="contained-modal-title-vcenter">
               Group Notifications
             </Modal.Title>
           </Modal.Header>

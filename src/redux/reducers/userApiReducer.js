@@ -63,18 +63,6 @@ export default function userApiReducer(state = initialState, action) {
         loggedIn: true,
         pending: false,
       };
-    case LOGOUT:
-      return {
-        ...state,
-        username: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-        accessToken: "",
-        refreshToken: "",
-        loggedIn: false,
-        pending: false,
-      };
     case USER_ERROR:
       return {
         ...state,

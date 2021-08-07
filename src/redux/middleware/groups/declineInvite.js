@@ -9,8 +9,8 @@ function declineInvite(groupID, inviteID) {
   return (dispatch) => {
     dispatch(groupPending());
     return axios({
-      method: "post",
-      url: "/api/current_user/accept_invite/",
+      method: "delete",
+      url: "/api/current_user/decline_invite/",
       data: {
         groupID: groupID,
       },

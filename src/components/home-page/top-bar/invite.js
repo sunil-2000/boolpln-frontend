@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import acceptInvite from "../../../redux/middleware/groups/acceptInvite";
 import declineInvite from "../../../redux/middleware/groups/declineInvite";
+import getInvites from "../../../redux/middleware/groups/getInvites";
+import getGroups from "../../../redux/middleware/groups/getGroups";
 
 class Invite extends Component {
   constructor(props) {
@@ -14,13 +16,18 @@ class Invite extends Component {
       inviteID: this.props.inviteID,
     };
     this.handleAccept = this.handleAccept.bind(this);
+    this.handleReject = this.handleReject.bind(this);
   }
+
   handleAccept() {
     this.props.acceptInvite(this.state.groupID, this.state.inviteID);
+    this.props.getInvites();
+    this.props.getGroups();
   }
 
   handleReject() {
     this.props.declineInvite(this.state.groupID, this.state.inviteID);
+    this.props.getInvites();
   }
 
   render() {
@@ -34,14 +41,14 @@ class Invite extends Component {
         <div className={classes.buttonContainer}>
           <Button
             className={classes.button}
-            variant='success'
+            variant="success"
             onClick={this.handleAccept}
           >
             Accept
           </Button>
           <Button
             className={classes.button}
-            variant='danger'
+            variant="danger"
             onClick={this.handleReject}
           >
             Reject
@@ -56,6 +63,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       acceptInvite: acceptInvite,
       declineInvite: declineInvite,
+      getInvites: getInvites,
+      getGroups: getGroups,
     },
     dispatch
   );

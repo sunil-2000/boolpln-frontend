@@ -76,12 +76,16 @@ export default function groupApiReducer(state = initialState, action) {
         groups: groupsCopy,
         invites: updatedInvites,
         pending: false,
+        currentGroup:
+          state.currentGroup !== null
+            ? action.payload.acceptedGroup
+            : state.currentGroup,
       };
     }
     case DECLINE_INVITE_SUCCESS:
       let invitesCopy = [...state.invites];
       let updatedInvites = invitesCopy.filter(
-        (invite) => invite.id !== action.payload.inviteID
+        (invite) => invite.inviteID !== action.payload.inviteID
       );
       return {
         ...state,
@@ -91,7 +95,10 @@ export default function groupApiReducer(state = initialState, action) {
     case GET_GROUPS_SUCCESS: {
       let currentGroup = null;
       if (state.currentGroup === null && action.payload.groups.length > 0) {
+        console.log("ass buckets");
         currentGroup = action.payload.groups[0];
+      } else {
+        currentGroup = state.currentGroup;
       }
       return {
         ...state,
