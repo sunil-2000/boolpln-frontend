@@ -24,7 +24,10 @@ class Settings extends Component {
             <Modal.Title>Settings</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {this.props.username + " " + this.props.firstName}
+            <h1>Hi {this.props.firstName}!</h1>
+            <h2>Account Info:</h2>
+            <p>Username: {this.props.username}</p>
+            <p>Email: {this.props.email}</p>
           </Modal.Body>
         </Modal>
       </>
