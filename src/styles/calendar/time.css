@@ -1,12 +1,11 @@
 /* corresponds to time.js */
 .time {
   border: 1px dotted #616060;
-  background: #fff;
+  background: #35363a;
   float: left;
   font-size: 24px;
   font-weight: bold;
   height: 1.75em;
-  width: 6em;
   margin-right: -1px;
   margin-top: -1px;
   text-align: center;
@@ -19,7 +18,6 @@
   font-size: 24px;
   font-weight: bold;
   height: 1.75em;
-  width: 6em;
   margin-right: -1px;
   margin-top: -1px;
   text-align: center;

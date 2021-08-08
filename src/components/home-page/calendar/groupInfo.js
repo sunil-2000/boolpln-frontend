@@ -47,7 +47,6 @@ class GroupInfo extends Component {
   render() {
     return (
       <>
-        {this.handleGroupName()}
         <OverlayTrigger
           placement="right"
           trigger={["hover", "focus"]}

@@ -4,6 +4,8 @@ import "react-notifications-component/dist/theme.css";
 import "animate.css";
 import { connect } from "react-redux";
 import { getGroupDayList } from "../../../redux/reducers/calendarReducer";
+import Col from "react-bootstrap/Col";
+import classes from "../../../styles/home-page/home.module.css";
 
 // class which represents each dat in the calendar
 class Day extends React.Component {
@@ -73,16 +75,18 @@ class Day extends React.Component {
   // actually renders the page
   render() {
     return (
-      <div className='day-container'>
-        <div className={this.handleBorderOverlap(this.props.end)}>
-          <div className='date-num'>{this.props.date}</div>
-          <div className='date-name'>{this.props.value}</div>
+      <Col className={classes.noPadding}>
+        <div className="day-container">
+          <div className={this.handleBorderOverlap(this.props.end)}>
+            <div className="date-num">{this.props.date}</div>
+            <div className="date-name">{this.props.value}</div>
+          </div>
+          <div className="day-column">
+            {this.renderDay()}
+            {/* allow switch for am/pm, and eventually allow arg for renderDay to be derived from props*/}
+          </div>
         </div>
-        <div className='day-column'>
-          {this.renderDay()}
-          {/* allow switch for am/pm, and eventually allow arg for renderDay to be derived from props*/}
-        </div>
-      </div>
+      </Col>
     );
   }
 }

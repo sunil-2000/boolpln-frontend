@@ -13,7 +13,6 @@
   margin-bottom: 0.25em;
   margin-top: 0.25em;
   font-size: 5em;
-  font-family: Open Sans, sans-serif;
   color: #5e5e5e;
 }
 
@@ -30,7 +29,6 @@
 }
 
 .timeLabelTag {
-  border: 1px solid #c4c4c4;
   height: 8em;
   display: flex;
   flex-shrink: 0;
@@ -40,22 +38,39 @@
   padding-bottom: 0.5em;
   position: sticky;
   top: 0;
-  background-color: #eeeeee;
 }
 
 .timeLabelsContainer {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  background-color: #4c4c4d;
 }
 
 .monthContainer {
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  background: #12c2e9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f64f59,
+    #c471ed,
+    #12c2e9
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f64f59,
+    #c471ed,
+    #12c2e9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .groupName {
   margin: 1em;
   padding: 1em;
+}
+
+.noPadding {
+  padding: 0 !important;
 }

@@ -4,6 +4,9 @@ import Submit from "./submit.js";
 import TimeSlotLabel from "./time-slot-label.js";
 import GroupInfo from "./groupInfo.js";
 import classes from "../../../styles/calendar/week.module.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const dateMap = {
   0: "Sun",
@@ -112,13 +115,19 @@ class Week extends React.Component {
             <Submit></Submit>
           </div>
           <div className={classes.weekContainer}>
-            <div className={classes.timeLabelsContainer}>
-              <div className={classes.timeLabelTag}></div>
-              <div className={classes.timeLabelsColumn}>
-                {this.renderLabels(12)}
-              </div>
-            </div>
-            {this.renderDaysWeek(7)}
+            <Container fluid>
+              <Row>
+                <Col xs={1} className={classes.noPadding}>
+                  <div className={classes.timeLabelsContainer}>
+                    <div className={classes.timeLabelTag}></div>
+                    <div className={classes.timeLabelsColumn}>
+                      {this.renderLabels(12)}
+                    </div>
+                  </div>
+                </Col>
+                {this.renderDaysWeek(7)}
+              </Row>
+            </Container>
           </div>
         </div>
       </>

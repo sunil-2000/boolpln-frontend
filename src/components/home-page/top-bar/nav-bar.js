@@ -5,6 +5,7 @@ import Settings from "./settings";
 import React from "react";
 import { logout } from "../../../redux/actions/userApiActions.js";
 import { connect } from "react-redux";
+import classes from "../../../styles/home-page/home.module.css";
 
 class NavBar extends Component {
   constructor(props) {
@@ -35,7 +36,11 @@ class NavBar extends Component {
           className="justify-content-end"
         >
           <Nav.Item>
-            <Nav.Link eventKey="home" href="/">
+            <Nav.Link
+              eventKey="home"
+              href="/"
+              className={classes.calendarButton}
+            >
               My Calendars
             </Nav.Link>
           </Nav.Item>
@@ -48,8 +53,12 @@ class NavBar extends Component {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="logout" onSelect={() => this.props.logout()}>
-              Logout
+            <Nav.Link
+              eventKey="logout"
+              onSelect={() => this.props.logout()}
+              className={classes.logoutButton}
+            >
+              Log Out
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>

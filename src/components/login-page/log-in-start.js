@@ -53,7 +53,7 @@ const Login = (props) => {
         />
       </div>
 
-      <button type="submit" className="btn btn-dark btn-lg btn-block">
+      <button type="submit" className="btn btn-light btn-lg btn-block">
         Sign in
       </button>
       <p className={classes.forgotPassword}>

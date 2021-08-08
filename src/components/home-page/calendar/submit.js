@@ -8,25 +8,27 @@ import {
 } from "../../../redux/reducers/calendarReducer";
 import { bindActionCreators } from "redux";
 import updateCalendar from "../../../redux/middleware/calendar/updateCalendar";
-import { clearCalendar } from "../../../redux/actions/calendarActions";
+
 class Submit extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
+    console.log("in click");
+    const days = this.props.days;
+    const updated = days.map((day) => day.timeSlots);
     console.log(this.props.groupID);
-    console.log(this.props.days);
-    this.props.updateCalendar(this.props.groupID, this.props.days);
-    this.props.clearCalendar();
+    this.props.updateCalendar(this.props.groupID, updated);
+
     // move api call to redux getDays function
   }
   render() {
     return (
       <Button
         className={classes.button}
-        variant='primary'
-        size='lg'
+        variant="primary"
+        size="lg"
         onClick={this.handleClick}
       >
         Submit
@@ -45,7 +47,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       updateCalendar: updateCalendar,
-      clearCalendar: clearCalendar,
     },
     dispatch
   );

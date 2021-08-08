@@ -103,7 +103,7 @@ const SignUp = (props) => {
         />
       </div>
 
-      <button type="submit" className="btn btn-dark btn-lg btn-block">
+      <button type="submit" className="btn btn-light btn-lg btn-block">
         Register
       </button>
       <p className={classes.forgotPassword}>
