@@ -40,7 +40,7 @@
   border-radius: 2em;
   border: none;
   outline: none;
-  font-family: Open Sans, sans-serif;
+  font-family: "Fredoka One", cursive;
   text-align: center;
   font-size: 0.5em;
 }
@@ -57,7 +57,7 @@
   margin-right: 2.5em;
   margin-top: 0.5em;
   border-radius: 0.5em;
-  font-family: Open Sans, sans-serif;
+  font-family: "Fredoka One", cursive;
 }
 
 .goBack {
@@ -71,5 +71,5 @@
   margin-right: 2.5em;
   border-radius: 0.5em;
   font-weight: 700;
-  font-family: Open Sans, sans-serif;
+  font-family: "Fredoka One", cursive;
 }
