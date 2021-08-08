@@ -8,12 +8,6 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const SignUp = (props) => {
-  // history tracker
-  const history = useHistory();
-  function changePage(path) {
-    history.push(path);
-  }
-
   // hooks for setting first name, last name, email, username, and password
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

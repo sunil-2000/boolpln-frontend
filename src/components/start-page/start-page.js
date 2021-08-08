@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Panel from "./start-panel.js";
 import NewPanel from "./sign-up-start";
 import classes from "../../styles/start-page/start-page.module.css";
 import { connect } from "react-redux";

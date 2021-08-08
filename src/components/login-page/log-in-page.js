@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Panel from "./log-in-panel.js";
-import classes from "../../styles/login-page/log-in-page.module.css";
+import NewPanel from "./log-in-start";
+import classes from "../../styles/start-page/start-page.module.css";
 import { connect } from "react-redux";
 import { getLoggedIn } from "../../redux/reducers/userApiReducer.js";
 import { Redirect } from "react-router";
@@ -12,8 +13,10 @@ class LogIn extends Component {
     }
 
     return (
-      <div className={classes.page}>
-        <Panel />
+      <div className={classes.outer}>
+        <div className={classes.inner}>
+          <NewPanel />
+        </div>
       </div>
     );
   }
