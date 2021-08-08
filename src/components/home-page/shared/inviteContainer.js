@@ -16,6 +16,7 @@ import {
 } from "../../../redux/actions/groupApiActions";
 import { connect } from "react-redux";
 import InviteElement from "./inviteElement";
+import classes from "../../../styles/home-page/invite.module.css";
 
 class InviteContainer extends Component {
   constructor(props) {
@@ -75,16 +76,16 @@ class InviteContainer extends Component {
       return (
         <Modal show={this.props.show} onHide={this.close}>
           <Modal.Header closeButton>
-            <Modal.Title id='contained-modal-title-vcenter'>
+            <Modal.Title id="contained-modal-title-vcenter">
               Create a group!
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <InputGroup className='mb-3'>
+            <InputGroup className="mb-3">
               <FormControl
-                placeholder='Group Name'
-                aria-label='Group Name'
-                aria-describedby='basic-addon1'
+                placeholder="Group Name"
+                aria-label="Group Name"
+                aria-describedby="basic-addon1"
                 onChange={(event) =>
                   this.props.addedGroupName(event.target.value)
                 }
@@ -101,14 +102,18 @@ class InviteContainer extends Component {
       );
     } else {
       return (
-        <Modal show={this.props.show} onHide={this.close}>
+        <Modal
+          show={this.props.show}
+          onHide={this.close}
+          className={classes.groupInvite}
+        >
           <Modal.Header closeButton>
-            <Modal.Title id='contained-modal-title-vcenter'>
+            <Modal.Title id="contained-modal-title-vcenter">
               Invite friends!
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <InputGroup className='mb-3'></InputGroup>
+            <InputGroup className="mb-3"></InputGroup>
             {this.state.invites}
           </Modal.Body>
           <Modal.Footer>

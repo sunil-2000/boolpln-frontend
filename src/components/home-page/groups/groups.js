@@ -47,8 +47,10 @@ class Groups extends Component {
         <Button
           disabled={!(this.props.groups.length < 3)}
           onClick={() => this.setState({ show: true })}
+          className={classes.addButton}
+          variant="outline-secondary"
         >
-          Create Group
+          New
         </Button>
         <InviteContainer
           isCreate={true}

@@ -7,9 +7,11 @@
   height: 100px;
   white-space: normal;
   word-wrap: break-word;
+  border-color: #989898 !important;
 }
 .selected {
-  border-width: 0.5em;
+  border-width: 0.1em;
+  border-color: #989898 !important;
   margin: 20px;
   border-radius: 50%;
   width: 100px;
