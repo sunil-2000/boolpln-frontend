@@ -50,6 +50,7 @@
 .monthContainer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: baseline;
   background: #12c2e9; /* fallback for old browsers */
   background: -webkit-linear-gradient(

@@ -21,21 +21,24 @@
   margin-right: -1px;
   margin-top: -1px;
   text-align: center;
-  animation: kf-color-mix 0.5s linear infinite alternate;
+  animation: kf-color-mix 2s linear infinite alternate;
   background: currentColor;
 }
 
 @keyframes kf-color-mix {
   0% {
-    color: #fff192;
+    color: #df5f9f;
   }
-  33% {
-    color: #ffea61;
+  25% {
+    color: #d169c4;
   }
-  66% {
-    color: #ffdd3c;
+  50% {
+    color: #c073ed;
+  }
+  75% {
+    color: #a985eb;
   }
   100% {
-    color: #ffd400;
+    color: #859aeb;
   }
 }

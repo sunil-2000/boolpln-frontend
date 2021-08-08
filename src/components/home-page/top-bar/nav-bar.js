@@ -89,22 +89,18 @@ class NavBar extends Component {
             id="nav-dropdown"
             className={classes.dropDown}
           >
-            <NavDropdown.Item eventKey="invite">
-              Invite Others ✉️
-            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="invite">Invite ✉️</NavDropdown.Item>
             <InviteContainer
               isCreate={false}
               show={this.state.showInvite}
               handleClose={() => this.setState({ showInvite: false })}
             ></InviteContainer>
-            <NavDropdown.Item eventKey="rename">
-              Rename Group ✍
-            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="rename">Rename ✍</NavDropdown.Item>
             <RenameGroup
               show={this.state.showRename}
               handleClose={() => this.setState({ showRename: false })}
             ></RenameGroup>
-            <NavDropdown.Item eventKey="leave">Leave Group ✌</NavDropdown.Item>
+            <NavDropdown.Item eventKey="leave">Leave ✌</NavDropdown.Item>
             <LeaveGroup
               show={this.state.showLeave}
               handleClose={() => this.setState({ showLeave: false })}
@@ -122,9 +118,7 @@ class NavBar extends Component {
                 </Popover>
               }
             >
-              <NavDropdown.Item eventKey="members">
-                Group Members 👥
-              </NavDropdown.Item>
+              <NavDropdown.Item eventKey="members">Members 👥</NavDropdown.Item>
             </OverlayTrigger>
           </NavDropdown>
           <div className={classes.buttonsBlock}>

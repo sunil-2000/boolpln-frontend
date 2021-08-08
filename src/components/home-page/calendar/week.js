@@ -111,8 +111,7 @@ class Week extends React.Component {
             <h1 className={classes.monthText}>
               {this.displayMonth() + " " + year}
             </h1>
-            {/* <GroupInfo></GroupInfo>
-            <Submit></Submit> */}
+            <Submit></Submit>
           </div>
           <div className={classes.weekContainer}>
             <Container fluid>

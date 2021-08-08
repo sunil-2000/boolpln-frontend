@@ -19,9 +19,8 @@ class Groups extends Component {
   }
 
   renderGroupIcons() {
-    // blue(1) purple(2) pink(3)
     const groups = this.props.groups;
-    let colors = ["blue", "purple", "pink"];
+    let colors = ["#F3505F", "#C073ED", "#72A4EA"];
     let result = [];
     let i = 0;
     if (groups.length > 0) {

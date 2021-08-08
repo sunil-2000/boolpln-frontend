@@ -27,7 +27,7 @@ class Submit extends Component {
     return (
       <Button
         className={classes.button}
-        variant="primary"
+        variant="outline-secondary"
         size="lg"
         onClick={this.handleClick}
       >
