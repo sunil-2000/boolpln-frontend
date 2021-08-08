@@ -42,3 +42,21 @@
 .noPadding {
   padding: 0 !important;
 }
+
+.dropDown {
+  padding: 0;
+  justify-content: flex-start;
+}
+
+.dropDown > a {
+  color: #989898 !important;
+  font-size: 1.5em;
+  padding: 0;
+  margin-left: 0.5em;
+}
+
+.buttonsBlock {
+  display: flex;
+  position: absolute;
+  right: 0;
+}

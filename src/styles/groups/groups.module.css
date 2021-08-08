@@ -1,9 +1,7 @@
 .groupContainer {
   background-color: #35363a;
-  font-family: Open Sans, sans-serif;
   font-weight: 700;
   text-align: center;
-  font-size: 1.5em;
   color: white;
 }
 
@@ -22,4 +20,9 @@
 .groupScroll {
   overflow-y: scroll;
   height: 29em;
+}
+
+.iconContainer {
+  display: flex;
+  flex-direction: column;
 }

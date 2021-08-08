@@ -10,6 +10,7 @@ ol,
 ul {
   padding-left: 30px;
 }
+
 /* imports for calendar styling */
 @import url(calendar/time.css);
 @import url(calendar/day.css);
@@ -30,3 +31,5 @@ ul {
 /* imports for start page styling */
 @import url(start-page/start-page.module.css);
 @import url(start-page/start-panel.module.css);
+
+@import url(home-page/home.module.css);
