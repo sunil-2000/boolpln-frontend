@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/home-page/home.js";
 import Start from "./components/start-page/start-page.js";
-import SignUp from "./components/signup-page/sign-up-page.js";
 import LogIn from "./components/login-page/log-in-page.js";
 import GroupInvites from "./components/home-page/top-bar/group-invites.js";
 import ReactNotification from "react-notifications-component";

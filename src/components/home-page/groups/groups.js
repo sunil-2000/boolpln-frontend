@@ -48,7 +48,7 @@ class Groups extends Component {
           disabled={!(this.props.groups.length < 3)}
           onClick={() => this.setState({ show: true })}
           className={classes.addButton}
-          variant="outline-secondary"
+          variant="outline-light"
         >
           New
         </Button>
