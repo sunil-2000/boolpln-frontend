@@ -2,7 +2,6 @@
 
 .icon {
   margin: 20px;
-  border-radius: 50%;
   width: 100px;
   height: 100px;
   white-space: normal;
@@ -11,7 +10,6 @@
 }
 .selected {
   margin: 20px;
-  border-radius: 50%;
   width: 100px;
   height: 100px;
   white-space: normal;

@@ -52,11 +52,18 @@
   color: #989898 !important;
   font-size: 1.5em;
   padding: 0;
-  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 .buttonsBlock {
   display: flex;
   position: absolute;
   right: 0;
+}
+
+.greeting {
+  color: #989898;
+  font-size: 1.5em;
+  padding: 0;
+  margin-left: 0.5em;
 }

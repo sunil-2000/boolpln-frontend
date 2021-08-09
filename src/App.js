@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/home-page/home.js";
 import Start from "./components/start-page/start-page.js";
 import LogIn from "./components/login-page/log-in-page.js";
-import GroupInvites from "./components/home-page/top-bar/group-invites.js";
 import ReactNotification from "react-notifications-component";
 import { store } from "react-notifications-component";
 import { connect } from "react-redux";
@@ -62,7 +61,6 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Switch>
-              <Route path="/test" component={GroupInvites} />
               <Route path="/" component={Home} exact />
               <Route path="/start" component={Start} />
               <Route path="/login" component={LogIn} />

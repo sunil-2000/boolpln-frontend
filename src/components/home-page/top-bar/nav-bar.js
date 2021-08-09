@@ -18,6 +18,7 @@ import LeaveGroup from "../calendar/leaveGroups.js";
 import InviteContainer from "../shared/inviteContainer.js";
 
 import { getCurrentGroup } from "../../../redux/reducers/groupApiReducer.js";
+import { getFirstName } from "../../../redux/reducers/userApiReducer";
 
 class NavBar extends Component {
   constructor(props) {
@@ -84,44 +85,49 @@ class NavBar extends Component {
           defaultActiveKey={this.state.activeKey}
           onSelect={this.handleSelect}
         >
-          <NavDropdown
-            title={this.handleGroupName()}
-            id="nav-dropdown"
-            className={classes.dropDown}
-          >
-            <NavDropdown.Item eventKey="invite">Invite ✉️</NavDropdown.Item>
-            <InviteContainer
-              isCreate={false}
-              show={this.state.showInvite}
-              handleClose={() => this.setState({ showInvite: false })}
-            ></InviteContainer>
-            <NavDropdown.Item eventKey="rename">Rename ✍</NavDropdown.Item>
-            <RenameGroup
-              show={this.state.showRename}
-              handleClose={() => this.setState({ showRename: false })}
-            ></RenameGroup>
-            <NavDropdown.Item eventKey="leave">Leave ✌</NavDropdown.Item>
-            <LeaveGroup
-              show={this.state.showLeave}
-              handleClose={() => this.setState({ showLeave: false })}
-            ></LeaveGroup>
-            <NavDropdown.Divider />
-            <OverlayTrigger
-              placement="right"
-              trigger={["hover", "focus"]}
-              overlay={
-                <Popover>
-                  <Popover.Title as="h3">
-                    <strong>Members</strong>
-                  </Popover.Title>
-                  <PopoverContent>{this.handleMemberList()}</PopoverContent>
-                </Popover>
-              }
-            >
-              <NavDropdown.Item eventKey="members">Members 👥</NavDropdown.Item>
-            </OverlayTrigger>
-          </NavDropdown>
+          <Navbar.Text className={classes.greeting}>
+            {"Hi, " + this.props.firstName + "!"}
+          </Navbar.Text>
           <div className={classes.buttonsBlock}>
+            <NavDropdown
+              title={this.handleGroupName()}
+              id="nav-dropdown"
+              className={classes.dropDown}
+            >
+              <NavDropdown.Item eventKey="invite">Invite ✉️</NavDropdown.Item>
+              <InviteContainer
+                isCreate={false}
+                show={this.state.showInvite}
+                handleClose={() => this.setState({ showInvite: false })}
+              ></InviteContainer>
+              <NavDropdown.Item eventKey="rename">Rename ✍</NavDropdown.Item>
+              <RenameGroup
+                show={this.state.showRename}
+                handleClose={() => this.setState({ showRename: false })}
+              ></RenameGroup>
+              <NavDropdown.Item eventKey="leave">Leave ✌</NavDropdown.Item>
+              <LeaveGroup
+                show={this.state.showLeave}
+                handleClose={() => this.setState({ showLeave: false })}
+              ></LeaveGroup>
+              <NavDropdown.Divider />
+              <OverlayTrigger
+                placement="right"
+                trigger={["hover", "focus"]}
+                overlay={
+                  <Popover>
+                    <Popover.Title as="h3">
+                      <strong>Members</strong>
+                    </Popover.Title>
+                    <PopoverContent>{this.handleMemberList()}</PopoverContent>
+                  </Popover>
+                }
+              >
+                <NavDropdown.Item eventKey="members">
+                  Members 👥
+                </NavDropdown.Item>
+              </OverlayTrigger>
+            </NavDropdown>
             <Nav.Item>
               <Nav.Link
                 eventKey="home"
@@ -175,6 +181,7 @@ class NavBar extends Component {
 const mapStateToProps = (state) => {
   return {
     currentGroup: getCurrentGroup(state),
+    firstName: getFirstName(state),
   };
 };
 

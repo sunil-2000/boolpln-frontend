@@ -6,6 +6,7 @@ import {
   getDayList,
   getGroupDayList,
 } from "../../../redux/reducers/calendarReducer";
+import { getCurrentGroup } from "../../../redux/reducers/groupApiReducer";
 
 class Time extends React.Component {
   constructor(props) {
@@ -39,13 +40,26 @@ class Time extends React.Component {
     return result;
   }
 
+  colorGradient(selected, total) {
+    let percentage = (selected / total) * 100;
+    return "hsl(31, " + percentage + "%, 50%)";
+  }
+
   handleTimeGroupColor() {
     let fillColor = "";
     const groupWeek = [...this.props.groupWeek];
     if (groupWeek.length > 0) {
       const day = groupWeek[this.props.dayIndex];
       if (day.length > 0) {
-        fillColor = day[this.props.timeIndex] !== null ? "green" : "";
+        if (
+          day[this.props.timeIndex] !== null &&
+          this.props.currentGroup !== null
+        ) {
+          fillColor = this.colorGradient(
+            day[this.props.timeIndex].length,
+            this.props.currentGroup.groupMembers.length
+          );
+        } else fillColor = "";
       }
     }
     return { backgroundColor: fillColor };
@@ -55,11 +69,11 @@ class Time extends React.Component {
     const selected = this.props.week[this.props.dayIndex][this.props.timeIndex];
     return (
       <OverlayTrigger
-        placement='right'
+        placement="right"
         trigger={["hover", "focus"]}
         overlay={
           <Popover>
-            <Popover.Title as='h3'>
+            <Popover.Title as="h3">
               <strong>Others available</strong>
             </Popover.Title>
             <PopoverContent>{this.handleMemberList()}</PopoverContent>
@@ -83,6 +97,7 @@ const mapStateToProps = (state) => {
   return {
     week: getDayList(state),
     groupWeek: getGroupDayList(state),
+    currentGroup: getCurrentGroup(state),
   };
 };
 
